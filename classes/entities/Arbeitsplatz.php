@@ -1,6 +1,6 @@
 <?php
 class Arbeitsplatz
 {
-    public int nummer;
-    public int ruestzeit;
+  public int $nummer;
+  public int $ruestzeit;
 }
