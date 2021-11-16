@@ -2,7 +2,7 @@
 
 class KapazitätsbedarfGesamtService{
 
-    function berechnungKapazitätsbedarfGesamt(){
+    function berechnungKapazitätsbedarfGesamt($arbeitsplatz, $wartendeArtikel){
         
     }
 }
