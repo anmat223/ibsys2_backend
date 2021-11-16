@@ -1,7 +1,9 @@
 <?php
-class DispositionKaufteileService {
+class DispositionKaufteileService
+{
 
-  function bestellungBerechnen($kaufteil) {
+  function bestellungBerechnen($kaufteil, $produktionsprogramm)
+  {
     $bruttobedarfPeriode1 = $kaufteil->verwendungP1 * $produktionsprogramm->periode1->p1;
     $bruttobedarfPeriode1 += $kaufteil->verwendungP2 * $produktionsprogramm->periode1->p2;
     $bruttobedarfPeriode1 += $kaufteil->verwendungP3 * $produktionsprogramm->periode1->p3;
@@ -18,47 +20,44 @@ class DispositionKaufteileService {
     $bruttobedarfPeriode4 += $kaufteil->verwendungP2 * $produktionsprogramm->periode4->p2;
     $bruttobedarfPeriode4 += $kaufteil->verwendungP3 * $produktionsprogramm->periode4->p3;
 
-    $endbestand = $kaufteil->anfangsbestand - $bruttobedarfPeriode1;
+    $endbestand = $kaufteil->anzahl - $bruttobedarfPeriode1;
 
     if ($endbestand <= $kaufteil->diskontmenge) {
-      if (($kaufteil->lieferfrist + $kaufteil->lieferabweichung) > 1)
-        new Bestellung($kaufteil->nummer, $kaufteil->diskontmenge, "E");
+      if (($kaufteil->lieferzeit + $kaufteil->abweichung) > 1)
+        new Bestellung(new Periode(1), $kaufteil, true, $kaufteil->diskontmenge);
       else {
-        new Bestellung($kaufteil->nummer, $kaufteil->diskontmenge, "N");
+        new Bestellung(new Periode(1), $kaufteil, false, $kaufteil->diskontmenge);
       }
     }
 
     $endbestand -= $bruttobedarfPeriode2;
 
     if ($endbestand <= $kaufteil->diskontmenge) {
-      if (($kaufteil->lieferfrist + $kaufteil->lieferabweichung) > 2)
-        new Bestellung($kaufteil->nummer, $kaufteil->diskontmenge, "E");
+      if (($kaufteil->lieferfrist + $kaufteil->abweichung) > 2)
+        new Bestellung(new Periode(2), $kaufteil, true, $kaufteil->diskontmenge);
       else {
-        new Bestellung($kaufteil->nummer, $kaufteil->diskontmenge, "N");
+        new Bestellung(new Periode(2), $kaufteil, false, $kaufteil->diskontmenge);
       }
     }
 
     $endbestand -= $bruttobedarfPeriode3;
 
     if ($endbestand <= $kaufteil->diskontmenge) {
-      if (($kaufteil->lieferfrist + $kaufteil->lieferabweichung) > 3)
-        new Bestellung($kaufteil->nummer, $kaufteil->diskontmenge, "E");
+      if (($kaufteil->lieferfrist + $kaufteil->abweichung) > 3)
+        new Bestellung(new Periode(3), $kaufteil, true, $kaufteil->diskontmenge);
       else {
-        new Bestellung($kaufteil->nummer, $kaufteil->diskontmenge, "N");
+        new Bestellung(new Periode(3), $kaufteil, false, $kaufteil->diskontmenge);
       }
     }
 
     $endbestand -= $bruttobedarfPeriode4;
 
     if ($endbestand <= $kaufteil->diskontmenge) {
-      if (($kaufteil->lieferfrist + $kaufteil->lieferabweichung) > 4)
-        new Bestellung($kaufteil->nummer, $kaufteil->diskontmenge, "E");
+      if (($kaufteil->lieferfrist + $kaufteil->abweichung) > 4)
+        new Bestellung(new Periode(4), $kaufteil, true, $kaufteil->diskontmenge);
       else {
-        new Bestellung($kaufteil->nummer, $kaufteil->diskontmenge, "N");
+        new Bestellung(new Periode(4), $kaufteil, false, $kaufteil->diskontmenge);
       }
     }
-
-    return $produktionsteil;
-
   }
 }
