@@ -15,6 +15,8 @@ class DispositionKaufteileService
 
   function bestellungBerechnen($kaufteil, $produktionsprogramm)
   {
+    $bestellung = null;
+
     $bruttobedarfPeriode1 = $kaufteil->verwendungP1 * $produktionsprogramm->periode1->p1;
     $bruttobedarfPeriode1 += $kaufteil->verwendungP2 * $produktionsprogramm->periode1->p2;
     $bruttobedarfPeriode1 += $kaufteil->verwendungP3 * $produktionsprogramm->periode1->p3;
@@ -35,9 +37,9 @@ class DispositionKaufteileService
 
     if ($endbestand <= $kaufteil->diskontmenge) {
       if (($kaufteil->lieferzeit + $kaufteil->abweichung) > 1)
-        new Bestellung(new Periode(1), $kaufteil, true, $kaufteil->diskontmenge);
+        $bestellung = new Bestellung(new Periode(1), $kaufteil, true, $kaufteil->diskontmenge);
       else {
-        new Bestellung(new Periode(1), $kaufteil, false, $kaufteil->diskontmenge);
+        $bestellung = new Bestellung(new Periode(1), $kaufteil, false, $kaufteil->diskontmenge);
       }
     }
 
@@ -45,9 +47,9 @@ class DispositionKaufteileService
 
     if ($endbestand <= $kaufteil->diskontmenge) {
       if (($kaufteil->lieferfrist + $kaufteil->abweichung) > 2)
-        new Bestellung(new Periode(2), $kaufteil, true, $kaufteil->diskontmenge);
+        $bestellung = new Bestellung(new Periode(2), $kaufteil, true, $kaufteil->diskontmenge);
       else {
-        new Bestellung(new Periode(2), $kaufteil, false, $kaufteil->diskontmenge);
+        $bestellung = new Bestellung(new Periode(2), $kaufteil, false, $kaufteil->diskontmenge);
       }
     }
 
@@ -55,9 +57,9 @@ class DispositionKaufteileService
 
     if ($endbestand <= $kaufteil->diskontmenge) {
       if (($kaufteil->lieferfrist + $kaufteil->abweichung) > 3)
-        new Bestellung(new Periode(3), $kaufteil, true, $kaufteil->diskontmenge);
+        $bestellung = new Bestellung(new Periode(3), $kaufteil, true, $kaufteil->diskontmenge);
       else {
-        new Bestellung(new Periode(3), $kaufteil, false, $kaufteil->diskontmenge);
+        $bestellung = new Bestellung(new Periode(3), $kaufteil, false, $kaufteil->diskontmenge);
       }
     }
 
@@ -65,10 +67,12 @@ class DispositionKaufteileService
 
     if ($endbestand <= $kaufteil->diskontmenge) {
       if (($kaufteil->lieferfrist + $kaufteil->abweichung) > 4)
-        new Bestellung(new Periode(4), $kaufteil, true, $kaufteil->diskontmenge);
+        $bestellung = new Bestellung(new Periode(4), $kaufteil, true, $kaufteil->diskontmenge);
       else {
-        new Bestellung(new Periode(4), $kaufteil, false, $kaufteil->diskontmenge);
+        $bestellung = new Bestellung(new Periode(4), $kaufteil, false, $kaufteil->diskontmenge);
       }
     }
+
+    return $bestellung;
   }
 }
