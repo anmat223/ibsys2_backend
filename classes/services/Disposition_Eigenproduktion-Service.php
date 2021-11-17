@@ -1,6 +1,17 @@
 <?php
 class DispositionEigenproduktionService {
 
+  function alleProduktionsauftraegeBerechnen($produktionsteile) {
+    $produktion = array();
+
+    foreach ($produktionsteile as $teil) {
+      $produktionProTeil = $this->produktionsauftraegeBerechnen($teil);
+      array_push($produktion, $produktionProTeil);
+    }
+
+    return $produktion;
+  }
+
   function produktionsauftraegeBerechnen($produktionsteil) {
     $verbindlicheAuftraege = $produktionsteil->verbindlicheAuftraege;
     $sicherheitsbestand = $produktionsteil->sicherheitsbestand;
