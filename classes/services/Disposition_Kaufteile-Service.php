@@ -2,6 +2,17 @@
 class DispositionKaufteileService
 {
 
+  function alleBestellungenBerechnen($kaufteile, $produktionsprogramm) {
+    $bestellungen = array();
+
+   foreach ($kaufteile as $teil) {
+    $bestellung = $this->bestellungBerechnen($teil, $produktionsprogramm);
+    array_push($bestellungen, $bestellung);
+   }
+
+   return $bestellungen;
+  }
+
   function bestellungBerechnen($kaufteil, $produktionsprogramm)
   {
     $bruttobedarfPeriode1 = $kaufteil->verwendungP1 * $produktionsprogramm->periode1->p1;
