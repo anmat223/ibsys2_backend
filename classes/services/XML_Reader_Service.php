@@ -5,17 +5,37 @@ class XML_Reader_Service
 
   public $xmldata;  
 
-  function get_warehousestock()
+  function get_warehousestock() // return List<Teil> (Produktions oder Kaufteil)
   {
     $xmldata = simplexml_load_file("..\resources\daten.xml") or die("Failed to load");
+    $warehousestockList = [];
     echo "Lager: " . "<br>";
     foreach ($xmldata->warehousestock->article as $articl) {
 
-      echo "Artikelid: " . $articl['id'] . " ";
-      echo "Anzahl: " . $articl['amount'] . " ";
-      echo "Preis: " . $articl['price'] . "<br>";
+      $id = $articl['id'];
+      $anzahl = $articl['amount'];
+      $preis = $articl['price'];
+      if($id >=4 && $id<=20) {
+        array_push($warehousestockList, new Produktionsteil($id,$anzahl,$preis));
+      } else if($id>=21 && $id<=25) {
+        array_push($warehousestockList, new Kaufteil($id,$anzahl,$preis));
+      } else if ($id == 26 || $id>=29 && $id<=31) {
+        array_push($warehousestockList, new Produktionsteil($id,$anzahl,$preis));
+      } else if ($id == 27 || $id == 28 || $id ==52 || $id == 53) {
+        array_push($warehousestockList, new Kaufteil($id,$anzahl,$preis));
+      } else if ($id >=32 && $id<=48) {
+        array_push($warehousestockList, new Kaufteil($id,$anzahl,$preis));
+      } else if ($id>=49 && $id <=51) {
+        array_push($warehousestockList, new Produktionsteil($id,$anzahl,$preis));
+      } else if ($id>=54 && $id <=56) {
+        array_push($warehousestockList, new Produktionsteil($id,$anzahl,$preis));
+      } else if($id>=57 && $id <=59) {
+        array_push($warehousestockList, new Kaufteil($id,$anzahl,$preis));
+      }
+      return $warehousestockList;
     }
-    // entity Teil
+    // entity Teil 
+    // evtl logik -> if id <x Kauf oder Produktionsteil
   }
 
   function get_inwardstockmovement()
@@ -68,37 +88,39 @@ class XML_Reader_Service
     foreach ($xmldata->waitinglistworkstations->workplace as $workplace) {
 
       if ($workplace['timeneed'] != 0) {
-        echo "Arbeitsplatz: " . $workplace['id'] . " ";
-        echo "Zeitbedarf: " . $workplace['timeneed'] . " ";
+        $workplaceid = $workplace['id'];
+        $timeneed = $workplace['timeneed'];
 
         foreach ($workplace->waitinglist as $waitinglist) {
-          echo "Fertigungsauftrag: " . $waitinglist['order'] . " ";
-          echo "Los: " . $waitinglist['firstbatch'] . "-" . $waitinglist['lastbatch'] . " ";
-          echo "Teil: " . $waitinglist['item'] . " ";
-          echo "Menge: " . $waitinglist['amount'] . " ";
-          echo "Zeitbedarf: " . $waitinglist['timeneed'] . "<br>";
+          $order = $waitinglist['order'];
+          $firstbatch = $waitinglist['firstbatch'];
+          $lastbatch = $waitinglist['lastbatch'];
+          $item = $waitinglist['item'];
+          $amount = $waitinglist['amount'];
+          $timeneed = $waitinglist['timeneed'];
         }
       }
     }
     // entity wartende artickel
   }
 
-  function get_waitingliststock()
+  function get_waitingliststock() // return Warteliste Material
   {
     $xmldata = simplexml_load_file("..\resources\daten.xml") or die("Failed to load");
     echo "Warteliste Material: " . "<br>";
     foreach ($xmldata->waitingliststock->missingpart as $missingpart) {
       if ($missingpart->workplace) {
         foreach ($missingpart->workplace as $workplace) {
-          echo "Arbeitsplatz: " . $workplace['id'] . " ";
-          echo "Zeitbedarf: " . $workplace['timeneed'] . " ";
+          $workplaceid = $workplace['id'];
+          $timeneed = $workplace['timeneed'];
 
           foreach ($workplace->waitinglist as $waitinglist) {
-            echo "Fertigungsauftrag: " . $waitinglist['order'] . " ";
-            echo "Los: " . $waitinglist['firstbatch'] . "-" . $waitinglist['lastbatch'] . " ";
-            echo "Teil: " . $waitinglist['item'] . " ";
-            echo "Menge: " . $waitinglist['amount'] . " ";
-            echo "Zeitbedarf: " . $waitinglist['timeNeed'] . "<br>";
+            $order = $waitinglist['order'];
+            $firstbatch = $waitinglist['firstbatch'];
+            $lastbatch = $waitinglist['lastbatch'];
+            $item = $waitinglist['item'];
+            $amount = $waitinglist['amount'];
+            $timeneed = $waitinglist['timeNeed'];
           }
         }
       }
@@ -109,15 +131,20 @@ class XML_Reader_Service
   function get_ordersinwork()
   {
     $xmldata = simplexml_load_file("..\resources\daten.xml") or die("Failed to load");
+    $ordersinwork = [];
     echo "Aufträge in Bearbeitung: " . "<br>";
     foreach ($xmldata->ordersinwork->workplace as $workplace) {
-      echo "Arbeitsplatz: " . $workplace['id'] . " ";
-      echo "Fertigungsauftrag: " . $workplace['order'] . " ";
-      echo "Los: " . $workplace['batch'] . " ";
-      echo "Teil: " . $workplace['item'] . " ";
-      echo "Menge: " . $workplace['amount'] . " ";
-      echo "Zeitbedarf: " . $workplace['timeneed'] . "<br>";
+      $workplaceid = $workplace['id'];
+      $order = $workplace['order'];
+      $batch = $workplace['batch'];
+      $item = $workplace['item'];
+      $amount = $workplace['amount'];
+      $timeneed = $workplace['timeneed'];
+
+      array_push($ordersinwork, new WartendeArtikel(new Teil($item, $amount, null),new Arbeitsplatz($workplaceid,null),true,$amount,$timeneed));
+      // ToDo: Ruestzeit pro Arbeitsplatz einpflegen
     }
+    return $ordersinwork;
   }
   // wartende artikel
 }
