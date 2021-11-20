@@ -1,29 +1,53 @@
 <?php
-class DispositionEigenproduktionService {
+class DispositionEigenproduktionService
+{
 
-  function alleProduktionsauftraegeBerechnen($produktionsteile) {
+  function alleProduktionsauftraegeBerechnen($produktionsteile, $wartendeArtikel)
+  {
     $produktion = array();
 
+    usort($produktionsteile, "produktionsteileVergleichen");
+
     foreach ($produktionsteile as $teil) {
-      $produktionProTeil = $this->produktionsauftraegeBerechnen($teil);
+      $produktionProTeil = $this->produktionsauftraegeBerechnen($teil, $wartendeArtikel);
       array_push($produktion, $produktionProTeil);
     }
 
     return $produktion;
   }
 
-  function produktionsauftraegeBerechnen($produktionsteil) {
+  function produktionsauftraegeBerechnen($produktionsteil, $wartendeArtikel)
+  {
+    // Berechnung der verbindlichen Auftraege muss noch besprochen werden
     $verbindlicheAuftraege = $produktionsteil->verbindlicheAuftraege;
     $sicherheitsbestand = $produktionsteil->sicherheitsbestand;
-    $lagerbestandEndeVorperiode = $produktionsteil->lagerbestand;
-    $auftraegeWarteschlange = $produktionsteil->auftraegeWarteschlange;
-    $auftraegeBearbeitung = $produktionsteil->auftraegeBearbeitung;
+    $lagerbestandEndeVorperiode = $produktionsteil->anzahl;
 
-    $produktionsauftraegeKommendePeriode = $verbindlicheAuftraege + $sicherheitsbestand;
-    $produktionsauftraegeKommendePeriode -= ($lagerbestandEndeVorperiode + $auftraegeWarteschlange + $auftraegeBearbeitung);
+    $auftraegeBearbeitung = null;
+    $auftraegeWarteschlange = null;
 
-    $produktionsteil->produktionsauftraegeKommendePeriode = $produktionsauftraegeKommendePeriode;
+    foreach ($wartendeArtikel as $artikel) {
+      if ($artikel->nummer == $produktionsteil->nummer) {
+        if ($artikel->inBearbeitung) {
+          $auftraegeBearbeitung = $artikel->anzahl;
+        } else {
+          $auftraegeWarteschlange = $artikel->anzahl;
+        }
+      }
+    }
 
-    return $produktionsteil;
+    $auftragsmenge = $verbindlicheAuftraege + $sicherheitsbestand;
+    $auftragsmenge -= ($lagerbestandEndeVorperiode + $auftraegeWarteschlange + $auftraegeBearbeitung);
+
+    return $auftragsmenge;
+  }
+
+  function produktionsteileVergleichen($a, $b)
+  {
+    if ($a->nummer == $b->nummer) {
+      return 0;
+    }
+
+    return ($a->nummer < $b->nummer) ? -1 : 1;
   }
 }
