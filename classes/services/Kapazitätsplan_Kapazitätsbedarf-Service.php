@@ -126,8 +126,12 @@ class KapazitätsbedarfNeuService{
         return $kapabedarfArbeitsplatz;
     }
 
-    function berechnungKapazitätsbedarfGesamt($arbeitsplatz, $wartendeArtikel){
-  
+    function berechnungKapazitätsbedarfGesamt($kapaBedarfNeu, $rüstzeitNeu, $kapaBedarfRückstand, $rüstzeitRückstand){
+        $kapaBedarfGesamt = array();
+        for($i=0;$i < 15; ++$i){
+            $kapaBedarfGesamt[$i] = $kapaBedarfNeu[$i] + $rüstzeitNeu[$i] + $kapaBedarfRückstand[$i] + $rüstzeitRückstand[$i];
+        }
+        return $kapaBedarfGesamt;
     }
     
     function berechnungSchichtenÜberstunden($gesamtBedarf){
