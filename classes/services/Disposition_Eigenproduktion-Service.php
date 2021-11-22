@@ -27,7 +27,7 @@ class DispositionEigenproduktionService
     $auftraegeWarteschlange = null;
 
     foreach ($wartendeArtikel as $artikel) {
-      if ($artikel->nummer == $produktionsteil->nummer) {
+      if ($artikel->nummer == $produktionsteil->nummer) { // müsste glaub ich $artikel->$produktionsteil->$nummer sein
         if ($artikel->inBearbeitung) {
           $auftraegeBearbeitung = $artikel->anzahl;
         } else {

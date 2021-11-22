@@ -150,7 +150,7 @@ class XML_Reader_Service
       $timeneed = $workplace['timeneed'];
 
       array_push($ordersinwork, new WartendeArtikel(new Teil($item, $amount, null), new Arbeitsplatz($workplaceid, null), true, $amount, $timeneed));
-      // ToDo: Ruestzeit pro Arbeitsplatz einpflegen
+      // ToDo: Ruestzeit pro Arbeitsplatz einpflegen bzw. klären an welcher Stelle das und andere Infos z.B. Sicherheitsbestand aus DB gelesen werden
     }
     return $ordersinwork;
   }

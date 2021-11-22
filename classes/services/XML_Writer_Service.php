@@ -4,7 +4,7 @@ class XML_Writer_Service
 {
     public $xmlOutput;
 
-    function write_output_to_xml()
+    function write_output_to_xml($sellwishes, $selldirects, $orders, $productions, $workingtimes)
     {
         $xmlOutput = new SimpleXMLElement('<?xml version="1.0"?><input/>');
 
@@ -13,18 +13,18 @@ class XML_Writer_Service
         $qualitycontrol->addAttribute("losequantity", "Wert für losequantity");
         $qualitycontrol->addAttribute("type", "Wert für type");
 
-        $sellwish = $xmlOutput->addChild("sellwish");
+        $sellwishlist = $xmlOutput->addChild("sellwish");
         // wie kriege ich die Verkaufswünsche? als array???
         foreach ($sellwishes as $sellwish) {
-            $item = $sellwish->addChild("item");
+            $item = $sellwishlist->addChild("item");
             $item->addAttribute("quantity", "wert für quantity");
             $item->addAttribute("article", "article");
             // <item quantity="100" article="3"/>
         }
 
-        $selldirect = $xmlOutput->addChild(("selldirect"));
+        $selldirectlist = $xmlOutput->addChild(("selldirect"));
         foreach ($selldirects as $selldirect) {
-            $item = $selldirect->addChild("item");
+            $item = $selldirectlist->addChild("item");
             $item->addAttribute("quantity", "wert für quantity");
             $item->addAttribute("article", "article");
             $item->addAttribute("penalty", "strafe");
@@ -52,11 +52,11 @@ class XML_Writer_Service
         }
 
         $workingtimelist = $xmlOutput->addChild("workingtimelist");
-        foreach ($productions as $production) {
+        foreach ($workingtimes as $index => $workingtime) {
             $workingtimeitem = $workingtimelist->addChild("workingtime");
-            $workingtimeitem->addAttribute("overtime", "wert für Überstunden");
-            $workingtimeitem->addAttribute("shift", "Schicht");
-            $workingtimeitem->addAttribute("station", "arbeitsplatz");
+            $workingtimeitem->addAttribute("overtime", $workingtime->überstunden);
+            $workingtimeitem->addAttribute("shift", $workingtime->schichten);
+            $workingtimeitem->addAttribute("station", $index);
             // <workingtimelist>
                 // <workingtime overtime="0" shift="2" station="1"/>
         }
