@@ -3,7 +3,7 @@
 class XML_Reader_Service
 {
 
-  public $xmldata;  
+  public $xmldata;
 
   function get_warehousestock() // return List<Teil> (Produktions oder Kaufteil)
   {
@@ -15,22 +15,22 @@ class XML_Reader_Service
       $id = $articl['id'];
       $anzahl = $articl['amount'];
       $preis = $articl['price'];
-      if($id >=4 && $id<=20) {
-        array_push($warehousestockList, new Produktionsteil($id,$anzahl,$preis));
-      } else if($id>=21 && $id<=25) {
-        array_push($warehousestockList, new Kaufteil($id,$anzahl,$preis));
-      } else if ($id == 26 || $id>=29 && $id<=31) {
-        array_push($warehousestockList, new Produktionsteil($id,$anzahl,$preis));
-      } else if ($id == 27 || $id == 28 || $id ==52 || $id == 53) {
-        array_push($warehousestockList, new Kaufteil($id,$anzahl,$preis));
-      } else if ($id >=32 && $id<=48) {
-        array_push($warehousestockList, new Kaufteil($id,$anzahl,$preis));
-      } else if ($id>=49 && $id <=51) {
-        array_push($warehousestockList, new Produktionsteil($id,$anzahl,$preis));
-      } else if ($id>=54 && $id <=56) {
-        array_push($warehousestockList, new Produktionsteil($id,$anzahl,$preis));
-      } else if($id>=57 && $id <=59) {
-        array_push($warehousestockList, new Kaufteil($id,$anzahl,$preis));
+      if ($id >= 4 && $id <= 20) {
+        array_push($warehousestockList, new Produktionsteil($id, $anzahl, $preis));
+      } else if ($id >= 21 && $id <= 25) {
+        array_push($warehousestockList, new Kaufteil($id, $anzahl, $preis));
+      } else if ($id == 26 || $id >= 29 && $id <= 31) {
+        array_push($warehousestockList, new Produktionsteil($id, $anzahl, $preis));
+      } else if ($id == 27 || $id == 28 || $id == 52 || $id == 53) {
+        array_push($warehousestockList, new Kaufteil($id, $anzahl, $preis));
+      } else if ($id >= 32 && $id <= 48) {
+        array_push($warehousestockList, new Kaufteil($id, $anzahl, $preis));
+      } else if ($id >= 49 && $id <= 51) {
+        array_push($warehousestockList, new Produktionsteil($id, $anzahl, $preis));
+      } else if ($id >= 54 && $id <= 56) {
+        array_push($warehousestockList, new Produktionsteil($id, $anzahl, $preis));
+      } else if ($id >= 57 && $id <= 59) {
+        array_push($warehousestockList, new Kaufteil($id, $anzahl, $preis));
       }
       return $warehousestockList;
     }
@@ -85,6 +85,7 @@ class XML_Reader_Service
   {
     $xmldata = simplexml_load_file("..\resources\daten.xml") or die("Failed to load");
     echo "Warteliste Arbeitsplatz: " . "<br>";
+    $waitinglistworkstations = [];
     foreach ($xmldata->waitinglistworkstations->workplace as $workplace) {
 
       if ($workplace['timeneed'] != 0) {
@@ -98,9 +99,12 @@ class XML_Reader_Service
           $item = $waitinglist['item'];
           $amount = $waitinglist['amount'];
           $timeneed = $waitinglist['timeneed'];
+
+          array_push($waitinglistworkstations, new WartendeArtikel(new Teil($item, $amount, null), new Arbeitsplatz($workplaceid, null), false, $amount, $timeneed));
         }
       }
     }
+    return $waitinglistworkstations;
     // entity wartende artickel
   }
 
@@ -108,6 +112,7 @@ class XML_Reader_Service
   {
     $xmldata = simplexml_load_file("..\resources\daten.xml") or die("Failed to load");
     echo "Warteliste Material: " . "<br>";
+    $waitingliststock = [];
     foreach ($xmldata->waitingliststock->missingpart as $missingpart) {
       if ($missingpart->workplace) {
         foreach ($missingpart->workplace as $workplace) {
@@ -121,10 +126,13 @@ class XML_Reader_Service
             $item = $waitinglist['item'];
             $amount = $waitinglist['amount'];
             $timeneed = $waitinglist['timeNeed'];
+
+            array_push($waitingliststock, new WartendeArtikel(new Teil($item, $amount, null), new Arbeitsplatz($workplaceid, null), false, $amount, $timeneed));
           }
         }
       }
     }
+    return $waitingliststock;
     // wartende artikel
   }
 
@@ -141,7 +149,7 @@ class XML_Reader_Service
       $amount = $workplace['amount'];
       $timeneed = $workplace['timeneed'];
 
-      array_push($ordersinwork, new WartendeArtikel(new Teil($item, $amount, null),new Arbeitsplatz($workplaceid,null),true,$amount,$timeneed));
+      array_push($ordersinwork, new WartendeArtikel(new Teil($item, $amount, null), new Arbeitsplatz($workplaceid, null), true, $amount, $timeneed));
       // ToDo: Ruestzeit pro Arbeitsplatz einpflegen
     }
     return $ordersinwork;
