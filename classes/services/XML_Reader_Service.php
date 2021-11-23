@@ -1,5 +1,7 @@
 <?php
 
+// für file upload: https://www.w3schools.com/php/php_file_upload.asp
+
 class XML_Reader_Service
 {
 
