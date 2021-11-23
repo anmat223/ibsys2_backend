@@ -159,9 +159,12 @@ class KapazitätsbedarfNeuService{
                             $schichten[$i] = 2;
                         }else{
                             $differenz = $gesamtBedarf[$i] - 9600;
-                            $überstunden[$i] = $differenz;
+                            if($differenz <= 1200){
+                                $überstunden[$i] = $differenz;
+                            }else{
+                                $überstunden[$i] = 1200;
+                            }
                             $schichten[$i] = 3;
-                            // TODO:Error-handling  bei $differenz > 1200 ergänzen
                         }
                     }
                 }
