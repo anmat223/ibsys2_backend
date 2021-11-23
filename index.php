@@ -1,6 +1,6 @@
 <?php
 echo "Unser Frontend";
 // XML file hochladen
-// eingabe Produktionsauftraege p1, p2, p3
+// nach Einlesen Prognose anzeigen lassen
 // Excel Seiten als Darstellung
 ?>
