@@ -42,6 +42,7 @@
   // XML file hochladen
   // nach Einlesen Prognose anzeigen lassen
   // Excel Seiten als Darstellung
+  // direktverkäufe???? Eingabe Produktionsprogramm?????
   ?>
 </body>
 

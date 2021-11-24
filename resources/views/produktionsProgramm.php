@@ -40,7 +40,7 @@ drunter produktionsprogramm-->
       </form>
     </div>
   </nav>
-    <h1>Vertriebsprogramm für die nächste Woche</h1>
+    <h2>Vertriebsprogramm für die nächste Woche</h2>
     <div>
         <?php        
         require '../../classes/services/XML_Reader_Service.php';
@@ -70,6 +70,44 @@ drunter produktionsprogramm-->
             </tbody>
         </table>
     </div>
+    <h2>Wie viel möchten Sie produzieren?</h2>
+    <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" data-editable="true">Produkt</th>
+                    <th scope="col"> Anzahl Produktionsaufträge</th>
+                </tr>
+            </thead>
+            <tbody>                
+                    <tr>
+                        <th scope="row">P1</th>
+                        <td class="input-group">
+                          <form method="post">
+                          <input type="number" class="form-control" name="input_p1">
+                          <button type="submit" class="btn btn-primary" name="submit1">Submit</button>
+                          <?php 
+                            $p1 = $_POST["input_p1"];
+                            print($p1);
+                          ?>
+                          </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">P2</th>
+                        <td class="input-group">
+                          <input type="number" class="form-control">
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">P3</th>
+                        <td class="input-group">
+                          <input type="number" class="form-control">
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </td>
+                    </tr>              
+            </tbody>
+        </table>
 
 </body>
 

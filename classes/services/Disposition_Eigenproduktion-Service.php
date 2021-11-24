@@ -10,7 +10,7 @@ class DispositionEigenproduktionService
 
     foreach ($produktionsteile as $teil) {
       $produktionProTeil = $this->produktionsauftraegeBerechnen($teil, $wartendeArtikel);
-      array_push($produktion, $teil->nummer, $produktionProTeil);
+      array_push($produktion, $teil->nummer, $produktionProTeil); // das heißt doch $produktion = [[0] => $teil->nummer, [1]=> $produktioinProTeil, [2] => $teil->nummer, [§] =>$produktionProTeil] oder?
     }
 
     return $produktion;

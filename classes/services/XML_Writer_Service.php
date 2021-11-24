@@ -35,9 +35,9 @@ class XML_Writer_Service
         $orderlist = $xmlOutput->addChild("orderlist");
         foreach ($orders as $order) {
             $item = $orderlist->addChild("order");
-            $item->addAttribute("quantity", "wert für quantity");
-            $item->addAttribute("article", "article");
-            $item->addAttribute("modus", "E oder N");
+            $item->addAttribute("quantity", $order->anzahl);
+            $item->addAttribute("article", $order->kaufteil->nummer);
+            $item->addAttribute("modus", $order->eilbestellung ? "E" : "N");
             // -<orderlist>
             // <order quantity="600" article="22" modus="5"/>
         }
@@ -54,9 +54,9 @@ class XML_Writer_Service
         $workingtimelist = $xmlOutput->addChild("workingtimelist");
         foreach ($workingtimes as $index => $workingtime) {
             $workingtimeitem = $workingtimelist->addChild("workingtime");
-            $workingtimeitem->addAttribute("overtime", $workingtime->überstunden);
-            $workingtimeitem->addAttribute("shift", $workingtime->schichten);
-            $workingtimeitem->addAttribute("station", $index);
+            $workingtimeitem->addAttribute("overtime", $workingtime[$index]->überstunden);
+            $workingtimeitem->addAttribute("shift", $workingtime[$index]->schichten);
+            $workingtimeitem->addAttribute("station", $index+1);
             // <workingtimelist>
                 // <workingtime overtime="0" shift="2" station="1"/>
         }
