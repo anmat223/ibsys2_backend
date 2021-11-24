@@ -25,7 +25,7 @@
           <a class="nav-link" href="./resources/views/kapazitätsplan.html">Kapazitätsplan</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./resources/views/produktionsProgramm.html">Produktionsprogramm</a>
+          <a class="nav-link" href="./resources/views/produktionsProgramm.php">Produktionsprogramm</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="./resources/views/uploadXML.html">Upload XML</a>
