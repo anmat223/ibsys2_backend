@@ -38,7 +38,16 @@
     </div>
   </nav>
   <?php
-  echo "Unser Frontend";
+  echo "Unser Frontend<br>";
+  require './classes/services/Database_Service.php';
+  $database = new DatabaseService();
+  $database->createDatabase();
+  $database->createTables();
+  $database->insertPredifinedData();
+  foreach ($database->read("teil", "nummer", "preis >= 40") as $result) {
+    echo $result['nummer'];
+    echo "<br>";
+  }
   // XML file hochladen
   // nach Einlesen Prognose anzeigen lassen
   // Excel Seiten als Darstellung
