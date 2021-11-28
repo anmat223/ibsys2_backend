@@ -5,7 +5,7 @@ CREATE TABLE Planungsperiode (
 CREATE TABLE Teil (
 	nummer int, 
 	anzahl int, 
-	preis int,
+	preis double,
 	PRIMARY KEY (nummer)
 );
 
