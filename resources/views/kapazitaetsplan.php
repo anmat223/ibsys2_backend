@@ -39,12 +39,19 @@
         <?php
           require '../../classes/services/XML_Reader_Service.php';
           $XML_Reader = new XML_Reader_Service();
-          $waitinglist = $XML_Reader->get_waitingliststock();
-          $ordersinwork = $XML_Reader->get_ordersinwork();
+          //$waitinglist = $XML_Reader->get_waitingliststock();
+           // $ordersinwork = $XML_Reader->get_ordersinwork();
           $kaprueckstand = array();
           for($i=0;$i < 15; ++$i){
-            $kaprueckstand[$i] = $waitinglist[$i] + $ordersinwork[$i];
+           // $kaprueckstand[$i] = $waitinglist[$i] + $ordersinwork[$i];
+            $kaprueckstand[$i] = 1; 
           }
+           // DB abfragen
+          $ruestzeitNeu = array();
+          require '../../classes/services/Database_Service.php';
+          $database = new DatabaseService();
+          $ruestzeitNeu = $database->read("Arbeitsplatz","ruestzeit",$order ="nummer ASC");
+          
         ?>
             <table class="table table-bordered">
                 <thead>
@@ -76,9 +83,21 @@
                       </tr>
                       <tr>
                         <th scope="row">Rüstzeit(neu)</th>
-                        <td>3000</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td> <?php echo $ruestzeitNeu[0] ?> </td>
+                        <td> <?php echo $ruestzeitNeu[1] ?> </td>
+                        <td> <?php echo $ruestzeitNeu[2] ?> </td>
+                        <td> <?php echo $ruestzeitNeu[3] ?> </td>
+                        <td> <?php echo $ruestzeitNeu[4] ?> </td>
+                        <td> <?php echo $ruestzeitNeu[5] ?> </td>
+                        <td> <?php echo $ruestzeitNeu[6] ?> </td>
+                        <td> <?php echo $ruestzeitNeu[7] ?> </td>
+                        <td> <?php echo $ruestzeitNeu[8] ?> </td>
+                        <td> <?php echo $ruestzeitNeu[9] ?> </td>
+                        <td> <?php echo $ruestzeitNeu[10] ?> </td>
+                        <td> <?php echo $ruestzeitNeu[11] ?> </td>
+                        <td> <?php echo $ruestzeitNeu[12] ?> </td>
+                        <td> <?php echo $ruestzeitNeu[13] ?> </td>
+                        <td> <?php echo $ruestzeitNeu[14] ?> </td>
                       </tr>
                       <tr>
                         <th scope="row">Kap.bed.(Rückstand Vorperiode)</th>
