@@ -47,11 +47,12 @@
             $kaprueckstand[$i] = 1; 
           }
            // DB abfragen
-          $ruestzeitNeu = array();
+          $ruestzeitNeu = [];
           require '../../classes/services/Database_Service.php';
           $database = new DatabaseService();
-          $ruestzeitNeu = $database->read("Arbeitsplatz","ruestzeit",$order ="nummer ASC");
-          
+          $ruestzeitNeu = $database->read("Arbeitsplatz","ruestzeit",$order ="nummer");   
+          print_r( $ruestzeitNeu);
+         $string =  $ruestzeitNeu[0]
         ?>
             <table class="table table-bordered">
                 <thead>

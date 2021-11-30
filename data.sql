@@ -316,6 +316,9 @@ INSERT INTO Arbeitsplatz
 	VALUE (4, 80);
 
 INSERT INTO Arbeitsplatz
+	VALUE (5,0);
+
+INSERT INTO Arbeitsplatz
 	VALUE (6, 60);
 
 INSERT INTO Arbeitsplatz
