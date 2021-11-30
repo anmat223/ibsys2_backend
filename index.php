@@ -22,7 +22,7 @@
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./resources/views/kapazitätsplan.html">Kapazitätsplan</a>
+          <a class="nav-link" href="./resources/views/kapazitaetsplan.php">Kapazitätsplan</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="./resources/views/produktionsProgramm.php">Produktionsprogramm</a>

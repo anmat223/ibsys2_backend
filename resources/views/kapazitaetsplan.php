@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html leng="de">
+<html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,7 @@
                 <a class="nav-link" href="../../index.php">Home <span class="sr-only"></span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./kapazitätsplan.html">Kapazitätsplan</a>
+                <a class="nav-link" href="./kapazitaetsplan.php">Kapazitätsplan</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="./produktionsProgramm.php">Produktionsprogramm</a>
