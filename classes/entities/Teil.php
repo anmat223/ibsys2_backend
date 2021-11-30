@@ -5,7 +5,7 @@ class Teil
     public int $anzahl;
     public int $preis; //in cent, macht es leichter
 
-    function __construct($nummer, $anzahl, $preis)
+    public function __construct($nummer, $anzahl, $preis)
     {
         $this->nummer = $nummer;
         $this->anzahl = $anzahl;

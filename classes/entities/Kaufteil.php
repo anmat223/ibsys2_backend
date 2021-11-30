@@ -8,4 +8,9 @@ class Kaufteil extends Teil
   public int $verwendungP1;
   public int $verwendungP2;
   public int $verwendungP3;
+
+  public function __construct($nummer, $anzahl, $preis)
+    {
+        parent::__construct($nummer, $anzahl, $preis);
+    }
 }
