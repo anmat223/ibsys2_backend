@@ -82,12 +82,22 @@ class DatabaseService
     }
   }
 
-  function read($table, $columns, $arguments)
+  function read($table, $columns, $arguments = "", $order = "")
   {
     try {
       $conn = new PDO("$this->connectionString$this->servername;dbname=$this->databaseName", $this->username, $this->password);
 
-      $sql = "SELECT $columns FROM $table WHERE $arguments";
+      $sql = "SELECT $columns FROM $table";
+
+      if (isset($arguments) && $arguments !== "") {
+        $sql = $sql . "WHERE $arguments";
+      }
+
+      if (isset($order) && $order !== "") {
+        $sql = $sql . "ORDER BY $order";
+      }
+
+      $sql = $sql . ";";
 
       $q = $conn->query($sql);
 
