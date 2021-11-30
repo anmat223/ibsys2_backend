@@ -28,8 +28,6 @@ class DatabaseService
       $sql = "CREATE DATABASE $this->databaseName";
 
       $conn->exec($sql);
-
-      echo "Database created successfully<br>";
     } catch (PDOException $e) {
       echo $e->getMessage();
     } finally {
