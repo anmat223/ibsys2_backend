@@ -45,7 +45,7 @@ class XML_Reader_Service
       } else if ($id >= 57 && $id <= 59) {
         array_push($warehousestockList, new Kaufteil($id, $anzahl, $preis));
       }
-      return $warehousestockList;
+      return $warehousestockList; // 2 Arrays machen array(array(Kaufteile) und array(Eigenproduktionsteile))
     }
     // entity Teil 
     // evtl logik -> if id <x Kauf oder Produktionsteil
@@ -118,7 +118,7 @@ class XML_Reader_Service
       }
     }
     return $waitinglistworkstations;
-    // entity wartende artickel
+    // entity wartende artickel //für vincent
   }
 
   function get_waitingliststock() // return Warteliste Material
@@ -146,7 +146,7 @@ class XML_Reader_Service
       }
     }
     return $waitingliststock;
-    // wartende artikel
+    // wartende artikel vincent
   }
 
   function get_ordersinwork()
@@ -167,5 +167,5 @@ class XML_Reader_Service
     }
     return $ordersinwork;
   }
-  // wartende artikel
+  // wartende artikel für vincent
 }

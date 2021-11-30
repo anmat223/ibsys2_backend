@@ -56,12 +56,25 @@
   // xml hochladen (reiter nav bar direkt hinter startseite)
   // Auftragsmenge, Direktverkäufe festlegen (nächster Reiter) Direktverkäufe eingabe ergänzen, submit ganz unten, Eingabe in Array speichern
   // Aufrufreihenfolge
+
   // Disposition Eigenfertigung P1
   // Disposition Eigenfertigung P2
   // Disposition Eigenfertigung P3  
-  // --> Tabelle mit den Berechnungen also menge und nummer (evtl. änderbar)
+    // xmlReaderService aufrufen und variablen mit ergebnissen deklarieren
+    // getWarehousestock()
+    // getWaitinglistworkstations()
+    // getordersinwork()
+    // getwatingliststock()
+    // --> Tabelle mit den Berechnungen also menge und nummer (evtl. änderbar)
+
   // Kapaplanung (Tabelle anzeigen)
+    // getWaitinglistworkstations()
+    // getordersinwork()
+    // getwatingliststock()
+
   // Kaufteildisposition
+    // kaufteile aus getwarehousestock()
+    // produktionsprogramm (input aus form) + direktverkäufe aus input (summe)
   // --> Tabelle mit den Berechnungen menge und nummer, diskontmenge
   // Eingabetabelle als Zusammenfassung
   ?>
