@@ -87,10 +87,10 @@ class DatabaseService
     try {
       $conn = new PDO("$this->connectionString$this->servername;dbname=$this->databaseName", $this->username, $this->password);
 
-      $sql = "SELECT $columns FROM $table";
+      $sql = "SELECT $columns FROM $table ";
 
       if (isset($arguments) && $arguments !== "") {
-        $sql = $sql . "WHERE $arguments";
+        $sql = $sql . "WHERE $arguments ";
       }
 
       if (isset($order) && $order !== "") {
