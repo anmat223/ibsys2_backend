@@ -20,8 +20,9 @@ class XML_Reader_Service
 
   function get_warehousestock() // return List<Teil> (Produktions oder Kaufteil)
   {
-    $xmldata = simplexml_load_file("../../resources/daten.xml") or die("Failed to load");
-    $warehousestockList = [];
+    $xmldata = simplexml_load_file("../../resources/daten.xml") or die("Failed to load");    
+    $produktionsteile = [];
+    $kaufteile = [];
     echo "Lager: " . "<br>";
     foreach ($xmldata->warehousestock->article as $articl) {
 
@@ -29,23 +30,23 @@ class XML_Reader_Service
       $anzahl = $articl['amount'];
       $preis = $articl['price'];
       if ($id >= 4 && $id <= 20) {
-        array_push($warehousestockList, new Produktionsteil($id, $anzahl, $preis));
+        array_push($produktionsteile, new Produktionsteil($id, $anzahl, $preis));
       } else if ($id >= 21 && $id <= 25) {
-        array_push($warehousestockList, new Kaufteil($id, $anzahl, $preis));
+        array_push($kaufteile, new Kaufteil($id, $anzahl, $preis));
       } else if ($id == 26 || $id >= 29 && $id <= 31) {
-        array_push($warehousestockList, new Produktionsteil($id, $anzahl, $preis));
+        array_push($produktionsteile, new Produktionsteil($id, $anzahl, $preis));
       } else if ($id == 27 || $id == 28 || $id == 52 || $id == 53) {
-        array_push($warehousestockList, new Kaufteil($id, $anzahl, $preis));
+        array_push($kaufteile, new Kaufteil($id, $anzahl, $preis));
       } else if ($id >= 32 && $id <= 48) {
-        array_push($warehousestockList, new Kaufteil($id, $anzahl, $preis));
+        array_push($kaufteile, new Kaufteil($id, $anzahl, $preis));
       } else if ($id >= 49 && $id <= 51) {
-        array_push($warehousestockList, new Produktionsteil($id, $anzahl, $preis));
+        array_push($produktionsteile, new Produktionsteil($id, $anzahl, $preis));
       } else if ($id >= 54 && $id <= 56) {
-        array_push($warehousestockList, new Produktionsteil($id, $anzahl, $preis));
+        array_push($produktionsteile, new Produktionsteil($id, $anzahl, $preis));
       } else if ($id >= 57 && $id <= 59) {
-        array_push($warehousestockList, new Kaufteil($id, $anzahl, $preis));
+        array_push($kaufteile, new Kaufteil($id, $anzahl, $preis));
       }
-      return $warehousestockList; // 2 Arrays machen array(array(Kaufteile) und array(Eigenproduktionsteile))
+      return array($produktionsteile, $kaufteile); // 2 Arrays machen array(array(Kaufteile) und array(Eigenproduktionsteile))
     }
     // entity Teil 
     // evtl logik -> if id <x Kauf oder Produktionsteil
