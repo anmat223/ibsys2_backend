@@ -8,8 +8,9 @@ class XML_Reader_Service
   public $xmldata;
   public $xmlFilePath;
 
-  function get_forecast() {
-    $xmldata = simplexml_load_file("../../resources/daten.xml") or die("Failed to load");
+  function get_forecast()
+  {
+    $xmldata = simplexml_load_file("resources/data.xml") or die("Failed to load");
     $forecasts = [];
     $p1 = $xmldata->forecast['p1'];
     $p2 = $xmldata->forecast['p2'];
@@ -20,10 +21,9 @@ class XML_Reader_Service
 
   function get_warehousestock() // return List<Teil> (Produktions oder Kaufteil)
   {
-    $xmldata = simplexml_load_file("../../resources/daten.xml") or die("Failed to load");    
+    $xmldata = simplexml_load_file("resources/daten.xml") or die("Failed to load");
     $produktionsteile = [];
     $kaufteile = [];
-    echo "Lager: " . "<br>";
     foreach ($xmldata->warehousestock->article as $articl) {
 
       $id = $articl['id'];
@@ -45,7 +45,9 @@ class XML_Reader_Service
         array_push($produktionsteile, new Produktionsteil($id, $anzahl, $preis));
       } else if ($id >= 57 && $id <= 59) {
         array_push($kaufteile, new Kaufteil($id, $anzahl, $preis));
+        echo "in if";
       }
+      echo $produktionsteile;
       return array($produktionsteile, $kaufteile); // 2 Arrays machen array(array(Kaufteile) und array(Eigenproduktionsteile))
     }
     // entity Teil 
@@ -54,7 +56,7 @@ class XML_Reader_Service
 
   function get_inwardstockmovement()
   {
-    $xmldata = simplexml_load_file("../../resources/daten.xml") or die("Failed to load");
+    $xmldata = simplexml_load_file("resources/daten.xml") or die("Failed to load");
     echo "Lagereingänge: " . "<br>";
     foreach ($xmldata->inwardstockmovement->order as $order) {
       echo "Bestellid: " . $order['id'] . " ";
@@ -69,7 +71,7 @@ class XML_Reader_Service
 
   function get_futureinwardstockmovement()
   {
-    $xmldata = simplexml_load_file("../../resources/daten.xml") or die("Failed to load");
+    $xmldata = simplexml_load_file("resources/daten.xml") or die("Failed to load");
     echo "zukünftige Lagereingänge: " . "<br>";
     foreach ($xmldata->futureinwardstockmovement->order as $order) {
       echo "Bestellid: " . $order['id'] . " ";
@@ -82,7 +84,7 @@ class XML_Reader_Service
 
   function get_idletimecosts()
   {
-    $xmldata = simplexml_load_file("../../resources/daten.xml") or die("Failed to load");
+    $xmldata = simplexml_load_file("resources/daten.xml") or die("Failed to load");
     echo "Leerkosten: " . "<br>";
     foreach ($xmldata->idletimecosts->workplace as $workplace) {
 
@@ -97,8 +99,7 @@ class XML_Reader_Service
 
   function get_waitinglistworkstations()
   {
-    $xmldata = simplexml_load_file("../../resources/daten.xml") or die("Failed to load");
-    echo "Warteliste Arbeitsplatz: " . "<br>";
+    $xmldata = simplexml_load_file("resources/daten.xml") or die("Failed to load");
     $waitinglistworkstations = [];
     foreach ($xmldata->waitinglistworkstations->workplace as $workplace) {
 
@@ -124,8 +125,7 @@ class XML_Reader_Service
 
   function get_waitingliststock() // return Warteliste Material
   {
-    $xmldata = simplexml_load_file("../../resources/daten.xml") or die("Failed to load");
-    echo "Warteliste Material: " . "<br>";
+    $xmldata = simplexml_load_file("resources/daten.xml") or die("Failed to load");
     $waitingliststock = [];
     foreach ($xmldata->waitingliststock->missingpart as $missingpart) {
       if ($missingpart->workplace) {
@@ -152,9 +152,8 @@ class XML_Reader_Service
 
   function get_ordersinwork()
   {
-    $xmldata = simplexml_load_file("../../resources/daten.xml") or die("Failed to load");
+    $xmldata = simplexml_load_file("resources/daten.xml") or die("Failed to load");
     $ordersinwork = [];
-    echo "Aufträge in Bearbeitung: " . "<br>";
     foreach ($xmldata->ordersinwork->workplace as $workplace) {
       $workplaceid = $workplace['id'];
       $order = $workplace['order'];
