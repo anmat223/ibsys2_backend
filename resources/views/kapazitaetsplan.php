@@ -36,6 +36,16 @@
           </div>
         </nav>
         <div>
+        <?php
+          require '../../classes/services/XML_Reader_Service.php';
+          $XML_Reader = new XML_Reader_Service();
+          $waitinglist = $XML_Reader->get_waitingliststock();
+          $ordersinwork = $XML_Reader->get_ordersinwork();
+          $kaprueckstand = array();
+          for($i=0;$i < 15; ++$i){
+            $kaprueckstand[$i] = $waitinglist[$i] + $ordersinwork[$i];
+          }
+        ?>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -72,9 +82,21 @@
                       </tr>
                       <tr>
                         <th scope="row">Kap.bed.(Rückstand Vorperiode)</th>
-                        <td>3000</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td> <?php echo $kaprueckstand[0];?> </td>
+                        <td> <?php echo $kaprueckstand[1];?> </td>
+                        <td> <?php echo $kaprueckstand[2];?> </td>
+                        <td> <?php echo $kaprueckstand[3];?> </td>
+                        <td> <?php echo $kaprueckstand[4];?> </td>
+                        <td> <?php echo $kaprueckstand[5];?> </td>
+                        <td> <?php echo $kaprueckstand[6];?> </td>
+                        <td> <?php echo $kaprueckstand[7];?> </td>
+                        <td> <?php echo $kaprueckstand[8];?> </td>
+                        <td> <?php echo $kaprueckstand[9];?> </td>
+                        <td> <?php echo $kaprueckstand[10];?> </td>
+                        <td> <?php echo $kaprueckstand[11];?> </td>
+                        <td> <?php echo $kaprueckstand[12];?> </td>
+                        <td> <?php echo $kaprueckstand[13];?> </td>
+                        <td> <?php echo $kaprueckstand[14];?> </td>
                       </tr>
                       <tr>
                         <th scope="row">Rüstzeit(Rückstand Vorperiode)</th>

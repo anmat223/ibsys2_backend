@@ -6,6 +6,7 @@ class XML_Reader_Service
 {
 
   public $xmldata;
+  public $xmlFilePath;
 
   function get_forecast() {
     $xmldata = simplexml_load_file("../../resources/daten.xml") or die("Failed to load");
