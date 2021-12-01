@@ -49,7 +49,7 @@ drunter produktionsprogramm-->
   <h2>Vertriebsprogramm für die nächste Woche</h2>
   <div>
     <?php
-    require '../../classes/services/XML_Reader_Service.php';
+    require_once('../../classes/services/XML_Reader_Service.php'); //classes\services\XML_Reader_Service.php
     $XML_Reader = new XML_Reader_Service();
     $forecastsNextWeek = $XML_Reader->get_forecast();
     ?>
@@ -76,16 +76,18 @@ drunter produktionsprogramm-->
       </tbody>
     </table>
   </div>
-  <h2>Wie viel möchten Sie produzieren?</h2>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th scope="col" data-editable="true">Produkt</th>
-        <th scope="col"> Anzahl Produktionsaufträge</th>
-      </tr>
-    </thead>
-    <tbody>
-      <form action="getProduktionsprogramm.php" method="post">
+
+  <form action="getProduktionsprogramm.php" method="post">
+    <h2>Wie viel möchten Sie produzieren?</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col" data-editable="true">Produkt</th>
+          <th scope="col"> Anzahl Produktionsaufträge</th>
+        </tr>
+      </thead>
+      <tbody>
+
         <tr>
           <th scope="row">P1</th>
           <td class="input-group">
@@ -95,7 +97,7 @@ drunter produktionsprogramm-->
         <tr>
           <th scope="row">P2</th>
           <td class="input-group">
-              <input type="number" class="form-control" name="input2">
+            <input type="number" class="form-control" name="input2">
           </td>
         </tr>
         <tr>
@@ -104,11 +106,40 @@ drunter produktionsprogramm-->
             <input type="number" class="form-control" name="input3">
           </td>
         </tr>
-        <input type="submit">
-      </form>
-    </tbody>
-  </table>
 
+        <h2>Direktverkäufe</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col" data-editable="true">Produkt</th>
+              <th scope="col"> Anzahl Direktverkäufe</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <th scope="row">P1</th>
+              <td class="input-group">
+                <input type="number" class="form-control" name="input_dv_1">
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">P2</th>
+              <td class="input-group">
+                <input type="number" class="form-control" name="input_dv_2">
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">P3</th>
+              <td class="input-group">
+                <input type="number" class="form-control" name="input_dv_3">
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+        <input type="submit">
+  </form>
 </body>
 
 </html>

@@ -46,7 +46,7 @@
     <thead>
       <tr>
         <th scope="col" data-editable="true">Produkt</th>
-        <th scope="col"> Anzahl Produktionsaufträge</th>
+        <th scope="col"> Anzahl Aufträge vom Vertrieb</th>
       </tr>
     </thead>
     <tbody>
@@ -66,6 +66,81 @@
         <th scope="row">P3</th>
         <td>
           <?php echo $_POST["input3"]; ?>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h2>Direktverkäufe für die nächste Woche</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col" data-editable="true">Produkt</th>
+        <th scope="col"> Anzahl Direktverkäufe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">P1</th>
+        <td>
+          <?php echo $_POST["input_dv_1"]; ?>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">P2</th>
+        <td>
+          <?php echo $_POST["input_dv_2"]; ?>
+          </td>
+      </tr>
+      <tr>
+        <th scope="row">P3</th>
+        <td>
+          <?php echo $_POST["input_dv_3"]; ?>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<?php
+  $p1 = $_POST["input1"];
+  $p2 = $_POST["input2"];
+  $p3 = $_POST["input3"];
+
+  $dv_p1 = $_POST["input_dv_1"];
+  $dv_p2 = $_POST["input_dv_2"];
+  $dv_p3 = $_POST["input_dv_3"];
+
+  $produktionsprogramm = [];
+  $summeP1 = $p1 + $dv_p1;
+  $summeP2 = $p2 + $dv_p2;
+  $summeP3 = $p3 + $dv_p3;
+  array_push($produktionsprogramm, $summeP1, $summeP2, $summeP3); 
+?>
+<h2>Produktionsaufträge für die nächste Woche (Summe Aufträge und Direktverkäufe)</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col" data-editable="true">Produkt</th>
+        <th scope="col"> Anzahl Aufträge vom Vertrieb</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">P1</th>
+        <td>
+          <?php echo $produktionsprogramm[0]; ?>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">P2</th>
+        <td>
+          <?php echo $produktionsprogramm[1]; ?>
+          </td>
+      </tr>
+      <tr>
+        <th scope="row">P3</th>
+        <td>
+          <?php echo $produktionsprogramm[2]; ?>
         </td>
       </tr>
     </tbody>

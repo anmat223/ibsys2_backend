@@ -1,19 +1,23 @@
 <?php
-require_once('./classes/entities/Teil.php');
-require_once('./classes/entities/Produktionsteil.php');
-require_once('./classes/entities/Kaufteil.php');
-require_once('./classes/entities/WartendeArtikel.php');
-require_once('./classes/entities/Arbeitsplatz.php');
+$documentRoot = $_SERVER['DOCUMENT_ROOT'];
+
+require_once($documentRoot . '/ibsys2_backend/classes/entities/Teil.php'); //classes/entities/Teil.php classes\entities\Teil.php
+require_once($documentRoot . '/ibsys2_backend/classes/entities/Produktionsteil.php');
+require_once($documentRoot . '/ibsys2_backend/classes/entities/Kaufteil.php');
+require_once($documentRoot . '/ibsys2_backend/classes/entities/WartendeArtikel.php');
+require_once($documentRoot . '/ibsys2_backend/classes/entities/Arbeitsplatz.php');
 // für file upload: https://www.w3schools.com/php/php_file_upload.asp
 
 class XML_Reader_Service
 {
 
   public $xmldata;
+  public $documentRoot;
 
   function get_forecast()
   {
-    $xmldata = simplexml_load_file("resources/data.xml") or die("Failed to load");
+    $documentRoot = $_SERVER['DOCUMENT_ROOT'];
+    $xmldata = simplexml_load_file($documentRoot . '/ibsys2_backend/resources/daten.xml') or die("Failed to load");
     $forecasts = [];
     $p1 = $xmldata->forecast['p1'];
     $p2 = $xmldata->forecast['p2'];
@@ -24,7 +28,8 @@ class XML_Reader_Service
 
   function get_warehousestock() // return List<Teil> (Produktions oder Kaufteil)
   {
-    $xmldata = simplexml_load_file("resources/daten.xml") or die("Failed to load");
+    $documentRoot = $_SERVER['DOCUMENT_ROOT'];
+    $xmldata = simplexml_load_file($documentRoot . '/ibsys2_backend/resources/daten.xml') or die("Failed to load");
     $produktionsteile = [];
     $kaufteile = [];
     foreach ($xmldata->warehousestock->article as $articl) {
@@ -101,7 +106,8 @@ class XML_Reader_Service
 
   function get_waitinglistworkstations()
   {
-    $xmldata = simplexml_load_file("resources/daten.xml") or die("Failed to load");
+    $documentRoot = $_SERVER['DOCUMENT_ROOT'];
+    $xmldata = simplexml_load_file($documentRoot . "/ibsys2_backend/resources/daten.xml") or die("Failed to load");
     $waitinglistworkstations = [];
     foreach ($xmldata->waitinglistworkstations->workplace as $workplace) {
 
@@ -127,7 +133,8 @@ class XML_Reader_Service
 
   function get_waitingliststock() // return Warteliste Material
   {
-    $xmldata = simplexml_load_file("resources/daten.xml") or die("Failed to load");
+    $documentRoot = $_SERVER['DOCUMENT_ROOT'];
+    $xmldata = simplexml_load_file($documentRoot . "/ibsys2_backend/resources/daten.xml") or die("Failed to load");
     $waitingliststock = [];
     foreach ($xmldata->waitingliststock->missingpart as $missingpart) {
       if ($missingpart->workplace) {
@@ -154,7 +161,8 @@ class XML_Reader_Service
 
   function get_ordersinwork()
   {
-    $xmldata = simplexml_load_file("resources/daten.xml") or die("Failed to load");
+    $documentRoot = $_SERVER['DOCUMENT_ROOT'];
+    $xmldata = simplexml_load_file($documentRoot . '/ibsys2_backend/resources/daten.xml') or die("Failed to load");
     $ordersinwork = [];
     foreach ($xmldata->ordersinwork->workplace as $workplace) {
       $workplaceid = $workplace['id'];
