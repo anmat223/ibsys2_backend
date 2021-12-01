@@ -2,13 +2,14 @@
 require_once('./classes/entities/Teil.php');
 require_once('./classes/entities/Produktionsteil.php');
 require_once('./classes/entities/Kaufteil.php');
+require_once('./classes/entities/WartendeArtikel.php');
+require_once('./classes/entities/Arbeitsplatz.php');
 // für file upload: https://www.w3schools.com/php/php_file_upload.asp
 
 class XML_Reader_Service
 {
 
   public $xmldata;
-  public $xmlFilePath;
 
   function get_forecast()
   {
@@ -116,7 +117,7 @@ class XML_Reader_Service
           $amount = $waitinglist['amount'];
           $timeneed = $waitinglist['timeneed'];
 
-          array_push($waitinglistworkstations, new WartendeArtikel(new Teil($item, $amount, null), new Arbeitsplatz($workplaceid, null), false, $amount, $timeneed));
+          array_push($waitinglistworkstations, new WartendeArtikel(new Produktionsteil(intval($item), intval($amount), 0), new Arbeitsplatz(intval($workplaceid), 0), false, intval($amount), intval($timeneed)));
         }
       }
     }
@@ -142,7 +143,7 @@ class XML_Reader_Service
             $amount = $waitinglist['amount'];
             $timeneed = $waitinglist['timeNeed'];
 
-            array_push($waitingliststock, new WartendeArtikel(new Teil($item, $amount, null), new Arbeitsplatz($workplaceid, null), false, $amount, $timeneed));
+            array_push($waitingliststock, new WartendeArtikel(new Produktionsteil(intval($item), intval($amount), 0), new Arbeitsplatz(intval($workplaceid), 0), false, intval($amount), intval($timeneed)));
           }
         }
       }
@@ -163,7 +164,7 @@ class XML_Reader_Service
       $amount = $workplace['amount'];
       $timeneed = $workplace['timeneed'];
 
-      array_push($ordersinwork, new WartendeArtikel(new Teil($item, $amount, null), new Arbeitsplatz($workplaceid, null), true, $amount, $timeneed));
+      array_push($ordersinwork, new WartendeArtikel(new Produktionsteil(intval($item), intval($amount), 0), new Arbeitsplatz(intval($workplaceid), 0), true, intval($amount), intval($timeneed)));
       // ToDo: Ruestzeit pro Arbeitsplatz einpflegen bzw. klären an welcher Stelle das und andere Infos z.B. Sicherheitsbestand aus DB gelesen werden
     }
     return $ordersinwork;
