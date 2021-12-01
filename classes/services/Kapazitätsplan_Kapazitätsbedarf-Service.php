@@ -172,5 +172,85 @@ class KapazitätsbedarfNeuService{
         }   
         return array($überstunden, $schichten);
     }
+
+    function berechnenRuestzeitAlt($waitinglist){
+
+        // Daten
+        $arbeitsarray= array(
+            1 => array(
+                49 => 20,
+                54 => 20,
+                29 => 20,
+            ),
+            2 => array(
+                50 => 30,
+                55 => 30,
+                30 => 20,
+            ),
+            3 => array(
+                51 => 20,
+                56 => 20,
+                31 => 20,
+            ),
+            4 => array(
+                1 => 30,
+                2 => 20,
+                3 => 30,
+            ),
+            6 => array(
+                18 => 15,
+                19 => 15,
+                20 => 15,
+            ),
+            7 => array(
+                13 => 20,
+                14 => 20,
+                15 => 20,
+            ),
+            8 => array(
+                13 => 15,
+                14 => 15,
+                15 => 15,
+            ),
+            9 => array(
+                13 => 15,
+                14 => 15,
+                15 => 15,
+            ),
+            10 => array(
+                4 => 20,
+                5 => 20,
+                6 => 20,
+            ),
+            11 => array(
+                4 => 10,
+                5 => 10,
+                6 => 20,
+            ),
+            15 => array(
+                17 => 15,
+            ),
+        );
+        // Hauptprogramm
+        $ruestzeitAlt= [];
+        $ruestzeitAlt[4]= 0;
+        for($i=0;$i < count($waitinglist);++$i){
+
+            $produktionsteil = $waitinglist[$i]->Produktionsteil->item;
+            $arbeitsplatz = $waitinglist[$i+1]->Arbeitsplatz->workplace;
+
+            if($arbeitsplatz == 12 OR $arbeitsplatz ==  13 OR $arbeitsplatz == 14 ){
+                $ruestzeitAlt[$arbeitsplatz-1] = 0;
+            }else{
+            $ruestzeitAlt[$arbeitsplatz-1] += $arbeitsarray[$arbeitsarray][$produktionsteil]; 
+            }
+
+        }
+        return $ruestzeitAlt;
+    }
+
+    function ruestZeitNeu($teil){
+
+    }
     
 }
