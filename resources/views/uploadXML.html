@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Kapazitätsplan</title>
-  </head>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>Kapazitätsplan</title>
+</head>
+
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Navigation</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -41,16 +45,20 @@
       </form>
     </div>
   </nav>
-  <div><h1>Upload XML File</h1></div>
-  <div>
-    <form action="../../classes/services/Upload_File_Service.php" method="post" enctype="multipart/form-data">
-      <div class="form-group">
-        <label for="fileToUpload">Select File to Upload</label>    
-        <input type="file" name="fileToUpload" id="fileToUpload">
-        <input type="submit" value="Upload File" name="submit">
-      </div>      
-    </form>
+  <div class="container">
+    <div  class="row">
+      <h1>Upload XML File</h1>
+    </div>
+    <div  class="row">
+      <form action="../../classes/services/Upload_File_Service.php" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="fileToUpload">Select File to Upload</label>
+          <input type="file" name="fileToUpload" id="fileToUpload">
+          <input type="submit" value="Upload File" name="submit">
+        </div>
+      </form>
+    </div>
   </div>
-
 </body>
+
 </html>
