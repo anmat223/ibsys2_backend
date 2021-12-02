@@ -11,6 +11,8 @@ class DispositionEigenproduktionService
     foreach ($produktionsteile as $teil) {
       $produktionProTeil = $this->produktionsauftraegeBerechnen($teil, $wartendeArtikel);
       array_push($produktion, $teil->nummer, $produktionProTeil); // das heißt doch $produktion = [[0] => $teil->nummer, [1]=> $produktioinProTeil, [2] => $teil->nummer, [§] =>$produktionProTeil] oder?
+      // müsste glaub ich so aussehen: array_push($produktion, [$teil->nummer => $produktionProTeil]) dann wäre es aber ein array im array
+      // wahrscheinlisch am besten: $produktion[$teil->nummer] = $produktionProTeil
     }
 
     return $produktion;

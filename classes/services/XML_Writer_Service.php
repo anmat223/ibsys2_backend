@@ -9,21 +9,21 @@ class XML_Writer_Service
         $xmlOutput = new SimpleXMLElement('<?xml version="1.0"?><input/>');
 
         $qualitycontrol = $xmlOutput->addChild("qualitycontrol");
-        $qualitycontrol->addAttribute("delay", "Wert für Verspätung");
-        $qualitycontrol->addAttribute("losequantity", "Wert für losequantity");
-        $qualitycontrol->addAttribute("type", "Wert für type");
+        $qualitycontrol->addAttribute("delay", 0);
+        $qualitycontrol->addAttribute("losequantity", 0);
+        $qualitycontrol->addAttribute("type", "no");
 
         $sellwishlist = $xmlOutput->addChild("sellwish");
         // wie kriege ich die Verkaufswünsche? als array???
-        foreach ($sellwishes as $sellwish) {
+        foreach ($sellwishes as $index => $sellwish) {
             $item = $sellwishlist->addChild("item");
-            $item->addAttribute("quantity", "wert für quantity");
-            $item->addAttribute("article", "article");
+            $item->addAttribute("quantity", $sellwish);
+            $item->addAttribute("article", $index+1); // oder als key 1 bzw. 2 bzw. 3 machen
             // <item quantity="100" article="3"/>
         }
 
-        $selldirectlist = $xmlOutput->addChild(("selldirect"));
-        foreach ($selldirects as $selldirect) {
+        $selldirectlist = $xmlOutput->addChild(("selldirect")); // eingabefelder für direktauftrag
+        foreach ($selldirects as $index => $selldirect) {
             $item = $selldirectlist->addChild("item");
             $item->addAttribute("quantity", "wert für quantity");
             $item->addAttribute("article", "article");
@@ -43,10 +43,10 @@ class XML_Writer_Service
         }
 
         $productionlist = $xmlOutput->addChild("productionlist");
-        foreach ($productions as $production) {
+        foreach ($productions as $productionitem => $quantity) {
             $productionlistitem = $productionlist->addChild("production");
-            $productionlistitem->addAttribute("quantity", "wert für quantity");
-            $productionlistitem->addAttribute("article", "article");
+            $productionlistitem->addAttribute("quantity", $quantity);
+            $productionlistitem->addAttribute("article", $productionitem);
             // <productionlist>
             // <production quantity="180" article="4"/>
         }

@@ -113,29 +113,76 @@ drunter produktionsprogramm-->
             <tr>
               <th scope="col" data-editable="true">Produkt</th>
               <th scope="col"> Anzahl Direktverkäufe</th>
+              <th scope="col">Preis</th>
+              <th scope="col">Strafe</th>
+              <th scope="col">Auslieferungsperiode</th>
             </tr>
           </thead>
           <tbody>
 
             <tr>
               <th scope="row">P1</th>
-              <td class="input-group">
+              <td>
                 <input type="number" class="form-control" name="input_dv_1">
+              </td>
+              <td>
+                <input type="number" class="form-control" name="input_dv_1_price">
+              </td>
+              <td>
+                <input type="number" class="form-control" name="input_dv_1_penalty">
+              </td>
+              <td>               
+                  <div class="form-group">
+                    <select class="form-control" id="p1" name="auslieferungsPeriode_1">
+                      <option value="diese">diese </option>
+                      <option value="naechste">nächste</option>
+                      <option value="uebernaechste">übernächste</option>
+                    </select>                                     
+                  </div>
               </td>
             </tr>
             <tr>
               <th scope="row">P2</th>
-              <td class="input-group">
+              <td>
                 <input type="number" class="form-control" name="input_dv_2">
+              </td>
+              <td>
+                <input type="number" class="form-control" name="input_dv_2_price">
+              </td>
+              <td>
+                <input type="number" class="form-control" name="input_dv_2_penalty">
+              </td>
+              <td>
+                <div class="form-group">
+                  <select class="form-control" id="p2" name="auslieferungsPeriode_2">
+                    <option>diese </option>
+                    <option>nächste</option>
+                    <option>übernächste</option>
+                  </select>
+                </div>
               </td>
             </tr>
             <tr>
               <th scope="row">P3</th>
-              <td class="input-group">
+              <td>
                 <input type="number" class="form-control" name="input_dv_3">
               </td>
+              <td>
+                <input type="number" class="form-control" name="input_dv_3_price">
+              </td>
+              <td>
+                <input type="number" class="form-control" name="input_dv_3_penalty">
+              </td>
+              <td>
+                <div class="form-group">
+                  <select class="form-control" id="p3" name="auslieferungsPeriode_3">
+                    <option>diese </option>
+                    <option>nächste</option>
+                    <option>übernächste</option>
+                  </select>
+                </div>
+              </td>
             </tr>
-
           </tbody>
         </table>
         <input type="submit">

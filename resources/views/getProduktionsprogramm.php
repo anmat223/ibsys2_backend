@@ -111,10 +111,42 @@
   $dv_p3 = $_POST["input_dv_3"];
 
   $produktionsprogramm = [];
-  $summeP1 = $p1 + $dv_p1;
-  $summeP2 = $p2 + $dv_p2;
-  $summeP3 = $p3 + $dv_p3;
+  if($_POST["auslieferungsPeriode_1"] == "diese"){
+    $summeP1 = $p1 + $dv_p1;
+  } else {
+    $summeP1 = $p1;
+  }
+  if($_POST["auslieferungsPeriode_2"] == "diese") {
+    $summeP2 = $p2 + $dv_p2;
+  } else {
+    $summeP2 = $p2;
+  }
+  if($_POST["auslieferungsPeriode_3"] == "diese") {
+    $summeP3 = $p3 + $dv_p3;
+  } else {
+    $summeP3 = $p3;
+  }
+  
   array_push($produktionsprogramm, $summeP1, $summeP2, $summeP3); 
+  $direktVerkP1 = [
+    "amount" => $_POST["input_dv_1"], 
+    "price" => $_POST["input_dv_1_price"],
+    "penalty" => $_POST["input_dv_1_penalty"],
+    "auslieferung" => $_POST["auslieferungsPeriode_1"]
+  ];
+  $direktVerkP2 = [
+    "amount" => $_POST["input_dv_2"], 
+    "price" => $_POST["input_dv_2_price"],
+    "penalty" => $_POST["input_dv_2_penalty"],
+    "auslieferung" => $_POST["auslieferungsPeriode_2"]
+  ];
+  $direktVerkP3 = [
+    "amount" => $_POST["input_dv_3"], 
+    "price" => $_POST["input_dv_3_price"],
+    "penalty" => $_POST["input_dv_3_penalty"],
+    "auslieferung" => $_POST["auslieferungsPeriode_3"]
+  ];
+ 
 ?>
 <h2>Produktionsaufträge für die nächste Woche (Summe Aufträge und Direktverkäufe)</h2>
   <table class="table table-bordered">
