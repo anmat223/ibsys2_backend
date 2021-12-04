@@ -8,9 +8,11 @@ class Kaufteil extends Teil
   public int $verwendungP1;
   public int $verwendungP2;
   public int $verwendungP3;
+  public int $bestellMenge = 0;
+  public bool $eilBestellung = false;
 
   public function __construct($nummer, $anzahl, $preis)
-    {
-        parent::__construct($nummer, $anzahl, $preis);
-    }
+  {
+    parent::__construct($nummer, $anzahl, $preis);
+  }
 }

@@ -3,28 +3,34 @@ CREATE TABLE Planungsperiode (
 );
 
 CREATE TABLE Teil (
-	nummer int, 
+	id int NOT NULL AUTO_INCREMENT,
+  nummer int UNIQUE, 
 	anzahl int, 
 	preis double,
-	PRIMARY KEY (nummer)
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE Produktionsteil (
-	teil int, 
+	id int NOT NULL AUTO_INCREMENT,
+  teil int, 
 	dreifachTeil TINYINT(1), 
 	sicherheitsbestand int, 
-	PRIMARY KEY (teil),
+	PRIMARY KEY (id),
 	FOREIGN KEY (teil) REFERENCES Teil(nummer)
 );
 
 CREATE TABLE Kaufteil (
-	teil int, 
+	id int NOT NULL AUTO_INCREMENT,
+  teil int, 
 	eingehendeBestellungen int,
 	abweichung double, 
 	diskontmenge int,
 	lieferzeit double, 
 	anfangsbestand int,
-	PRIMARY KEY (teil),
+  p1 int,
+  p2 int,
+  p3 int,
+	PRIMARY KEY (id),
 	FOREIGN KEY (teil) REFERENCES Teil(nummer)
 ); 
 

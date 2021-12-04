@@ -1,4 +1,7 @@
 <?php
+$documentRoot = $_SERVER['DOCUMENT_ROOT'];
+require_once($documentRoot . '/ibsys2_backend/classes/entities/Bestellung.php');
+require_once($documentRoot . '/ibsys2_backend/classes/entities/Periode.php');
 class DispositionKaufteileService
 {
 
@@ -8,6 +11,7 @@ class DispositionKaufteileService
 
     foreach ($kaufteile as $teil) {
       $bestellung = $this->bestellungBerechnen($teil, $produktionsprogramm);
+      print_r($bestellung);
       array_push($bestellungen, $bestellung);
     }
 
@@ -18,9 +22,9 @@ class DispositionKaufteileService
   {
     $bestellung = null;
 
-    $bruttobedarfPeriode = $kaufteil->verwendungP1 * $produktionsprogramm->p1;
-    $bruttobedarfPeriode += $kaufteil->verwendungP2 * $produktionsprogramm->p2;
-    $bruttobedarfPeriode += $kaufteil->verwendungP3 * $produktionsprogramm->p3;
+    $bruttobedarfPeriode = $kaufteil->p1 * $produktionsprogramm['p1'];
+    $bruttobedarfPeriode += $kaufteil->p2 * $produktionsprogramm['p2'];
+    $bruttobedarfPeriode += $kaufteil->p3 * $produktionsprogramm['p3'];
 
     $endbestand = $kaufteil->anzahl - $bruttobedarfPeriode;
 
