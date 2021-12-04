@@ -32,7 +32,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="./resources/views/kaufteilDisposition.php">KaufteilDisposition</a>
-        </li>  
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="./resources/views/ergebnisTabelle.php">ErgebnisTabelle</a>
         </li>
@@ -44,45 +44,60 @@
     </div>
   </nav>
   <?php
-  echo "Unser Frontend<br>";
   require './classes/services/Database_Service.php';
+  require './classes/services/XML_Reader_Service.php';
+  require './classes/services/Disposition_Eigenproduktion-Service.php';
+  require './classes/services/Kapazitätsplan_Kapazitätsbedarf-Service.php';
+  require './classes/services/Disposition_Kaufteile-Service.php';
+
   $database = new DatabaseService();
   $database->createDatabase();
   $database->createTables();
   $database->insertPredifinedData();
-  foreach ($database->read("teil", "nummer", "preis >= 40") as $result) {
-    echo $result['nummer'];
-    echo "<br>";
-  }
-  // XML file hochladen
-  // nach Einlesen Prognose anzeigen lassen
-  // Excel Seiten als Darstellung
-  // direktverkäufe???? Eingabe Produktionsprogramm?????
 
-  // xml hochladen (reiter nav bar direkt hinter startseite)
-  // Auftragsmenge, Direktverkäufe festlegen (nächster Reiter) Direktverkäufe eingabe ergänzen, submit ganz unten, Eingabe in Array speichern
-  // Aufrufreihenfolge
+  $readerService = new XML_Reader_Service();
+  $teile = $readerService->get_warehousestock();
+  $produktionsteile = $teile[0];
+  $kaufteile = $teile[1];
+  $wartelisteArbeitsplatz = $readerService->get_waitinglistworkstations();
+  $inBearbeitung = $readerService->get_ordersinwork();
+  $inWarteschlange = $readerService->get_waitingliststock();
+
+  $warteliste = array_merge($wartelisteArbeitsplatz, $inBearbeitung, $inWarteschlange);
+  echo print_r($teile);
+
+  $produktionsteileDB = $database->read("Produktionsteile", "*", order: "nummer ASC");
 
   // Disposition Eigenfertigung P1
   // Disposition Eigenfertigung P2
   // Disposition Eigenfertigung P3  
-    // xmlReaderService aufrufen und variablen mit ergebnissen deklarieren
-    // getWarehousestock()
-    // getWaitinglistworkstations()
-    // getordersinwork()
-    // getwatingliststock()
-    // --> Tabelle mit den Berechnungen also menge und nummer (evtl. änderbar)
+  // xmlReaderService aufrufen und variablen mit ergebnissen deklarieren
+  // getWarehousestock()
+  // getWaitinglistworkstations()
+  // getordersinwork()
+  // getwatingliststock()
+  // --> Tabelle mit den Berechnungen also menge und nummer (evtl. änderbar)
+
+  $eigenproduktionsService = new DispositionEigenproduktionService();
+  $produktionsauftraege = $eigenproduktionsService->alleProduktionsauftraegeBerechnen($produktionsteileDB, $warteliste);
 
   // Kapaplanung (Tabelle anzeigen)
-    // getWaitinglistworkstations()
-    // getordersinwork()
-    // getwatingliststock()
+  // getWaitinglistworkstations()
+  // getordersinwork()
+  // getwatingliststock()
+
+  $kapazitaetsbedarfService = new KapazitätsbedarfNeuService();
+  // Funktionsaufruf zur Berechnung. Welche Funktion?
 
   // Kaufteildisposition
-    // kaufteile aus getwarehousestock()
-    // produktionsprogramm (input aus form) + direktverkäufe aus input (summe)
+  // kaufteile aus getwarehousestock()
+  // produktionsprogramm (input aus form) + direktverkäufe aus input (summe)
   // --> Tabelle mit den Berechnungen menge und nummer, diskontmenge
   // Eingabetabelle als Zusammenfassung
+
+  $kaufteileService = new DispositionKaufteileService();
+  $produktionsprogramm = null; // Input aus Vertriebswunsch und Direktverkäufe
+  $bestellungen = $kaufteileService->alleBestellungenBerechnen($kaufteile, $produktionsprogramm);
   ?>
 </body>
 
