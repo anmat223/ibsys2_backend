@@ -128,7 +128,7 @@ class KapazitätsbedarfNeuService{
 
     function berechnungKapazitätsbedarfGesamt($kapaBedarfNeu, $rüstzeitNeu, $kapaBedarfRückstand, $rüstzeitRückstand){
         $kapaBedarfGesamt = array();
-        for($i=0;$i < 15; ++$i){
+        for($i=0;$i < 15; $i++){
             $kapaBedarfGesamt[$i] = $kapaBedarfNeu[$i] + $rüstzeitNeu[$i] + $kapaBedarfRückstand[$i] + $rüstzeitRückstand[$i];
         }
         return $kapaBedarfGesamt;
@@ -138,7 +138,7 @@ class KapazitätsbedarfNeuService{
         $überstunden = array();
         $schichten = array();
 
-        for($i=0;$i < count($gesamtBedarf);++$i){
+        for($i=0;$i < count($gesamtBedarf);$i++){
             if($gesamtBedarf[$i] <= 2400){
                 $überstunden[$i] = 0;
                 $schichten[$i] = 0;
@@ -231,20 +231,19 @@ class KapazitätsbedarfNeuService{
                 17 => 15,
             ),
         );
-        // Hauptprogramm
+        // Funktion
         $ruestzeitAlt= [];
-        $ruestzeitAlt[4]= 0;
-        for($i=0;$i < count($waitinglist);++$i){
+        for($i=0;$i < count($waitinglist);$i++){
 
             $produktionsteil = $waitinglist[$i]->Produktionsteil->item;
-            $arbeitsplatz = $waitinglist[$i+1]->Arbeitsplatz->workplace;
+            $arbeitsplatz = $waitinglist[$i]->Arbeitsplatz->workplaceid;
+            $timeneed = $waitinglist[$i]->Arbeitsplatz->timeneed;
 
-            if($arbeitsplatz == 12 OR $arbeitsplatz ==  13 OR $arbeitsplatz == 14 ){
+            if($timeneed == 0){
                 $ruestzeitAlt[$arbeitsplatz-1] = 0;
             }else{
             $ruestzeitAlt[$arbeitsplatz-1] += $arbeitsarray[$arbeitsarray][$produktionsteil]; 
             }
-
         }
         return $ruestzeitAlt;
     }

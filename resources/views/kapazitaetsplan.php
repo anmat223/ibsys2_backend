@@ -48,7 +48,7 @@
           //$waitinglist = $XML_Reader->get_waitingliststock();
            // $ordersinwork = $XML_Reader->get_ordersinwork();
           $kaprueckstand = array();
-          for($i=0;$i < 15; ++$i){
+          for($i=0;$i < 15; $i++){
            // $kaprueckstand[$i] = $waitinglist[$i] + $ordersinwork[$i];
             $kaprueckstand[$i] = 1; 
           }
