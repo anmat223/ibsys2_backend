@@ -10,5 +10,5 @@ for ($i = 0; $i < count($kaufteile); $i++) {
   $kaufteile[$i]->eilBestellung = ($_POST[$kaufteile[$i]->nummer . "_art"] == "E") ? true : false;
 }
 $_SESSION['kaufteile'] = $kaufteile;
-?>
-<meta http-equiv="refresh" content="0;url=<?php $documentRoot . '/ibsys2_backend/resources/views/ergebnisTabelle.php' ?>" />
+header('Location: ergebnisTabelle.php');
+die();
