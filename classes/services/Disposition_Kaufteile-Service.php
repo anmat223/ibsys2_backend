@@ -11,7 +11,6 @@ class DispositionKaufteileService
 
     foreach ($kaufteile as $teil) {
       $bestellung = $this->bestellungBerechnen($teil, $produktionsprogramm);
-      print_r($bestellung);
       array_push($bestellungen, $bestellung);
     }
 
