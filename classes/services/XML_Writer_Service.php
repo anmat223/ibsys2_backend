@@ -25,10 +25,10 @@ class XML_Writer_Service
         $selldirectlist = $xmlOutput->addChild(("selldirect")); // eingabefelder für direktauftrag
         foreach ($selldirects as $index => $selldirect) {
             $item = $selldirectlist->addChild("item");
-            $item->addAttribute("quantity", "wert für quantity");
-            $item->addAttribute("article", "article");
-            $item->addAttribute("penalty", "strafe");
-            $item->addAttribute("price", "Preis");
+            $item->addAttribute("quantity", $selldirect["quantity"]);
+            $item->addAttribute("article", "P". $index+1);
+            $item->addAttribute("penalty", $selldirect["penalty"]);
+            $item->addAttribute("price", $selldirect["price"]);
             // <item quantity="0" article="1" penalty="0.0" price="0.0"/>            
         }
 
