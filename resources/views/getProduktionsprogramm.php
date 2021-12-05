@@ -71,22 +71,35 @@ $p1 = $_POST["input1"];
 $p2 = $_POST["input2"];
 $p3 = $_POST["input3"];
 
+$p1_periode2 = $_POST["input1_p2"];
+$p1_periode3 = $_POST["input1_p3"];
+$p1_periode4 = $_POST["input1_p4"];
+
+$p2_periode2 = $_POST["input2_p2"];
+$p2_periode3 = $_POST["input2_p3"];
+$p2_periode4 = $_POST["input2_p4"];
+
+$p3_periode2 = $_POST["input3_p2"];
+$p3_periode3 = $_POST["input3_p3"];
+$p3_periode4 = $_POST["input3_p4"];
+
+
 $dv_p1 = $_POST["input_dv_1"];
 $dv_p2 = $_POST["input_dv_2"];
 $dv_p3 = $_POST["input_dv_3"];
 
 $produktionsprogramm = [];
-if ($_POST["auslieferungsPeriode_1"] == "diese") {
+if ($_POST["auslieferungsPeriode_1"] == "diese" && !empty($dv_p1)) {
   $summeP1 = $p1 + $dv_p1;
 } else {
   $summeP1 = $p1;
 }
-if ($_POST["auslieferungsPeriode_2"] == "diese") {
+if ($_POST["auslieferungsPeriode_2"] == "diese" && !empty($dv_p2)) {
   $summeP2 = $p2 + $dv_p2;
 } else {
   $summeP2 = $p2;
 }
-if ($_POST["auslieferungsPeriode_3"] == "diese") {
+if ($_POST["auslieferungsPeriode_3"] == "diese" && !empty($dv_p3)) {
   $summeP3 = $p3 + $dv_p3;
 } else {
   $summeP3 = $p3;
@@ -94,6 +107,14 @@ if ($_POST["auslieferungsPeriode_3"] == "diese") {
 
 array_push($produktionsprogramm, $summeP1, $summeP2, $summeP3);
 $_SESSION['produktionsprogramm'] = $produktionsprogramm;
+
+$produktionsprogrammMitPrognosen = [
+  array($summeP1,$summeP2,$summeP3), 
+  array($p1_periode2, $p2_periode2, $p3_periode2), 
+  array($p1_periode3, $p2_periode3, $p3_periode3),
+  array($p1_periode4, $p2_periode4, $p3_periode4)
+];
+$_SESSION['produktionsprogrammMitPrognosen'] = $produktionsprogrammMitPrognosen;
 
 $direktVerkP1 = [
   "amount" => $_POST["input_dv_1"],

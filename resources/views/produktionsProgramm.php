@@ -41,30 +41,55 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col" data-editable="true">Produkt</th>
-        <th scope="col"> Anzahl Produktionsaufträge</th>
+        <th scope="col" data-editable="true">Produkt</th>       
+        <th scope="col">Anzahl Produktionsaufträge diese Periode</th>
+        <th scope="col">Schätzung für die nächste Periode</th>
+        <th scope="col">Schätzung für übernächste Periode</th>
+        <th scope="col">Schätzung für überübernächste Periode</th>
       </tr>
     </thead>
     <tbody>
 
       <tr>
         <th scope="row">P1</th>
-        <td class="input-group">
+        <td>
           <input type="number" class="form-control" name="input1">
+        </td>
+        <td>
+          <input type="number" class="form-control" name="input1_p2">
+        </td>
+        <td>
+          <input type="number" class="form-control" name="input1_p3">
+        </td><td>
+          <input type="number" class="form-control" name="input1_p4">
         </td>
       </tr>
       <tr>
         <th scope="row">P2</th>
-        <td class="input-group">
+        <td>
           <input type="number" class="form-control" name="input2">
+        </td>
+        <td>
+          <input type="number" class="form-control" name="input2_p2">
+        </td>
+        <td>
+          <input type="number" class="form-control" name="input2_p3">
+        </td><td>
+          <input type="number" class="form-control" name="input2_p4">
         </td>
       </tr>
       <tr>
         <th scope="row">P3</th>
-        <td class="input-group">
+        <td>
           <input type="number" class="form-control" name="input3">
+        </td><td>
+          <input type="number" class="form-control" name="input3_p2">
+        </td><td>
+          <input type="number" class="form-control" name="input3_p3">
+        </td><td>
+          <input type="number" class="form-control" name="input3_p4">
         </td>
-      </tr>
+      </tr>      
     </tbody>
   </table>
 
