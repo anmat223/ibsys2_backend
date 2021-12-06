@@ -9,6 +9,7 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
   <?php
   // print_r( $ruestzeitNeu); Zur Ansicht des arrays
   ?>
+  <form action="ergebnisTabelle.php" method="post">
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -123,42 +124,44 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
       </tr>
       <tr>
         <th scope="row">Schichten</th>
-        <td> <?php echo $schichten[0]; ?> </td>
-        <td> <?php echo $schichten[1]; ?> </td>
-        <td> <?php echo $schichten[2]; ?> </td>
-        <td> <?php echo $schichten[3]; ?> </td>
-        <td> <?php echo $schichten[4]; ?> </td>
-        <td> <?php echo $schichten[5]; ?> </td>
-        <td> <?php echo $schichten[6]; ?> </td>
-        <td> <?php echo $schichten[7]; ?> </td>
-        <td> <?php echo $schichten[8]; ?> </td>
-        <td> <?php echo $schichten[9]; ?> </td>
-        <td> <?php echo $schichten[10]; ?> </td>
-        <td> <?php echo $schichten[11]; ?> </td>
-        <td> <?php echo $schichten[12]; ?> </td>
-        <td> <?php echo $schichten[13]; ?> </td>
-        <td> <?php echo $schichten[14]; ?> </td>
+        <td> <input type="text" name="S1" value="<?php echo $schichten[0]; ?>" /> </td>
+        <td> <input type="text" name="S2" value="<?php echo $schichten[1]; ?>" /> </td>
+        <td> <input type="text" name="S3" value="<?php echo $schichten[2]; ?>" /> </td>
+        <td> <input type="text" name="S4" value="<?php echo $schichten[3]; ?>" /> </td>
+        <td> <input type="text" name="S5" value="<?php echo $schichten[4]; ?>" /> </td>
+        <td> <input type="text" name="S6" value="<?php echo $schichten[5]; ?>" /> </td>
+        <td> <input type="text" name="S7" value="<?php echo $schichten[6]; ?>" /> </td>
+        <td> <input type="text" name="S8" value="<?php echo $schichten[7]; ?>" /> </td>
+        <td> <input type="text" name="S9" value="<?php echo $schichten[8]; ?>" /> </td>
+        <td> <input type="text" name="S10" value="<?php echo $schichten[9]; ?>" /> </td>
+        <td> <input type="text" name="S11" value="<?php echo $schichten[10]; ?>" /> </td>
+        <td> <input type="text" name="S12" value="<?php echo $schichten[11]; ?>" /> </td>
+        <td> <input type="text" name="S13" value="<?php echo $schichten[12]; ?>" /> </td>
+        <td> <input type="text" name="S14" value="<?php echo $schichten[13]; ?>" /> </td>
+        <td> <input type="text" name="S15" value="<?php echo $schichten[14]; ?>" /> </td>
       </tr>
       <tr>
         <th scope="row">Überstunden</th>
-        <td> <?php echo $ueberstunden[0]; ?> </td>
-        <td> <?php echo $ueberstunden[1]; ?> </td>
-        <td> <?php echo $ueberstunden[2]; ?> </td>
-        <td> <?php echo $ueberstunden[3]; ?> </td>
-        <td> <?php echo $ueberstunden[4]; ?> </td>
-        <td> <?php echo $ueberstunden[5]; ?> </td>
-        <td> <?php echo $ueberstunden[6]; ?> </td>
-        <td> <?php echo $ueberstunden[7]; ?> </td>
-        <td> <?php echo $ueberstunden[8]; ?> </td>
-        <td> <?php echo $ueberstunden[9]; ?> </td>
-        <td> <?php echo $ueberstunden[10]; ?> </td>
-        <td> <?php echo $ueberstunden[11]; ?> </td>
-        <td> <?php echo $ueberstunden[12]; ?> </td>
-        <td> <?php echo $ueberstunden[13]; ?> </td>
-        <td> <?php echo $ueberstunden[14]; ?> </td>
+        <td> <input type="text" name="UE1" value="<?php echo $ueberstunden[0]; ?>" /> </td>
+        <td> <input type="text" name="UE2" value="<?php echo $ueberstunden[1]; ?>" /> </td>
+        <td> <input type="text" name="UE3" value="<?php echo $ueberstunden[2]; ?>" /> </td>
+        <td> <input type="text" name="UE4" value="<?php echo $ueberstunden[3]; ?>" /> </td>
+        <td> <input type="text" name="UE5" value="<?php echo $ueberstunden[4]; ?>" /> </td>
+        <td> <input type="text" name="UE6" value="<?php echo $ueberstunden[5]; ?>" /> </td>
+        <td> <input type="text" name="UE7" value="<?php echo $ueberstunden[6]; ?>" /> </td>
+        <td> <input type="text" name="UE8" value="<?php echo $ueberstunden[7]; ?>" /> </td>
+        <td> <input type="text" name="UE9" value="<?php echo $ueberstunden[8]; ?>" /> </td>
+        <td> <input type="text" name="UE10" value="<?php echo $ueberstunden[9]; ?>" /> </td>
+        <td> <input type="text" name="UE11" value="<?php echo $ueberstunden[10]; ?>" /> </td>
+        <td> <input type="text" name="UE12" value="<?php echo $ueberstunden[11]; ?>" /> </td>
+        <td> <input type="text" name="UE13" value="<?php echo $ueberstunden[12]; ?>" /> </td>
+        <td> <input type="text" name="UE14" value="<?php echo $ueberstunden[13]; ?>" /> </td>
+        <td> <input type="text" name="UE15" value="<?php echo $ueberstunden[14]; ?>" /> </td>
       </tr>
     </tbody>
   </table>
+  <input type="submit">
+  </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

@@ -168,6 +168,12 @@ class KapazitätsbedarfNeuService
           }
         }
       }
+      // Nur positive Werte
+      if($überstunden[$i] < 0){
+        $überstunden[$i] = 0;
+      }
+      // runden
+      $überstunden[$i] = round($überstunden[$i],0,PHP_ROUND_HALF_UP);
     }
     return array($überstunden, $schichten);
   }
