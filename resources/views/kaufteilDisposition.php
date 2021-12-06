@@ -58,7 +58,7 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
                 echo $teil->p1 * $produktionsprogrammP4[0] + $teil->p2 * $produktionsprogrammP4[1] + $teil->p3 * $produktionsprogrammP4[2]; ?>
             </td>
             <td>
-              <input type="text" name="<?php echo $teil->nummer ?>" />
+              <input type="text" name="<?php echo $teil->nummer ?>" value="0" />
             </td>
             <td>
               <select name="<?php echo $teil->nummer ?>_art">

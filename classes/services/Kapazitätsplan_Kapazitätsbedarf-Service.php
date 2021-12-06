@@ -174,6 +174,10 @@ class KapazitätsbedarfNeuService
       }
       // runden
       $überstunden[$i] = round($überstunden[$i],0,PHP_ROUND_HALF_UP);
+      // Arbeitsplatz 5 aussortieren
+      if($i == 4){
+        $schichten[$i] = 0;
+      }
     }
     return array($überstunden, $schichten);
   }

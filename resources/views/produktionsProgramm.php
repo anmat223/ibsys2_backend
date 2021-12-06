@@ -53,41 +53,41 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
       <tr>
         <th scope="row">P1</th>
         <td>
-          <input type="number" class="form-control" name="input1">
+          <input type="number" class="form-control" name="input1" value="0">
         </td>
         <td>
-          <input type="number" class="form-control" name="input1_p2">
+          <input type="number" class="form-control" name="input1_p2" value="0">
         </td>
         <td>
-          <input type="number" class="form-control" name="input1_p3">
+          <input type="number" class="form-control" name="input1_p3" value="0">
         </td><td>
-          <input type="number" class="form-control" name="input1_p4">
+          <input type="number" class="form-control" name="input1_p4" value="0">
         </td>
       </tr>
       <tr>
         <th scope="row">P2</th>
         <td>
-          <input type="number" class="form-control" name="input2">
+          <input type="number" class="form-control" name="input2" value="0">
         </td>
         <td>
-          <input type="number" class="form-control" name="input2_p2">
+          <input type="number" class="form-control" name="input2_p2" value="0">
         </td>
         <td>
-          <input type="number" class="form-control" name="input2_p3">
+          <input type="number" class="form-control" name="input2_p3" value="0">
         </td><td>
-          <input type="number" class="form-control" name="input2_p4">
+          <input type="number" class="form-control" name="input2_p4" value="0">
         </td>
       </tr>
       <tr>
         <th scope="row">P3</th>
         <td>
-          <input type="number" class="form-control" name="input3">
+          <input type="number" class="form-control" name="input3" value="0">
         </td><td>
-          <input type="number" class="form-control" name="input3_p2">
+          <input type="number" class="form-control" name="input3_p2" value="0">
         </td><td>
-          <input type="number" class="form-control" name="input3_p3">
+          <input type="number" class="form-control" name="input3_p3" value="0">
         </td><td>
-          <input type="number" class="form-control" name="input3_p4">
+          <input type="number" class="form-control" name="input3_p4" value="0">
         </td>
       </tr>      
     </tbody>
@@ -109,17 +109,17 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
       <tr>
         <th scope="row">P1</th>
         <td>
-          <input type="number" class="form-control" name="input_dv_1">
+          <input type="number" class="form-control" name="input_dv_1" value="0">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_1_price">
+          <input type="number" class="form-control" name="input_dv_1_price" value="0">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_1_penalty">
+          <input type="number" class="form-control" name="input_dv_1_penalty" value="0">
         </td>
         <td>
           <div class="form-group">
-            <select class="form-control" id="p1" name="auslieferungsPeriode_1">
+            <select class="form-control" id="p1" name="auslieferungsPeriode_1" value="0">
               <option value="diese">diese</option>
               <option value="naechste">nächste</option>
               <option value="uebernaechste">übernächste</option>
@@ -130,17 +130,17 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
       <tr>
         <th scope="row">P2</th>
         <td>
-          <input type="number" class="form-control" name="input_dv_2">
+          <input type="number" class="form-control" name="input_dv_2" value="0">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_2_price">
+          <input type="number" class="form-control" name="input_dv_2_price" value="0">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_2_penalty">
+          <input type="number" class="form-control" name="input_dv_2_penalty" value="0">
         </td>
         <td>
           <div class="form-group">
-            <select class="form-control" id="p2" name="auslieferungsPeriode_2">
+            <select class="form-control" id="p2" name="auslieferungsPeriode_2" value="0">
               <option>diese </option>
               <option>nächste</option>
               <option>übernächste</option>
@@ -151,13 +151,13 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
       <tr>
         <th scope="row">P3</th>
         <td>
-          <input type="number" class="form-control" name="input_dv_3">
+          <input type="number" class="form-control" name="input_dv_3" value="0">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_3_price">
+          <input type="number" class="form-control" name="input_dv_3_price" value="0">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_3_penalty">
+          <input type="number" class="form-control" name="input_dv_3_penalty" value="0">
         </td>
         <td>
           <div class="form-group">
