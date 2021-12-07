@@ -12,6 +12,7 @@
 </head>
 
 <body>
+  <!-- hier auskommentieren -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Navigation</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,6 +46,7 @@
       </form>
     </div>
   </nav>
+  <!-- bis hierhin -->
   <?php session_start(); ?> 
   <input type="button" value="<?php echo $_SESSION['language'] ?>" id="languageswitcher" />
   <pre>
