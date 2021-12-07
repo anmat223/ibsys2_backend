@@ -4,6 +4,12 @@ require_once($documentRoot . '/ibsys2_backend/classes/services/Database_Service.
 
 $database = new DatabaseService();
 require_once($documentRoot . '/ibsys2_backend/navbar.php');
+
+$kapazitaetsbedarfNeu = $kapazitaetsbedarfService->berechnungKapazitätsbedarfNeu($_SESSION['produktionsauftraege']);
+$kapazitaetsbedarfGesamt = $kapazitaetsbedarfService->berechnungKapazitätsbedarfGesamt($kapazitaetsbedarfNeu, $ruestzeitNeu, $kapazitaetsbedarfAlt, $ruestzeitAlt);
+$schichtenUeberstunden = $kapazitaetsbedarfService->berechnungSchichtenÜberstunden($kapazitaetsbedarfGesamt);
+$ueberstunden = $schichtenUeberstunden[0];
+$schichten = $schichtenUeberstunden[1];
 ?>
 <div>
   <?php

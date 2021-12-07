@@ -107,7 +107,7 @@
   // getwatingliststock()
 
   $kapazitaetsbedarfService = new KapazitätsbedarfNeuService();
-  $kapazitaetsbedarfNeu = $kapazitaetsbedarfService->berechnungKapazitätsbedarfNeu($produktionsauftraege);
+  
   $ruekstand = array_merge($wartelisteArbeitsplatz, $inWarteschlange);
   $kapazitaetsbedarfAlt = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   for ($i = 0; $i < count($ruekstand); $i++) {
@@ -115,10 +115,7 @@
   }
   $ruestzeitAlt = $kapazitaetsbedarfService->berechnenRuestzeitAlt($ruekstand);
   $ruestzeitNeu = $database->read("Arbeitsplatz", "ruestzeit", $order = "nummer");
-  $kapazitaetsbedarfGesamt = $kapazitaetsbedarfService->berechnungKapazitätsbedarfGesamt($kapazitaetsbedarfNeu, $ruestzeitNeu, $kapazitaetsbedarfAlt, $ruestzeitAlt);
-  $schichtenUeberstunden = $kapazitaetsbedarfService->berechnungSchichtenÜberstunden($kapazitaetsbedarfGesamt);
-  $ueberstunden = $schichtenUeberstunden[0];
-  $schichten = $schichtenUeberstunden[1];
+  
   // Funktionsaufruf zur Berechnung. Welche Funktion?
 
   // Kaufteildisposition
