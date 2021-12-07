@@ -5,7 +5,13 @@ require_once($documentRoot . '/ibsys2_backend/classes/services/Database_Service.
 $database = new DatabaseService();
 require_once($documentRoot . '/ibsys2_backend/navbar.php');
 ?>
-<h2>Vertriebsprogramm für die nächste Woche</h2>
+<h2><?php 
+  if ($_SESSION['language'] == "DE") {
+    echo "Vertriebsprogramm für die nächste Woche";
+  } else {
+    echo "Distribution program for the next week";
+  }
+  ?></h2>
 <div>
   <?php
   require_once('../../classes/services/XML_Reader_Service.php'); //classes\services\XML_Reader_Service.php
