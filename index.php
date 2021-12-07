@@ -15,3 +15,4 @@ include './footer.php';
     echo "Welcome to the IBSYS 2 Calculator!";
   }
   ?></h1>
+<input type="button" value="Start" onclick="parent.location='/ibsys2_backend/resources/views/uploadXML.php'" /> 
