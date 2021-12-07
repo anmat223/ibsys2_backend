@@ -5,6 +5,9 @@ class Produktionsteil extends Teil
 {
   public bool $dreifach;
   public int $sicherheitsbestand;
+  public int $inWarteschlange;
+  public int $inBearbeitung;
+  public int $produktionsAuftrag;
 
   public function __construct($nummer, $anzahl, $preis, $dreifach = false, $sicherheitsbestand = 0)
   {
