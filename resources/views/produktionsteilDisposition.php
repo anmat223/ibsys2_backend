@@ -18,7 +18,7 @@ foreach ($p as $teil) {
   $teil->inBearbeitung = 0;
   $teil->produktionsAuftrag = 0;
 
-  if (in_array($teil->nummer, $nummernp1)) {
+  if ($teil->dreifach) {
     foreach ($inWarteschlange as $w) {
       if ($teil->nummer == $w->produktionsteil->nummer) {
         $teil->inWarteschlange += $w->anzahl;
@@ -39,9 +39,30 @@ foreach ($p as $teil) {
 
     $teil->produktionsAuftrag += $produktionsauftraege[$teil->nummer];
     array_push($teilep1, $teil);
-  }
+    array_push($teilep2, $teil);
+    array_push($teilep3, $teil);
+  } elseif (in_array($teil->nummer, $nummernp1)) {
+    foreach ($inWarteschlange as $w) {
+      if ($teil->nummer == $w->produktionsteil->nummer) {
+        $teil->inWarteschlange += $w->anzahl;
+      }
+    }
 
-  if (in_array($teil->nummer, $nummernp2)) {
+    foreach ($wartelisteArbeitsplatz as $w) {
+      if ($teil->nummer == $w->produktionsteil->nummer) {
+        $teil->inWarteschlange += $w->anzahl;
+      }
+    }
+
+    foreach ($inBearbeitung as $b) {
+      if ($teil->nummer == $b->produktionsteil->nummer) {
+        $teil->inBearbeitung += $b->anzahl;
+      }
+    }
+
+    $teil->produktionsAuftrag += $produktionsauftraege[$teil->nummer];
+    array_push($teilep1, $teil);
+  } elseif (in_array($teil->nummer, $nummernp2)) {
     foreach ($inWarteschlange as $w) {
       if ($teil->nummer == $w->produktionsteil->nummer) {
         $teil->inWarteschlange += $w->anzahl;
@@ -62,9 +83,7 @@ foreach ($p as $teil) {
 
     $teil->produktionsAuftrag += $produktionsauftraege[$teil->nummer];
     array_push($teilep2, $teil);
-  }
-
-  if (in_array($teil->nummer, $nummernp3)) {
+  } else {
     foreach ($inWarteschlange as $w) {
       if ($teil->nummer == $w->produktionsteil->nummer) {
         $teil->inWarteschlange += $w->anzahl;
@@ -127,7 +146,7 @@ foreach ($p as $teil) {
             <td><?php echo ($teil->dreifach) ? ceil($teil->anzahl / 3) : $teil->anzahl; ?></td>
             <td><?php echo $teil->inWarteschlange; ?></td>
             <td><?php echo $teil->inBearbeitung; ?></td>
-            <td><?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?></td>
+            <td><input type="number" class="form-control" name="<?php echo "p1" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>"</td>
           </tr>
         <?php endforeach; ?>
       </tbody>
@@ -157,7 +176,7 @@ foreach ($p as $teil) {
             <td><?php echo ($teil->dreifach) ? ceil($teil->anzahl / 3) : $teil->anzahl; ?></td>
             <td><?php echo $teil->inWarteschlange; ?></td>
             <td><?php echo $teil->inBearbeitung; ?></td>
-            <td><?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?></td>
+            <td><input type="number" class="form-control" name="<?php echo "p2" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>"</td>
           </tr>
         <?php endforeach; ?>
       </tbody>
@@ -187,7 +206,7 @@ foreach ($p as $teil) {
             <td><?php echo ($teil->dreifach) ? ceil($teil->anzahl / 3) : $teil->anzahl; ?></td>
             <td><?php echo $teil->inWarteschlange; ?></td>
             <td><?php echo $teil->inBearbeitung; ?></td>
-            <td><?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?></td>
+            <td><input type="number" class="form-control" name="<?php echo "p3" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>"</td>
           </tr>
         <?php endforeach; ?>
       </tbody>
@@ -196,7 +215,7 @@ foreach ($p as $teil) {
 </div>
 </div>
 
-<form action="kapazitaetsplan.php" method="post">
+<form action="sendProduktionsteile.php" method="post">
   <input type="submit">
 </form>
 <?php
