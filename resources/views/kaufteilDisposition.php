@@ -5,7 +5,12 @@ require_once($documentRoot . '/ibsys2_backend/classes/services/Database_Service.
 $database = new DatabaseService();
 require_once($documentRoot . '/ibsys2_backend/navbar.php');
 ?>
-
+<h2><?php if ($_SESSION['language'] == "DE") {
+    echo "Kaufteildisposition";
+  } else {
+    echo "Purchase part disposition";
+  }
+  ?></h2>
 <div>
   <form action="<?php echo 'sendKaufteile.php' ?>" method="post">
     <table class="table table-bordered">

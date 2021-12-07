@@ -7,11 +7,17 @@ require_once($documentRoot . '/ibsys2_backend/classes/entities/Kaufteil.php');
 
 require_once($documentRoot . '/ibsys2_backend/navbar.php');
 ?>
+<h2><?php if ($_SESSION['language'] == "DE") {
+    echo "Ergebnistabelle";
+  } else {
+    echo "Result Table";
+  }
+  ?></h2>
 <div>
   <div>
     <table class="table table-bordered">
       <thead>
-        <h2>Direktverkäufe</h2>
+        <h3>Direktverkäufe</h3>
       </thead>
       <tbody>
         <tr>
@@ -29,7 +35,7 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
     </table>
 
     <table class="table table-bordered">
-      <h2>Einkaufsaufträge</h2>
+      <h3>Einkaufsaufträge</h3>
       <tr>
         <th scope="row">Teile Nr.</th>
         <th scope="row">Anzahl</th>
@@ -46,7 +52,7 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
     </table>
 
     <table class="table table-bordered">
-      <h2>Produktionsaufträge</h2>
+      <h3>Produktionsaufträge</h3>
       <tr>
         <th scope="row">Teile Nr.</th>
         <th scope="row">Anzahl</th>
@@ -63,7 +69,7 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
 
     <table class="table table-bordered">
       <tr>
-        <h2>Produktionskapazitäten</h2>
+        <h3>Produktionskapazitäten</h3>
       </tr>
       <tr>
         <th scope="row">Arbeitsplatz</th>

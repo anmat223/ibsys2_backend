@@ -89,7 +89,12 @@ foreach ($p as $teil) {
 }
 
 ?>
-<h2>produktionsteildisposition</h2>
+<h2><?php if ($_SESSION['language'] == "DE") {
+    echo "Produktionsteildisposition";
+  } else {
+    echo "Production Parts Scheduling";
+  }
+  ?></h2>
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#p1" type="button" role="tab" aria-controls="nav-home" aria-selected="true">P1</button>
