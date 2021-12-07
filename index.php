@@ -9,6 +9,10 @@ $database->insertPredifinedData();
 include './navbar.php';
 include './footer.php';
 
-$_SESSION['language']='DE';
-
-?> <h1>Wilkommen im IBSYS 2 Rechner!</h1>
+?> <h1><?php if ($_SESSION['language'] == "DE") {
+    echo "Willkommen im IBSYS 2 Rechner!";
+  } else {
+    echo "Welcome to the IBSYS 2 Calculator!";
+  }
+  ?></h1>
+<input type="button" value="Start" onclick="parent.location='/ibsys2_backend/resources/views/uploadXML.php'" /> 
