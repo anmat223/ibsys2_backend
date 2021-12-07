@@ -90,11 +90,11 @@ foreach ($p as $teil) {
 
 ?>
 <h2><?php if ($_SESSION['language'] == "DE") {
-    echo "Produktionsteildisposition";
-  } else {
-    echo "Production Parts Scheduling";
-  }
-  ?></h2>
+      echo "Produktionsteildisposition";
+    } else {
+      echo "Production Parts Scheduling";
+    }
+    ?></h2>
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#p1" type="button" role="tab" aria-controls="nav-home" aria-selected="true">P1</button>
@@ -109,7 +109,6 @@ foreach ($p as $teil) {
       <thead>
         <tr>
           <th scope="col" data-editable="true">Produktionsteil</th>
-          <th scope="col">Vertriebswunsch/ verbindliche Aufträge</th>
           <th scope="col">Sicherheitsbestand</th>
           <th scope="col">Lagerbestand am Ende der Vorperiode (gesamt)</th>
           <th scope="col">Lagerbestand am Ende der Vorperiode</th>
@@ -123,13 +122,12 @@ foreach ($p as $teil) {
         foreach ($teilep1 as $teil) : ?>
           <tr>
             <th scope="row"><?php echo $teil->nummer; ?></th>
-            <td></td>
             <td><?php echo $teil->sicherheitsbestand; ?></td>
             <td><?php echo $teil->anzahl; ?></td>
-            <td><?php echo ($teil->dreifach) ? round($teil->anzahl / 3) : $teil->anzahl; ?></td>
+            <td><?php echo ($teil->dreifach) ? ceil($teil->anzahl / 3) : $teil->anzahl; ?></td>
             <td><?php echo $teil->inWarteschlange; ?></td>
             <td><?php echo $teil->inBearbeitung; ?></td>
-            <td><?php echo $teil->produktionsAuftrag; ?></td>
+            <td><?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?></td>
           </tr>
         <?php endforeach; ?>
       </tbody>
@@ -141,7 +139,6 @@ foreach ($p as $teil) {
       <thead>
         <tr>
           <th scope="col" data-editable="true">Produktionsteil</th>
-          <th scope="col">Vertriebswunsch/ verbindliche Aufträge</th>
           <th scope="col">Sicherheitsbestand</th>
           <th scope="col">Lagerbestand am Ende der Vorperiode (gesamt)</th>
           <th scope="col">Lagerbestand am Ende der Vorperiode</th>
@@ -155,13 +152,12 @@ foreach ($p as $teil) {
         foreach ($teilep2 as $teil) : ?>
           <tr>
             <th scope="row"><?php echo $teil->nummer; ?></th>
-            <td></td>
             <td><?php echo $teil->sicherheitsbestand; ?></td>
             <td><?php echo $teil->anzahl; ?></td>
-            <td><?php echo ($teil->dreifach) ? round($teil->anzahl / 3) : $teil->anzahl; ?></td>
+            <td><?php echo ($teil->dreifach) ? ceil($teil->anzahl / 3) : $teil->anzahl; ?></td>
             <td><?php echo $teil->inWarteschlange; ?></td>
             <td><?php echo $teil->inBearbeitung; ?></td>
-            <td><?php echo $teil->produktionsAuftrag; ?></td>
+            <td><?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?></td>
           </tr>
         <?php endforeach; ?>
       </tbody>
@@ -173,7 +169,6 @@ foreach ($p as $teil) {
       <thead>
         <tr>
           <th scope="col" data-editable="true">Produktionsteil</th>
-          <th scope="col">Vertriebswunsch/ verbindliche Aufträge</th>
           <th scope="col">Sicherheitsbestand</th>
           <th scope="col">Lagerbestand am Ende der Vorperiode (gesamt)</th>
           <th scope="col">Lagerbestand am Ende der Vorperiode</th>
@@ -187,13 +182,12 @@ foreach ($p as $teil) {
         foreach ($teilep3 as $teil) : ?>
           <tr>
             <th scope="row"><?php echo $teil->nummer; ?></th>
-            <td></td>
             <td><?php echo $teil->sicherheitsbestand; ?></td>
             <td><?php echo $teil->anzahl; ?></td>
-            <td><?php echo ($teil->dreifach) ? round($teil->anzahl / 3) : $teil->anzahl; ?></td>
+            <td><?php echo ($teil->dreifach) ? ceil($teil->anzahl / 3) : $teil->anzahl; ?></td>
             <td><?php echo $teil->inWarteschlange; ?></td>
             <td><?php echo $teil->inBearbeitung; ?></td>
-            <td><?php echo $teil->produktionsAuftrag; ?></td>
+            <td><?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?></td>
           </tr>
         <?php endforeach; ?>
       </tbody>

@@ -21,6 +21,16 @@ class DispositionEigenproduktionService
     $nummer = $produktionsteil->nummer;
     $verbindlicheAuftraege = 0;
 
+    if ($nummer == 1) {
+      $verbindlicheAuftraege = $_SESSION['produktionsprogramm'][0];
+    }
+    if ($nummer == 2) {
+      $verbindlicheAuftraege = $_SESSION['produktionsprogramm'][1];
+    }
+    if ($nummer == 3) {
+      $verbindlicheAuftraege = $_SESSION['produktionsprogramm'][2];
+    }
+
     if ($nummer == 26) {
       $verbindlicheAuftraege = $this->produktionsauftraege[1] + $this->produktionsauftraege[2] + $this->produktionsauftraege[3];
     } elseif ($nummer == 16 || $nummer == 17) {
