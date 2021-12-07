@@ -37,7 +37,7 @@ class XML_Reader_Service
       $id = $articl['id'];
       $anzahl = $articl['amount'];
       $preis = $articl['price'];
-      if ($id >= 4 && $id <= 20) {
+      if ($id <= 20) {
         //preis als double        
         array_push($produktionsteile, new Produktionsteil(intval($id), intval($anzahl), intval($preis)));
       } else if ($id >= 21 && $id <= 25) {

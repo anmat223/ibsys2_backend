@@ -71,14 +71,18 @@
   $p = [];
 
   for ($i = 0; $i < count($produktionsteileDB); $i++) {
-    $teil = new Produktionsteil(
-      $produktionsteileDB[$i]['teil'],
-      $produktionsteileDB[$i]['anzahl'],
-      $produktionsteileDB[$i]['preis'],
-      $produktionsteileDB[$i]['dreifachTeil'],
-      $produktionsteileDB[$i]['sicherheitsbestand']
-    );
-    array_push($p, $teil);
+    for ($j = 0; $j < count($produktionsteile); $j++) {
+      if ($produktionsteileDB[$i]['teil'] == $produktionsteile[$j]->nummer) {
+        $teil = new Produktionsteil(
+          $produktionsteileDB[$i]['teil'],
+          $produktionsteile[$j]->anzahl,
+          $produktionsteileDB[$i]['preis'],
+          $produktionsteileDB[$i]['dreifachTeil'],
+          $produktionsteileDB[$i]['sicherheitsbestand']
+        );
+        array_push($p, $teil);
+      }
+    }
   }
 
   // Disposition Eigenfertigung P1
