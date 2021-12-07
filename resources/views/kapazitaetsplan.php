@@ -134,7 +134,7 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
           <td> <input type="text" name="S2" value="<?php echo $schichten[1]; ?>" /> </td>
           <td> <input type="text" name="S3" value="<?php echo $schichten[2]; ?>" /> </td>
           <td> <input type="text" name="S4" value="<?php echo $schichten[3]; ?>" /> </td>
-          <td> <input type="text" name="S5" value="<?php echo $schichten[4]; ?>" /> </td>
+          <td> <?php echo $schichten[4]; ?> </td>
           <td> <input type="text" name="S6" value="<?php echo $schichten[5]; ?>" /> </td>
           <td> <input type="text" name="S7" value="<?php echo $schichten[6]; ?>" /> </td>
           <td> <input type="text" name="S8" value="<?php echo $schichten[7]; ?>" /> </td>
@@ -152,7 +152,7 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
           <td> <input type="text" name="UE2" value="<?php echo $ueberstunden[1]; ?>" /> </td>
           <td> <input type="text" name="UE3" value="<?php echo $ueberstunden[2]; ?>" /> </td>
           <td> <input type="text" name="UE4" value="<?php echo $ueberstunden[3]; ?>" /> </td>
-          <td> <input type="text" name="UE5" value="<?php echo $ueberstunden[4]; ?>" /> </td>
+          <td> <?php echo $ueberstunden[4]; ?> </td>
           <td> <input type="text" name="UE6" value="<?php echo $ueberstunden[5]; ?>" /> </td>
           <td> <input type="text" name="UE7" value="<?php echo $ueberstunden[6]; ?>" /> </td>
           <td> <input type="text" name="UE8" value="<?php echo $ueberstunden[7]; ?>" /> </td>
