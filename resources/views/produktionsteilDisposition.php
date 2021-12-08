@@ -114,108 +114,109 @@ foreach ($p as $teil) {
       echo "Production Parts Scheduling";
     }
     ?></h2>
-<nav>
-  <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#p1" type="button" role="tab" aria-controls="nav-home" aria-selected="true">P1</button>
-    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#p2" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">P2</button>
-    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#p3" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">P3</button>
-  </div>
-</nav>
-<div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="p1" role="tabpanel" aria-labelledby="nav-home-tab">
-    <h3>Disposition Eigenfertigung P1</h3>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col" data-editable="true">Produktionsteil</th>
-          <th scope="col">Sicherheitsbestand</th>
-          <th scope="col">Lagerbestand am Ende der Vorperiode (gesamt)</th>
-          <th scope="col">Lagerbestand am Ende der Vorperiode</th>
-          <th scope="col">Aufträge in der Warteschlange</th>
-          <th scope="col">Aufträge in Bearbeitung</th>
-          <th scope="col">Produktions-Aufträge für die kommende Periode</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-        foreach ($teilep1 as $teil) : ?>
-          <tr>
-            <th scope="row"><?php echo $teil->nummer; ?></th>
-            <td><?php echo $teil->sicherheitsbestand; ?></td>
-            <td><?php echo $teil->anzahl; ?></td>
-            <td><?php echo ($teil->dreifach) ? ceil($teil->anzahl / 3) : $teil->anzahl; ?></td>
-            <td><?php echo $teil->inWarteschlange; ?></td>
-            <td><?php echo $teil->inBearbeitung; ?></td>
-            <td><input type="number" class="form-control" name="<?php echo "p1" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>"</td>
-          </tr>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
-  </div>
-  <div id="p2" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
-    <h3>Disposition Eigenfertigung P2</h3>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col" data-editable="true">Produktionsteil</th>
-          <th scope="col">Sicherheitsbestand</th>
-          <th scope="col">Lagerbestand am Ende der Vorperiode (gesamt)</th>
-          <th scope="col">Lagerbestand am Ende der Vorperiode</th>
-          <th scope="col">Aufträge in der Warteschlange</th>
-          <th scope="col">Aufträge in Bearbeitung</th>
-          <th scope="col">Produktions-Aufträge für die kommende Periode</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-        foreach ($teilep2 as $teil) : ?>
-          <tr>
-            <th scope="row"><?php echo $teil->nummer; ?></th>
-            <td><?php echo $teil->sicherheitsbestand; ?></td>
-            <td><?php echo $teil->anzahl; ?></td>
-            <td><?php echo ($teil->dreifach) ? ceil($teil->anzahl / 3) : $teil->anzahl; ?></td>
-            <td><?php echo $teil->inWarteschlange; ?></td>
-            <td><?php echo $teil->inBearbeitung; ?></td>
-            <td><input type="number" class="form-control" name="<?php echo "p2" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>"</td>
-          </tr>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
-  </div>
-  <div id="p3" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-contact-tab">
-    <h3>Disposition Eigenfertigung P3</h3>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col" data-editable="true">Produktionsteil</th>
-          <th scope="col">Sicherheitsbestand</th>
-          <th scope="col">Lagerbestand am Ende der Vorperiode (gesamt)</th>
-          <th scope="col">Lagerbestand am Ende der Vorperiode</th>
-          <th scope="col">Aufträge in der Warteschlange</th>
-          <th scope="col">Aufträge in Bearbeitung</th>
-          <th scope="col">Produktions-Aufträge für die kommende Periode</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-        foreach ($teilep3 as $teil) : ?>
-          <tr>
-            <th scope="row"><?php echo $teil->nummer; ?></th>
-            <td><?php echo $teil->sicherheitsbestand; ?></td>
-            <td><?php echo $teil->anzahl; ?></td>
-            <td><?php echo ($teil->dreifach) ? ceil($teil->anzahl / 3) : $teil->anzahl; ?></td>
-            <td><?php echo $teil->inWarteschlange; ?></td>
-            <td><?php echo $teil->inBearbeitung; ?></td>
-            <td><input type="number" class="form-control" name="<?php echo "p3" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>"</td>
-          </tr>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
-  </div>
-</div>
-</div>
-
 <form action="sendProduktionsteile.php" method="post">
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#p1" type="button" role="tab" aria-controls="nav-home" aria-selected="true">P1</button>
+      <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#p2" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">P2</button>
+      <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#p3" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">P3</button>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="p1" role="tabpanel" aria-labelledby="nav-home-tab">
+      <h3>Disposition Eigenfertigung P1</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" data-editable="true">Produktionsteil</th>
+            <th scope="col">Sicherheitsbestand</th>
+            <th scope="col">Lagerbestand am Ende der Vorperiode (gesamt)</th>
+            <th scope="col">Lagerbestand am Ende der Vorperiode</th>
+            <th scope="col">Aufträge in der Warteschlange</th>
+            <th scope="col">Aufträge in Bearbeitung</th>
+            <th scope="col">Produktions-Aufträge für die kommende Periode</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          foreach ($teilep1 as $teil) : ?>
+            <tr>
+              <th scope="row"><?php echo $teil->nummer; ?></th>
+              <td><?php echo $teil->sicherheitsbestand; ?></td>
+              <td><?php echo $teil->anzahl; ?></td>
+              <td><?php echo ($teil->dreifach) ? ceil($teil->anzahl / 3) : $teil->anzahl; ?></td>
+              <td><?php echo $teil->inWarteschlange; ?></td>
+              <td><?php echo $teil->inBearbeitung; ?></td>
+              <td><input type="number" class="form-control" name="<?php echo "p1" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>" </td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+    <div id="p2" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
+      <h3>Disposition Eigenfertigung P2</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" data-editable="true">Produktionsteil</th>
+            <th scope="col">Sicherheitsbestand</th>
+            <th scope="col">Lagerbestand am Ende der Vorperiode (gesamt)</th>
+            <th scope="col">Lagerbestand am Ende der Vorperiode</th>
+            <th scope="col">Aufträge in der Warteschlange</th>
+            <th scope="col">Aufträge in Bearbeitung</th>
+            <th scope="col">Produktions-Aufträge für die kommende Periode</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          foreach ($teilep2 as $teil) : ?>
+            <tr>
+              <th scope="row"><?php echo $teil->nummer; ?></th>
+              <td><?php echo $teil->sicherheitsbestand; ?></td>
+              <td><?php echo $teil->anzahl; ?></td>
+              <td><?php echo ($teil->dreifach) ? ceil($teil->anzahl / 3) : $teil->anzahl; ?></td>
+              <td><?php echo $teil->inWarteschlange; ?></td>
+              <td><?php echo $teil->inBearbeitung; ?></td>
+              <td><input type="number" class="form-control" name="<?php echo "p2" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>" </td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+    <div id="p3" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-contact-tab">
+      <h3>Disposition Eigenfertigung P3</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" data-editable="true">Produktionsteil</th>
+            <th scope="col">Sicherheitsbestand</th>
+            <th scope="col">Lagerbestand am Ende der Vorperiode (gesamt)</th>
+            <th scope="col">Lagerbestand am Ende der Vorperiode</th>
+            <th scope="col">Aufträge in der Warteschlange</th>
+            <th scope="col">Aufträge in Bearbeitung</th>
+            <th scope="col">Produktions-Aufträge für die kommende Periode</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          foreach ($teilep3 as $teil) : ?>
+            <tr>
+              <th scope="row"><?php echo $teil->nummer; ?></th>
+              <td><?php echo $teil->sicherheitsbestand; ?></td>
+              <td><?php echo $teil->anzahl; ?></td>
+              <td><?php echo ($teil->dreifach) ? ceil($teil->anzahl / 3) : $teil->anzahl; ?></td>
+              <td><?php echo $teil->inWarteschlange; ?></td>
+              <td><?php echo $teil->inBearbeitung; ?></td>
+              <td><input type="number" class="form-control" name="<?php echo "p3" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>" </td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+
+
   <input type="submit">
 </form>
 <?php
