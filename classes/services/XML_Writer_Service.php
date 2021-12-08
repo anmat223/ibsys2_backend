@@ -14,8 +14,8 @@ class XML_Writer_Service
     $qualitycontrol->addAttribute("type", "no");
     $qualitycontrol->addAttribute("losequantity", 0);
     $qualitycontrol->addAttribute("delay", 0);
-    
-    
+
+
 
     $sellwishlist = $xmlOutput->addChild("sellwish");
     // wie kriege ich die Verkaufswünsche? als array???
@@ -23,7 +23,7 @@ class XML_Writer_Service
       $item = $sellwishlist->addChild("item");
       $item->addAttribute("article", $index + 1); // oder als key 1 bzw. 2 bzw. 3 machen
       $item->addAttribute("quantity", $sellwish);
-      
+
       // <item quantity="100" article="3"/>
     }
 
@@ -48,25 +48,24 @@ class XML_Writer_Service
     }
 
     $productionlist = $xmlOutput->addChild("productionlist");
-    foreach ($productions as $productionitem => $quantity) {
+    foreach ($productions as $productionitem) {
       $productionlistitem = $productionlist->addChild("production");
-      $productionlistitem->addAttribute("article", $productionitem);
-      $productionlistitem->addAttribute("quantity", $quantity);
+      $productionlistitem->addAttribute("article", $productionitem[0]);
+      $productionlistitem->addAttribute("quantity", $productionitem[1]);
       // <productionlist>
       // <production quantity="180" article="4"/>
     }
-    //print_r($workingtimes);
     $workingtimelist = $xmlOutput->addChild("workingtimelist");
 
-    for($i=0;$i < 15;$i++){
+    for ($i = 0; $i < 15; $i++) {
       $workingtimeitem = $workingtimelist->addChild("workingtime");
       $workingtimeitem->addAttribute("station", $i + 1);
       $workingtimeitem->addAttribute("shift", $workingtimes[1][$i]);
       $workingtimeitem->addAttribute("overtime", $workingtimes[0][$i]);
     }
 
-      // <workingtimelist>
-      // <workingtime overtime="0" shift="2" station="1"/>
+    // <workingtimelist>
+    // <workingtime overtime="0" shift="2" station="1"/>
 
     file_put_contents('output.xml', $xmlOutput->asXML());
   }

@@ -59,12 +59,14 @@ $xmlWriter = new XML_Writer_Service();
       <tr>
         <th scope="row">Teile Nr.</th>
         <th scope="row">Anzahl</th>
+        <th scope="row">Priorität</th>
       </tr>
       <?php
-      foreach ($_SESSION['produktionsauftraege'] as $key => $auftrag) : ?>
+      foreach ($_SESSION['alleAuftraege'] as $auftrag) : ?>
         <tr>
-          <td scope="col"><?php echo $key; ?></td>
-          <td scope="col"><?php echo $auftrag; ?></td>
+          <td scope="col"><?php echo $auftrag[0]; ?></td>
+          <td scope="col"><?php echo $auftrag[1]; ?></td>
+          <td scope="col"><?php echo $auftrag[2]; ?></td>
         </tr>
       <?php endforeach; ?>
     </table>
@@ -91,7 +93,7 @@ $xmlWriter = new XML_Writer_Service();
     </table>
   </div>
   <form method="post" action="ende.php">
-    <input type="submit"name="download" class="btn btn-primary" value="Download">
+    <input type="submit" name="download" class="btn btn-primary" value="Download">
   </form>
 
   <?php
@@ -99,7 +101,7 @@ $xmlWriter = new XML_Writer_Service();
     $prodprogODV = $_SESSION['prodprogODV'];
     $direktVerkaeufe = $_SESSION['direktVerkaeufe'];
     $bestellungen = $_SESSION['kaufteile'];
-    $produktionsauftraege = $_SESSION['produktionsauftraege'];
+    $produktionsauftraege = $_SESSION['alleAuftraege'];
     $schichtenUeberstunden = $_SESSION['schichtenUeberstunden'];
     $xmlWriter->write_output_to_xml($prodprogODV, $direktVerkaeufe, $bestellungen, $produktionsauftraege, $schichtenUeberstunden);
   } ?>

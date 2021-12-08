@@ -79,4 +79,4 @@ foreach ($produktionsauftraege as $key => $teil) {
 
 $_SESSION['produktionsauftraege'] = $newprod;
 
-header('Location: kapazitaetsplan.php');
+header('Location: reihenfolgePlanung.php');
