@@ -118,10 +118,10 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
           <input type="number" class="form-control" name="input_dv_1" value="0">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_1_price" value="0">
+          <input type="number" class="form-control" name="input_dv_1_price" value="0.0">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_1_penalty" value="0">
+          <input type="number" class="form-control" name="input_dv_1_penalty" value="0.0">
         </td>
         <td>
           <div class="form-group">
@@ -139,10 +139,10 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
           <input type="number" class="form-control" name="input_dv_2" value="0">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_2_price" value="0">
+          <input type="number" class="form-control" name="input_dv_2_price" value="0.0">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_2_penalty" value="0">
+          <input type="number" class="form-control" name="input_dv_2_penalty" value="0.0">
         </td>
         <td>
           <div class="form-group">
@@ -160,10 +160,10 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
           <input type="number" class="form-control" name="input_dv_3" value="0">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_3_price" value="0">
+          <input type="number" class="form-control" name="input_dv_3_price" value="0.0">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_3_penalty" value="0">
+          <input type="number" class="form-control" name="input_dv_3_penalty" value="0.0">
         </td>
         <td>
           <div class="form-group">
