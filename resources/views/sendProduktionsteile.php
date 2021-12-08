@@ -15,14 +15,20 @@ foreach ($produktionsauftraege as $key => $teil) {
   }
 
   if (in_array($key, $nummernp1)) {
-    $produktionsauftraege[$i] = $_POST['p1' . $key];
+    $produktionsauftraege[$i] = $_POST['s' . $key];
+    $split= $_POST['p1' . $key] / $produktionsauftraege[$i];
+    $splitts = [];
+    
   } elseif (in_array($key, $nummernp2)) {
-    $produktionsauftraege[$i] = $_POST['p2' . $key];
+    $produktionsauftraege[$i] = $_POST['s' . $key];
   } else {
-    $produktionsauftraege[$i] = $_POST['p3' . $key];
+    $produktionsauftraege[$i] = $_POST['s' . $key];
   }
 }
 
 $_SESSION['produktionsauftraege'] = $produktionsauftraege;
 
 header('Location: kapazitaetsplan.php');
+
+
+// [teilenummer] => AnzSPlitting, Array(MengeSPlitts)
