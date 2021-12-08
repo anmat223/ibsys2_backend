@@ -67,8 +67,6 @@ class XML_Writer_Service
 
       // <workingtimelist>
       // <workingtime overtime="0" shift="2" station="1"/>
-      
-  
 
     file_put_contents('output.xml', $xmlOutput->asXML());
   }

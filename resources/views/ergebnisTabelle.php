@@ -90,8 +90,8 @@ $xmlWriter = new XML_Writer_Service();
       <?php endfor; ?>
     </table>
   </div>
-  <form method="post">
-    <input type="submit" name="download" class="btn btn-primary" value="Download">
+  <form method="post" action="ende.php">
+    <input type="submit"name="download" class="btn btn-primary" value="Download">
   </form>
 
   <?php
