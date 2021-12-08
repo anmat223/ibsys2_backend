@@ -149,7 +149,7 @@ foreach ($p as $teil) {
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
               <td><input type="number" class="form-control" name="<?php echo "p1" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>"></td>
-              <td><input type="number" class=" from-control" name="<?php echo "s" . $teil->nummer ?>" value="0"></td>
+              <td><input type="number" class=" from-control" name="<?php echo "s" . $teil->nummer ?>" value="1"></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -181,7 +181,7 @@ foreach ($p as $teil) {
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
               <td><input type="number" class="form-control" name="<?php echo "p2" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>"> </td>
-              <td><?php echo ($teil->dreifach) ?  0 :  '<input type="number" class="from-control" name="s{$teil->nummer}" value="0">'?></td>
+              <td><?php echo ($teil->dreifach) ?  1 :  '<input type="number" class="from-control" name="s' . $teil->nummer . '" value="1">' ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -213,7 +213,7 @@ foreach ($p as $teil) {
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
               <td><input type="number" class="form-control" name="<?php echo "p3" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>"> </td>
-              <td><?php echo ($teil->dreifach) ?  0 :  '<input type="number" class="from-control" name="s{$teil->nummer}" value="0">'?></td>
+              <td><?php echo ($teil->dreifach) ?  1 :  '<input type="number" class="from-control" name="s' . $teil->nummer . '" value="1">' ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
