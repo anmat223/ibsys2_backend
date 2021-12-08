@@ -6,13 +6,16 @@ $database = new DatabaseService();
 require_once($documentRoot . '/ibsys2_backend/classes/entities/Kaufteil.php');
 
 require_once($documentRoot . '/ibsys2_backend/navbar.php');
+require_once($documentRoot . '/ibsys2_backend/classes/services/XML_Writer_Service.php');
+
+$xmlWriter = new XML_Writer_Service();
 ?>
 <h2><?php if ($_SESSION['language'] == "DE") {
-    echo "Ergebnistabelle";
-  } else {
-    echo "Result Table";
-  }
-  ?></h2>
+      echo "Ergebnistabelle";
+    } else {
+      echo "Result Table";
+    }
+    ?></h2>
 <div>
   <div>
     <table class="table table-bordered">
@@ -28,7 +31,7 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
         for ($i = 0; $i < count($_SESSION['direktVerkaeufe']); $i++) : ?>
           <tr>
             <td scope="col"><?php echo "P" . $i + 1 ?></td>
-            <td scope="col"><input type="number" class="form-control" name="<?php echo 'dV' . $i ?>" value="<?php echo $_SESSION['direktVerkaeufe'][$i]['amount']; ?>"></td>
+            <td scope="col"><?php echo $_SESSION['direktVerkaeufe'][$i]['amount']; ?></td>
           </tr>
         <?php endfor; ?>
       </tbody>
@@ -45,8 +48,8 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
       foreach ($_SESSION['kaufteile'] as $kaufteil) : ?>
         <tr>
           <td scope="col"><?php echo $kaufteil->nummer; ?></td>
-          <td scope="col"><input type="number" class="form-control" name="<?php 'bM' . $kaufteil->nummer ?>" value="<?php echo $kaufteil->bestellMenge ?>"></td>
-          <td scope="col"><input type="text" class="form-control" name="<?php 'eB' . $kaufteil->nummer ?>" value="<?php echo ($kaufteil->eilBestellung) ? "E" : "N" ?>"></td>
+          <td scope="col"><?php echo $kaufteil->bestellMenge ?></td>
+          <td scope="col"><?php echo ($kaufteil->eilBestellung) ? "E" : "N"; ?></td>
         </tr>
       <?php endforeach; ?>
     </table>
@@ -58,11 +61,10 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
         <th scope="row">Anzahl</th>
       </tr>
       <?php
-      ksort($produktionsauftraege);
-      foreach ($produktionsauftraege as $key => $auftrag) : ?>
+      foreach ($_SESSION['produktionsauftraege'] as $key => $auftrag) : ?>
         <tr>
           <td scope="col"><?php echo $key; ?></td>
-          <td scope="col"><input type="number" class="form-control" name="<?php 'pA' . $key ?>" value="<?php echo $auftrag ?>"></td>
+          <td scope="col"><?php echo $auftrag; ?></td>
         </tr>
       <?php endforeach; ?>
     </table>
@@ -82,13 +84,25 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
       for ($i = 0; $i < count($schichten); $i++) : ?>
         <tr>
           <td scope="col"><?php echo $i + 1; ?></td>
-          <td scope="col"><input type="number" class="form-control" name="<?php 's' . $i ?>" value="<?php echo $schichten[$i]; ?>"></td>
-          <td scope="col"><input type="text" class="form-control" name="<?php 'ue' . $i ?>" value="<?php echo $ueberstunden[$i]; ?>"></td>
+          <td scope="col"><?php echo $schichten[$i]; ?></td>
+          <td scope="col"><?php echo $ueberstunden[$i]; ?></td>
         </tr>
       <?php endfor; ?>
     </table>
   </div>
-  <button type="button" class="btn btn-primary">Download XML</button>
+  <form method="post">
+    <input type="submit" name="download" class="btn btn-primary" value="Download">
+  </form>
+
+  <?php
+  if (array_key_exists('download', $_POST)) {
+    $prodprogODV = $_SESSION['prodprogODV'];
+    $direktVerkaeufe = $_SESSION['direktVerkaeufe'];
+    $bestellungen = $_SESSION['kaufteile'];
+    $produktionsauftraege = $_SESSION['produktionsauftraege'];
+    $schichtenUeberstunden = $_SESSION['schichtenUeberstunden'];
+    $xmlWriter->write_output_to_xml($prodprogODV, $direktVerkaeufe, $bestellungen, $produktionsauftraege, $schichtenUeberstunden);
+  } ?>
 </div>
 <?php
 require_once($documentRoot . '/ibsys2_backend/footer.php');

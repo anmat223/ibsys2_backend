@@ -71,6 +71,9 @@ $p1 = $_POST["input1"];
 $p2 = $_POST["input2"];
 $p3 = $_POST["input3"];
 
+$produktionsprogrammOhneDV = [$p1, $p2, $p3];
+$_SESSION['prodprogODV'] = $produktionsprogrammOhneDV;
+
 $p1_periode2 = $_POST["input1_p2"];
 $p1_periode3 = $_POST["input1_p3"];
 $p1_periode4 = $_POST["input1_p4"];
@@ -109,8 +112,8 @@ array_push($produktionsprogramm, $summeP1, $summeP2, $summeP3);
 $_SESSION['produktionsprogramm'] = $produktionsprogramm;
 
 $produktionsprogrammMitPrognosen = [
-  array($summeP1,$summeP2,$summeP3), 
-  array($p1_periode2, $p2_periode2, $p3_periode2), 
+  array($summeP1, $summeP2, $summeP3),
+  array($p1_periode2, $p2_periode2, $p3_periode2),
   array($p1_periode3, $p2_periode3, $p3_periode3),
   array($p1_periode4, $p2_periode4, $p3_periode4)
 ];

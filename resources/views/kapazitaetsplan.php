@@ -8,6 +8,7 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
 $kapazitaetsbedarfNeu = $kapazitaetsbedarfService->berechnungKapazitätsbedarfNeu($_SESSION['produktionsauftraege']);
 $kapazitaetsbedarfGesamt = $kapazitaetsbedarfService->berechnungKapazitätsbedarfGesamt($kapazitaetsbedarfNeu, $ruestzeitNeu, $kapazitaetsbedarfAlt, $ruestzeitAlt);
 $schichtenUeberstunden = $kapazitaetsbedarfService->berechnungSchichtenÜberstunden($kapazitaetsbedarfGesamt);
+$_SESSION['schichtenUeberstunden'] = $schichtenUeberstunden;
 $ueberstunden = $schichtenUeberstunden[0];
 $schichten = $schichtenUeberstunden[1];
 ?>
@@ -19,13 +20,13 @@ $schichten = $schichtenUeberstunden[1];
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th scope="col" data-editable="true"><?php 
-  if ($_SESSION['language'] == "DE") {
-    echo "Kapazitätsplan";
-  } else {
-    echo "Capacity plan";
-  }
-  ?></th>
+          <th scope="col" data-editable="true"><?php
+                                                if ($_SESSION['language'] == "DE") {
+                                                  echo "Kapazitätsplan";
+                                                } else {
+                                                  echo "Capacity plan";
+                                                }
+                                                ?></th>
           <th scope="col">1</th>
           <th scope="col">2</th>
           <th scope="col">3</th>
