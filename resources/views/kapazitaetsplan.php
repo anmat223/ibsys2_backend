@@ -5,7 +5,9 @@ require_once($documentRoot . '/ibsys2_backend/classes/services/Database_Service.
 $database = new DatabaseService();
 require_once($documentRoot . '/ibsys2_backend/navbar.php');
 
+//print_r($_SESSION['produktionsauftraege']);
 $kapazitaetsbedarfNeu = $kapazitaetsbedarfService->berechnungKapazitätsbedarfNeu($_SESSION['produktionsauftraege']);
+$ruestzeitNeu = $kapazitaetsbedarfService->berechnungRuestZeitNeu($_SESSION['produktionsauftraege']);
 $kapazitaetsbedarfGesamt = $kapazitaetsbedarfService->berechnungKapazitätsbedarfGesamt($kapazitaetsbedarfNeu, $ruestzeitNeu, $kapazitaetsbedarfAlt, $ruestzeitAlt);
 $schichtenUeberstunden = $kapazitaetsbedarfService->berechnungSchichtenÜberstunden($kapazitaetsbedarfGesamt);
 $_SESSION['schichtenUeberstunden'] = $schichtenUeberstunden;
@@ -65,21 +67,21 @@ $schichten = $schichtenUeberstunden[1];
         </tr>
         <tr>
           <th scope="row">Rüstzeit(neu)</th>
-          <td> <?php echo $ruestzeitNeu[0]["ruestzeit"] ?> </td>
-          <td> <?php echo $ruestzeitNeu[1]["ruestzeit"] ?> </td>
-          <td> <?php echo $ruestzeitNeu[2]["ruestzeit"] ?> </td>
-          <td> <?php echo $ruestzeitNeu[3]["ruestzeit"] ?> </td>
-          <td> <?php echo $ruestzeitNeu[4]["ruestzeit"] ?> </td>
-          <td> <?php echo $ruestzeitNeu[5]["ruestzeit"] ?> </td>
-          <td> <?php echo $ruestzeitNeu[6]["ruestzeit"] ?> </td>
-          <td> <?php echo $ruestzeitNeu[7]["ruestzeit"] ?> </td>
-          <td> <?php echo $ruestzeitNeu[8]["ruestzeit"] ?> </td>
-          <td> <?php echo $ruestzeitNeu[9]["ruestzeit"] ?> </td>
-          <td> <?php echo $ruestzeitNeu[10]["ruestzeit"] ?> </td>
-          <td> <?php echo $ruestzeitNeu[11]["ruestzeit"] ?> </td>
-          <td> <?php echo $ruestzeitNeu[12]["ruestzeit"] ?> </td>
-          <td> <?php echo $ruestzeitNeu[13]["ruestzeit"] ?> </td>
-          <td> <?php echo $ruestzeitNeu[14]["ruestzeit"] ?> </td>
+          <td> <?php echo $ruestzeitNeu[0] ?> </td>
+          <td> <?php echo $ruestzeitNeu[1] ?> </td>
+          <td> <?php echo $ruestzeitNeu[2] ?> </td>
+          <td> <?php echo $ruestzeitNeu[3] ?> </td>
+          <td> <?php echo $ruestzeitNeu[4] ?> </td>
+          <td> <?php echo $ruestzeitNeu[5] ?> </td>
+          <td> <?php echo $ruestzeitNeu[6] ?> </td>
+          <td> <?php echo $ruestzeitNeu[7] ?> </td>
+          <td> <?php echo $ruestzeitNeu[8] ?> </td>
+          <td> <?php echo $ruestzeitNeu[9] ?> </td>
+          <td> <?php echo $ruestzeitNeu[10] ?> </td>
+          <td> <?php echo $ruestzeitNeu[11] ?> </td>
+          <td> <?php echo $ruestzeitNeu[12] ?> </td>
+          <td> <?php echo $ruestzeitNeu[13] ?> </td>
+          <td> <?php echo $ruestzeitNeu[14] ?> </td>
         </tr>
         <tr>
           <th scope="row">Kap.bed.(Rückstand Vorperiode)</th>

@@ -47,7 +47,7 @@
     </div>
   </nav>
   <!-- bis hierhin -->
-  <?php session_start(); ?> 
+  <?php session_start(); ?>
   <input type="button" value="<?php echo $_SESSION['language'] ?>" id="languageswitcher" />
   <pre>
   <?php
@@ -107,15 +107,14 @@
   // getwatingliststock()
 
   $kapazitaetsbedarfService = new KapazitätsbedarfNeuService();
-  
+
   $ruekstand = array_merge($wartelisteArbeitsplatz, $inWarteschlange);
   $kapazitaetsbedarfAlt = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   for ($i = 0; $i < count($ruekstand); $i++) {
     $kapazitaetsbedarfAlt[$ruekstand[$i]->arbeitsplatz->nummer - 1] += $ruekstand[$i]->bearbeitungszeit;
   }
   $ruestzeitAlt = $kapazitaetsbedarfService->berechnenRuestzeitAlt($ruekstand);
-  $ruestzeitNeu = $database->read("Arbeitsplatz", "ruestzeit", $order = "nummer");
-  
+
   // Funktionsaufruf zur Berechnung. Welche Funktion?
 
   // Kaufteildisposition
