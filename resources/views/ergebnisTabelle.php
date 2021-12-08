@@ -92,20 +92,26 @@ $xmlWriter = new XML_Writer_Service();
       <?php endfor; ?>
     </table>
   </div>
+  <form method="post">
+    <input type="submit" name="download" class="btn btn-primary" value="Ergebnisse abschicken">
+  </form>
   <form method="post" action="ende.php">
     <input type="submit" name="download" class="btn btn-primary" value="Download">
   </form>
-
-  <?php
-  if (array_key_exists('download', $_POST)) {
-    $prodprogODV = $_SESSION['prodprogODV'];
-    $direktVerkaeufe = $_SESSION['direktVerkaeufe'];
-    $bestellungen = $_SESSION['kaufteile'];
-    $produktionsauftraege = $_SESSION['alleAuftraege'];
-    $schichtenUeberstunden = $_SESSION['schichtenUeberstunden'];
-    $xmlWriter->write_output_to_xml($prodprogODV, $direktVerkaeufe, $bestellungen, $produktionsauftraege, $schichtenUeberstunden);
-  } ?>
+  <form method="post" action="../../index.php">
+    <input type="submit" name="download" class="btn btn-primary" value="Zurück zur Startseite">
+  </form>
 </div>
+
 <?php
+if (array_key_exists('download', $_POST)) {
+  $prodprogODV = $_SESSION['prodprogODV'];
+  $direktVerkaeufe = $_SESSION['direktVerkaeufe'];
+  $bestellungen = $_SESSION['kaufteile'];
+  $produktionsauftraege = $_SESSION['alleAuftraege'];
+  $schichtenUeberstunden = $_SESSION['schichtenUeberstunden'];
+  $xmlWriter->write_output_to_xml($prodprogODV, $direktVerkaeufe, $bestellungen, $produktionsauftraege, $schichtenUeberstunden);
+}
+
 require_once($documentRoot . '/ibsys2_backend/footer.php');
 ?>
