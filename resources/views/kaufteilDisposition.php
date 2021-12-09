@@ -37,6 +37,7 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
       </thead>
       <tbody>
         <?php
+        print_r($kaufteile);
         foreach ($kaufteile as $teil) : ?>
           <tr class="item_row">
             <th scope="row"><?php echo $teil->nummer; ?></th>
