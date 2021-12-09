@@ -41,7 +41,7 @@ class XML_Writer_Service
     foreach ($orders as $order) {
       $item = $orderlist->addChild("order");
       $item->addAttribute("article", $order->nummer);
-      $item->addAttribute("quantity", $order->anzahl);
+      $item->addAttribute("quantity", $order->bestellMenge);
       $item->addAttribute("modus", $order->eilBestellung ? "4" : "5");
       // -<orderlist>
       // <order quantity="600" article="22" modus="5"/>
