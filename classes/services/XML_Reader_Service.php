@@ -64,6 +64,21 @@ class XML_Reader_Service
     // evtl logik -> if id <x Kauf oder Produktionsteil
   }
 
+  function get_futureinwardstockmovement()
+  {
+    $eingehendeBestellungen = [];
+    $xmldata = simplexml_load_file($this->pathToFile) or die("Failed to load");
+    foreach ($xmldata->futureinwardstockmovement->order as $order) {
+      $periode = $order['orderperiod'];
+      $modus = $order['mode'];
+      $teilenr = $order['article'];
+      $anzahl = $order['amount'];
+      array_push($eingehendeBestellungen, array($periode, $modus, $teilenr, $anzahl));
+    }
+
+    return $eingehendeBestellungen;
+  }
+
   function get_waitinglistworkstations()
   {
     $xmldata = simplexml_load_file($this->pathToFile) or die("Failed to load");
@@ -134,5 +149,10 @@ class XML_Reader_Service
     }
     return $ordersinwork;
   }
-  // wartende artikel für vincent
+
+  function get_currentPeriod()
+  {
+    $xmldata = simplexml_load_file($this->pathToFile) or die("Failed to load");
+    return $xmldata['period'] + 1;
+  }
 }

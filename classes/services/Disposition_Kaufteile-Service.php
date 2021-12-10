@@ -5,10 +5,23 @@ require_once($documentRoot . '/ibsys2_backend/classes/entities/Periode.php');
 class DispositionKaufteileService
 {
 
-  function berechnungBestellung($kaufteile)
+  function berechnungBestellung($kaufteile, $eB)
   {
     $bestellungen = [];
     foreach ($kaufteile as $teil) {
+      $verbleibendeLieferzeit = 0;
+      $counter = 0;
+      foreach ($eB as $e) {
+        if ($e[0][0] == $teil->nummer) {
+          $verbleibendeLieferzeit = $e[1];
+          $counter += 1;
+        }
+      }
+
+      if ($counter > 1) {
+        array_push($bestellungen, array(0, "N"));
+        continue;
+      }
       // Variablen befüllen
       $lieferzeit = $teil->lieferzeit + $teil->abweichung;
 
@@ -33,40 +46,52 @@ class DispositionKaufteileService
           array_push($bestellungen, array($teil->diskontmenge, "E"));
         }
       } else {
-        $differenz = $teil->anzahl - $p2;
+        $differenz = $differenz - $p2;
         if ($differenz <= 0) {
           if ($lieferzeit < 2) {
-            if ($lieferzeit <= 1) {
-              array_push($bestellung, array(0, "N"));
+            if ($lieferzeit <= 1 || $verbleibendeLieferzeit != 0) {
+              array_push($bestellungen, array(0, "N"));
             } else {
               array_push($bestellungen, array($teil->diskontmenge, "N"));
             }
-          } else {
+          } elseif (($teil->lieferzeit / 2) < $verbleibendeLieferzeit && $verbleibendeLieferzeit != 0) {
             array_push($bestellungen, array($teil->diskontmenge, "E"));
+          } elseif ($verbleibendeLieferzeit == 0) {
+            array_push($bestellungen, array($teil->diskontmenge, "E"));
+          } else {
+            array_push($bestellungen, array(0, "N"));
           }
         } else {
-          $differenz = $teil->anzahl - $p3;
+          $differenz = $differenz - $p3;
           if ($differenz <= 0) {
             if ($lieferzeit < 3) {
-              if ($lieferzeit <= 2) {
-                array_push($bestellung, array(0, "N"));
+              if ($lieferzeit <= 2 || $verbleibendeLieferzeit != 0) {
+                array_push($bestellungen, array(0, "N"));
               } else {
                 array_push($bestellungen, array($teil->diskontmenge, "N"));
               }
-            } else {
+            } elseif (($teil->lieferzeit / 2) < $verbleibendeLieferzeit && $verbleibendeLieferzeit != 0) {
               array_push($bestellungen, array($teil->diskontmenge, "E"));
+            } elseif ($verbleibendeLieferzeit == 0) {
+              array_push($bestellungen, array($teil->diskontmenge, "E"));
+            } else {
+              array_push($bestellungen, array(0, "N"));
             }
           } else {
-            $differenz = $teil->anzahl - $p4;
+            $differenz = $differenz - $p4;
             if ($differenz <= 0) {
               if ($lieferzeit < 4) {
-                if ($lieferzeit <= 3) {
-                  array_push($bestellung, array(0, "N"));
+                if ($lieferzeit <= 3 || $verbleibendeLieferzeit != 0) {
+                  array_push($bestellungen, array(0, "N"));
                 } else {
                   array_push($bestellungen, array($teil->diskontmenge, "N"));
                 }
-              } else {
+              } elseif (($teil->lieferzeit / 2) < $verbleibendeLieferzeit && $verbleibendeLieferzeit != 0) {
                 array_push($bestellungen, array($teil->diskontmenge, "E"));
+              } elseif ($verbleibendeLieferzeit == 0) {
+                array_push($bestellungen, array($teil->diskontmenge, "E"));
+              } else {
+                array_push($bestellungen, array(0, "N"));
               }
             } else {
               array_push($bestellungen, array(0, "N"));
@@ -76,5 +101,30 @@ class DispositionKaufteileService
       }
     }
     return $bestellungen;
+  }
+
+  function berechnungBestelleingaenge($eB, $kaufteile, $aktuellePeriode)
+  {
+    $b = [];
+
+    foreach ($eB as $bestellung) {
+      $teilenummer = $bestellung[2];
+      $eingangsPeriode = $aktuellePeriode - $bestellung[0];
+      foreach ($kaufteile as $teil) {
+        if ($teilenummer == $teil->nummer) {
+          if ($bestellung[1] == "4") {
+            $lieferzeit = $teil->lieferzeit / 2;
+          } else {
+            $lieferzeit = $teil->lieferzeit + $teil->abweichung;
+          }
+
+          $verbleibendeLieferzeit = $lieferzeit - $eingangsPeriode;
+        }
+      }
+
+      array_push($b, array($teilenummer, $verbleibendeLieferzeit, $bestellung[3]));
+    }
+
+    return $b;
   }
 }

@@ -12,7 +12,6 @@ for ($i = 0; $i < 15; $i++) {
   array_push($ueberstunden, intval($_POST["UE" . $i + 1]));
 }
 
-$_SESSION['schichten'] = $schichten;
-$_SESSION['ueberstunden'] = $ueberstunden;
+$_SESSION['schichtenUeberstunden'] = array($ueberstunden, $schichten);
 
 header('Location: kaufteilDisposition.php');

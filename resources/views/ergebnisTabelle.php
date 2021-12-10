@@ -81,8 +81,8 @@ $xmlWriter = new XML_Writer_Service();
         <th scope="row">Überstunden (min/Tag)</th>
       </tr>
       <?php
-      $schichten = $_SESSION['schichten'];
-      $ueberstunden = $_SESSION['ueberstunden'];
+      $schichten = $_SESSION['schichtenUeberstunden'][1];
+      $ueberstunden = $_SESSION['schichtenUeberstunden'][0];
       for ($i = 0; $i < count($schichten); $i++) : ?>
         <tr>
           <td scope="col"><?php echo $i + 1; ?></td>

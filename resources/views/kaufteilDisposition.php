@@ -19,7 +19,11 @@ for ($i = 0; $i < count($kaufteileDB); $i++) {
   }
 }
 
-$bestellungen = $kaufteileService->berechnungBestellung($kaufteile);
+$eingehendeBestellungen = $readerService->get_futureinwardstockmovement();
+$aktuellePeriode = $readerService->get_currentPeriod();
+$bestelleingaenge = $kaufteileService->berechnungBestelleingaenge($eingehendeBestellungen, $kaufteile, $aktuellePeriode);
+
+$bestellungen = $kaufteileService->berechnungBestellung($kaufteile, $bestelleingaenge);
 ?>
 <h2><?php if ($_SESSION['language'] == "DE") {
       echo "Kaufteildisposition";
