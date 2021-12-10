@@ -5,18 +5,16 @@ require_once($documentRoot . '/ibsys2_backend/classes/services/Database_Service.
 $database = new DatabaseService();
 require_once($documentRoot . '/ibsys2_backend/navbar.php');
 ?>
-<h2><?php 
-  if ($_SESSION['language'] == "DE") {
-    echo "Vertriebsprogramm für die nächste Woche";
-  } else {
-    echo "Distribution program for the next week";
-  }
-  ?></h2>
+<h2><?php
+    if ($_SESSION['language'] == "DE") {
+      echo "Vertriebsprogramm für die nächste Woche";
+    } else {
+      echo "Distribution program for the next week";
+    }
+    ?></h2>
 <div>
   <?php
-  require_once('../../classes/services/XML_Reader_Service.php'); //classes\services\XML_Reader_Service.php
-  $XML_Reader = new XML_Reader_Service();
-  $forecastsNextWeek = $XML_Reader->get_forecast();
+  $forecastsNextWeek = $readerService->get_forecast();
   ?>
   <table class="table table-bordered">
     <thead>
@@ -47,7 +45,7 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col" data-editable="true">Produkt</th>       
+        <th scope="col" data-editable="true">Produkt</th>
         <th scope="col">Anzahl Produktionsaufträge diese Periode</th>
         <th scope="col">Schätzung für die nächste Periode</th>
         <th scope="col">Schätzung für übernächste Periode</th>
@@ -66,7 +64,8 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
         </td>
         <td>
           <input type="number" class="form-control" name="input1_p3" value="0">
-        </td><td>
+        </td>
+        <td>
           <input type="number" class="form-control" name="input1_p4" value="0">
         </td>
       </tr>
@@ -80,7 +79,8 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
         </td>
         <td>
           <input type="number" class="form-control" name="input2_p3" value="0">
-        </td><td>
+        </td>
+        <td>
           <input type="number" class="form-control" name="input2_p4" value="0">
         </td>
       </tr>
@@ -88,14 +88,17 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
         <th scope="row">P3</th>
         <td>
           <input type="number" class="form-control" name="input3" value="0">
-        </td><td>
+        </td>
+        <td>
           <input type="number" class="form-control" name="input3_p2" value="0">
-        </td><td>
+        </td>
+        <td>
           <input type="number" class="form-control" name="input3_p3" value="0">
-        </td><td>
+        </td>
+        <td>
           <input type="number" class="form-control" name="input3_p4" value="0">
         </td>
-      </tr>      
+      </tr>
     </tbody>
   </table>
 

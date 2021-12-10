@@ -10,14 +10,18 @@ require_once($documentRoot . '/ibsys2_backend/classes/entities/Arbeitsplatz.php'
 
 class XML_Reader_Service
 {
+  private $pathToFile;
 
-  public $xmldata;
-  public $documentRoot;
+  public function __construct($filename)
+  {
+    $documentRoot = $_SERVER['DOCUMENT_ROOT'];
+    $pathToFile = $documentRoot . '/ibsys2_backend/uploads/' . $filename;
+    $this->pathToFile = $pathToFile;
+  }
 
   function get_forecast()
   {
-    $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-    $xmldata = simplexml_load_file($documentRoot . '/ibsys2_backend/uploads/daten.xml') or die("Failed to load");
+    $xmldata = simplexml_load_file($this->pathToFile) or die("Failed to load");
     $forecasts = [];
     $p1 = $xmldata->forecast['p1'];
     $p2 = $xmldata->forecast['p2'];
@@ -28,8 +32,7 @@ class XML_Reader_Service
 
   function get_warehousestock() // return List<Teil> (Produktions oder Kaufteil)
   {
-    $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-    $xmldata = simplexml_load_file($documentRoot . '/ibsys2_backend/uploads/daten.xml') or die("Failed to load");
+    $xmldata = simplexml_load_file($this->pathToFile) or die("Failed to load");
     $produktionsteile = [];
     $kaufteile = [];
     foreach ($xmldata->warehousestock->article as $articl) {
@@ -61,53 +64,9 @@ class XML_Reader_Service
     // evtl logik -> if id <x Kauf oder Produktionsteil
   }
 
-  function get_inwardstockmovement()
-  {
-    $xmldata = simplexml_load_file("uploads/daten.xml") or die("Failed to load");
-    echo "Lagereingänge: " . "<br>";
-    foreach ($xmldata->inwardstockmovement->order as $order) {
-      echo "Bestellid: " . $order['id'] . " ";
-      echo "Bestellmodus: " . $order['mode'] . " ";
-      echo "Artikel: " . $order['article'] . " ";
-      echo "Anzahl: " . $order['amount'] . " ";
-      echo "Zeit: " . $order['time'] . " ";
-      echo "Materialkosten: " . $order['materialcosts'] . " ";
-      echo "Bestellkosten: " . $order['ordercosts'] . "<br>";
-    }
-  }
-
-  function get_futureinwardstockmovement()
-  {
-    $xmldata = simplexml_load_file("uploads/daten.xml") or die("Failed to load");
-    echo "zukünftige Lagereingänge: " . "<br>";
-    foreach ($xmldata->futureinwardstockmovement->order as $order) {
-      echo "Bestellid: " . $order['id'] . " ";
-      echo "Bestellperiode: " . $order['orderperiod'] . " ";
-      echo "Bestellmodus: " . $order['mode'] . " ";
-      echo "Artikel: " . $order['article'] . " ";
-      echo "Anzahl: " . $order['amount'] . "<br>";
-    }
-  }
-
-  function get_idletimecosts()
-  {
-    $xmldata = simplexml_load_file("uploads/daten.xml") or die("Failed to load");
-    echo "Leerkosten: " . "<br>";
-    foreach ($xmldata->idletimecosts->workplace as $workplace) {
-
-      echo "Arbeitsplatz: " . $workplace['id'] . " ";
-      echo "setupevents: " . $workplace['setupevents'] . " ";
-      echo "Leerzeit: " . $workplace['idletime'] . " ";
-      echo "wageidletimecosts: " . $workplace['wageidletimecosts'] . " ";
-      echo "wagecosts: " . $workplace['wagecosts'] . " ";
-      echo "Maschinenleerzeitkosten: " . $workplace['machineidletimecosts'] . "<br>";
-    }
-  }
-
   function get_waitinglistworkstations()
   {
-    $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-    $xmldata = simplexml_load_file($documentRoot . "/ibsys2_backend/uploads/daten.xml") or die("Failed to load");
+    $xmldata = simplexml_load_file($this->pathToFile) or die("Failed to load");
     $waitinglistworkstations = [];
     foreach ($xmldata->waitinglistworkstations->workplace as $workplace) {
 
@@ -133,8 +92,7 @@ class XML_Reader_Service
 
   function get_waitingliststock() // return Warteliste Material
   {
-    $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-    $xmldata = simplexml_load_file($documentRoot . "/ibsys2_backend/uploads/daten.xml") or die("Failed to load");
+    $xmldata = simplexml_load_file($this->pathToFile) or die("Failed to load");
     $waitingliststock = [];
     foreach ($xmldata->waitingliststock->missingpart as $missingpart) {
       if ($missingpart->workplace) {
@@ -161,8 +119,7 @@ class XML_Reader_Service
 
   function get_ordersinwork()
   {
-    $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-    $xmldata = simplexml_load_file($documentRoot . '/ibsys2_backend/uploads/daten.xml') or die("Failed to load");
+    $xmldata = simplexml_load_file($this->pathToFile) or die("Failed to load");
     $ordersinwork = [];
     foreach ($xmldata->ordersinwork->workplace as $workplace) {
       $workplaceid = $workplace['id'];

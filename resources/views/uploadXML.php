@@ -2,12 +2,13 @@
 session_start();
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
 
-$output = $documentRoot . "/ibsys2_backend/resources/views/output.xml";
-$input = $documentRoot . "/ibsys2_backend/uploads/daten.xml";
-
-if (file_exists($input)) {
-  unlink($input);
+foreach (new DirectoryIterator($documentRoot . '/ibsys2_backend/uploads/') as $file) {
+  if ($file->isDot()) continue;
+  unlink($documentRoot . '/ibsys2_backend/uploads/' . $file->getFilename());
 }
+
+$output = $documentRoot . "/ibsys2_backend/resources/views/output.xml";
+
 if (file_exists($output)) {
   unlink($output);
 }

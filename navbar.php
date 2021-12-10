@@ -59,7 +59,13 @@
   require_once($documentRoot . '/ibsys2_backend/classes/services/Kapazitätsplan_Kapazitätsbedarf-Service.php');
   require_once($documentRoot . '/ibsys2_backend/classes/services/Disposition_Kaufteile-Service.php');
 
-  $readerService = new XML_Reader_Service();
+  $filename = null;
+  foreach (new DirectoryIterator($documentRoot . '/ibsys2_backend/uploads/') as $file) {
+    if ($file->isDot()) continue;
+    $filename = $file->getFilename();
+  }
+
+  $readerService = new XML_Reader_Service($filename);
   $teile = $readerService->get_warehousestock();
   $produktionsteile = $teile[0];
   $kaufteile = $teile[1];
