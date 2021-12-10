@@ -9,6 +9,7 @@ $nummernp1 = [1, 51, 50, 4, 10, 49, 7, 13, 18];
 $nummernp2 = [2, 56, 55, 5, 11, 54, 8, 14, 19];
 $nummernp3 = [3, 31, 30, 6, 12, 29, 8, 15, 20];
 
+$produktionsauftraege = $_SESSION['produktionsauftraege'];
 $newprod = [];
 
 foreach ($produktionsauftraege as $key => $teil) {
@@ -76,6 +77,8 @@ foreach ($produktionsauftraege as $key => $teil) {
     $newprod[$key][2] = $splits;
   }
 }
+
+print_r($new_prod);
 
 $_SESSION['produktionsauftraege'] = $newprod;
 

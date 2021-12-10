@@ -4,13 +4,29 @@ require_once($documentRoot . '/ibsys2_backend/classes/services/Database_Service.
 
 $database = new DatabaseService();
 require_once($documentRoot . '/ibsys2_backend/navbar.php');
+
+$kaufteileService = new DispositionKaufteileService();
+for ($i = 0; $i < count($kaufteileDB); $i++) {
+  for ($j = 0; $j < count($kaufteile); $j++) {
+    if ($kaufteile[$j]->nummer == $kaufteileDB[$i]['teil']) {
+      $kaufteile[$j]->lieferzeit = $kaufteileDB[$i]['lieferzeit'];
+      $kaufteile[$j]->abweichung = $kaufteileDB[$i]['abweichung'];
+      $kaufteile[$j]->diskontmenge = $kaufteileDB[$i]['diskontmenge'];
+      $kaufteile[$j]->p1 = $kaufteileDB[$i]['p1'];
+      $kaufteile[$j]->p2 = $kaufteileDB[$i]['p2'];
+      $kaufteile[$j]->p3 = $kaufteileDB[$i]['p3'];
+    }
+  }
+}
+
+// $bestellungen = $kaufteileService->alleBestellungenBerechnen($kaufteile, $produktionsprogramm);
 ?>
 <h2><?php if ($_SESSION['language'] == "DE") {
-    echo "Kaufteildisposition";
-  } else {
-    echo "Purchase part disposition";
-  }
-  ?></h2>
+      echo "Kaufteildisposition";
+    } else {
+      echo "Purchase part disposition";
+    }
+    ?></h2>
 <div>
   <form action="<?php echo 'sendKaufteile.php' ?>" method="post">
     <table class="table table-bordered">
@@ -19,7 +35,7 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
           <th scope="col" data-editable="true" rowspan="2">Nr. Kaufteil</th>
           <th scope="col" rowspan="2">Lieferzeit</th>
           <th scope="col" colspan="3">Verwendung</th>
-          <th scope="col" rowspan="2">Diskonntmenge</th>
+          <th scope="col" rowspan="2">Diskontmenge</th>
           <th scope="col" rowspan="2">Anfangsbestand</th>
           <th scope="col" colspan="4">Bruttobedarf gemäß Produktionsprogramm</th>
           <th scope="col" rowspan="2">Menge</th>
@@ -37,7 +53,6 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
       </thead>
       <tbody>
         <?php
-        print_r($kaufteile);
         foreach ($kaufteile as $teil) : ?>
           <tr class="item_row">
             <th scope="row"><?php echo $teil->nummer; ?></th>

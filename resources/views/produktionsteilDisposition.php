@@ -5,6 +5,10 @@ require_once($documentRoot . '/ibsys2_backend/classes/services/Database_Service.
 $database = new DatabaseService();
 require_once($documentRoot . '/ibsys2_backend/navbar.php');
 
+$eigenproduktionsService = new DispositionEigenproduktionService();
+$produktionsauftraege = $eigenproduktionsService->alleProduktionsauftraegeBerechnen($p, $warteliste);
+$_SESSION['produktionsauftraege'] = $produktionsauftraege;
+
 $teilep1 = [];
 $teilep2 = [];
 $teilep3 = [];

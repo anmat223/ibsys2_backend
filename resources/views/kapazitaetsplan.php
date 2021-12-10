@@ -5,7 +5,14 @@ require_once($documentRoot . '/ibsys2_backend/classes/services/Database_Service.
 $database = new DatabaseService();
 require_once($documentRoot . '/ibsys2_backend/navbar.php');
 
-//print_r($_SESSION['produktionsauftraege']);
+$kapazitaetsbedarfService = new KapazitätsbedarfNeuService();
+
+$ruekstand = array_merge($wartelisteArbeitsplatz, $inWarteschlange);
+$kapazitaetsbedarfAlt = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+for ($i = 0; $i < count($ruekstand); $i++) {
+  $kapazitaetsbedarfAlt[$ruekstand[$i]->arbeitsplatz->nummer - 1] += $ruekstand[$i]->bearbeitungszeit;
+}
+$ruestzeitAlt = $kapazitaetsbedarfService->berechnenRuestzeitAlt($ruekstand);
 $kapazitaetsbedarfNeu = $kapazitaetsbedarfService->berechnungKapazitätsbedarfNeu($_SESSION['produktionsauftraege']);
 $ruestzeitNeu = $kapazitaetsbedarfService->berechnungRuestZeitNeu($_SESSION['produktionsauftraege']);
 $kapazitaetsbedarfGesamt = $kapazitaetsbedarfService->berechnungKapazitätsbedarfGesamt($kapazitaetsbedarfNeu, $ruestzeitNeu, $kapazitaetsbedarfAlt, $ruestzeitAlt);

@@ -87,61 +87,7 @@
     }
   }
 
-  // Disposition Eigenfertigung P1
-  // Disposition Eigenfertigung P2
-  // Disposition Eigenfertigung P3  
-  // xmlReaderService aufrufen und variablen mit ergebnissen deklarieren
-  // getWarehousestock()
-  // getWaitinglistworkstations()
-  // getordersinwork()
-  // getwatingliststock()
-  // --> Tabelle mit den Berechnungen also menge und nummer (evtl. änderbar)
-
-  $eigenproduktionsService = new DispositionEigenproduktionService();
-  $produktionsauftraege = $eigenproduktionsService->alleProduktionsauftraegeBerechnen($p, $warteliste);
-
-
-  // Kapaplanung (Tabelle anzeigen)
-  // getWaitinglistworkstations()
-  // getordersinwork()
-  // getwatingliststock()
-
-  $kapazitaetsbedarfService = new KapazitätsbedarfNeuService();
-
-  $ruekstand = array_merge($wartelisteArbeitsplatz, $inWarteschlange);
-  $kapazitaetsbedarfAlt = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  for ($i = 0; $i < count($ruekstand); $i++) {
-    $kapazitaetsbedarfAlt[$ruekstand[$i]->arbeitsplatz->nummer - 1] += $ruekstand[$i]->bearbeitungszeit;
-  }
-  $ruestzeitAlt = $kapazitaetsbedarfService->berechnenRuestzeitAlt($ruekstand);
-
-  // Funktionsaufruf zur Berechnung. Welche Funktion?
-
-  // Kaufteildisposition
-  // kaufteile aus getwarehousestock()
-  // produktionsprogramm (input aus form) + direktverkäufe aus input (summe)
-  // --> Tabelle mit den Berechnungen menge und nummer, diskontmenge
-  // Eingabetabelle als Zusammenfassung
-
-  $kaufteileService = new DispositionKaufteileService();
-  $produktionsprogramm = array('p1' => 100, 'p2' => 150, 'p3' => 50); // Input aus Vertriebswunsch und Direktverkäufe
   $kaufteileDB = $database->read("Kaufteil", "*", join: "JOIN Teil ON Kaufteil.teil = Teil.nummer");
-
-
-  for ($i = 0; $i < count($kaufteileDB); $i++) {
-    for ($j = 0; $j < count($kaufteile); $j++) {
-      if ($kaufteile[$j]->nummer == $kaufteileDB[$i]['teil']) {
-        $kaufteile[$j]->lieferzeit = $kaufteileDB[$i]['lieferzeit'];
-        $kaufteile[$j]->abweichung = $kaufteileDB[$i]['abweichung'];
-        $kaufteile[$j]->diskontmenge = $kaufteileDB[$i]['diskontmenge'];
-        $kaufteile[$j]->p1 = $kaufteileDB[$i]['p1'];
-        $kaufteile[$j]->p2 = $kaufteileDB[$i]['p2'];
-        $kaufteile[$j]->p3 = $kaufteileDB[$i]['p3'];
-      }
-    }
-  }
-
-  // $bestellungen = $kaufteileService->alleBestellungenBerechnen($kaufteile, $produktionsprogramm);
   ?>
   <script>
     $('#languageswitcher').click(function(){
