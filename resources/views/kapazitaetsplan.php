@@ -188,8 +188,10 @@ $schichten = $schichtenUeberstunden[1];
 <script>
   function validateSchichten(value, name) {
     if (document.getElementsByName(name)[0].value.length !== 0) {
-      (value < 1 || value > 3) ? alert('Der Wert muss zwischen 1 und 3 liegen!'): false
-      document.getElementsByName(name)[0].value = 1
+      if (value < 1 || value > 3) {
+        alert('Der Wert muss zwischen 1 und 3 liegen!')
+        document.getElementsByName(name)[0].value = 5
+      }
       let strValue = String(value)
       let split = strValue.split('.')
       if (split.length > 1) {
@@ -205,8 +207,10 @@ $schichten = $schichtenUeberstunden[1];
 
   function validateUeberstunden(value, name) {
     if (document.getElementsByName(name)[0].value.length !== 0) {
-      (value <= 0 || value > 1200) ? alert('Der Wert muss zwischen 0 und 1200 liegen!'): false
-      document.getElementsByName(name)[0].value = 0
+      if (value < 0 || value > 1200) {
+        alert('Der Wert muss zwischen 0 und 1200 liegen!')
+        document.getElementsByName(name)[0].value = 5
+      }
       let strValue = String(value)
       let split = strValue.split('.')
       if (split.length > 1) {
