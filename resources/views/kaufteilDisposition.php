@@ -19,7 +19,7 @@ for ($i = 0; $i < count($kaufteileDB); $i++) {
   }
 }
 
-// $bestellungen = $kaufteileService->alleBestellungenBerechnen($kaufteile, $produktionsprogramm);
+$bestellungen = $kaufteileService->berechnungBestellung($kaufteile);
 ?>
 <h2><?php if ($_SESSION['language'] == "DE") {
       echo "Kaufteildisposition";
@@ -53,7 +53,7 @@ for ($i = 0; $i < count($kaufteileDB); $i++) {
       </thead>
       <tbody>
         <?php
-        foreach ($kaufteile as $teil) : ?>
+        foreach ($kaufteile as $index => $teil) : ?>
           <tr class="item_row">
             <th scope="row"><?php echo $teil->nummer; ?></th>
             <td><?php echo $teil->lieferzeit . " - " . $teil->lieferzeit + $teil->abweichung; ?></td>
@@ -79,12 +79,12 @@ for ($i = 0; $i < count($kaufteileDB); $i++) {
                 echo $teil->p1 * $produktionsprogrammP4[0] + $teil->p2 * $produktionsprogrammP4[1] + $teil->p3 * $produktionsprogrammP4[2]; ?>
             </td>
             <td>
-              <input type="text" name="<?php echo $teil->nummer ?>" value="0" />
+              <input type="text" name="<?php echo $teil->nummer ?>" value="<?php echo $bestellungen[$index][0]; ?>" />
             </td>
             <td>
               <select name="<?php echo $teil->nummer ?>_art">
-                <option value="N">Normal</option>
-                <option value="E">Eil</option>
+                <option value="N" <?php if ($bestellungen[$index][1] == "N") echo "selected" ?>>Normal</option>
+                <option value="E" <?php if ($bestellungen[$index][1] == "E") echo "selected" ?>>Eil</option>
               </select>
             </td>
           </tr>
