@@ -152,8 +152,8 @@ foreach ($p as $teil) {
               <td><?php echo ($teil->dreifach) ? ceil($teil->anzahl / 3) : $teil->anzahl; ?></td>
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
-              <td><input type="number" class="form-control" name="<?php echo "p1" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>"></td>
-              <td><input type="number" class=" from-control" name="<?php echo "s" . $teil->nummer ?>" value="1"></td>
+              <td><input type="number" class="form-control" name="<?php echo "p1" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>" onchange="validate(this.value, this.name)"></td>
+              <td><input type="number" class=" from-control" name="<?php echo "s" . $teil->nummer ?>" value="1" onchange="validate(this.value, this.name)"></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -184,8 +184,8 @@ foreach ($p as $teil) {
               <td><?php echo ($teil->dreifach) ? ceil($teil->anzahl / 3) : $teil->anzahl; ?></td>
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
-              <td><input type="number" class="form-control" name="<?php echo "p2" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>"> </td>
-              <td><?php echo ($teil->dreifach) ?  1 :  '<input type="number" class="from-control" name="s' . $teil->nummer . '" value="1">' ?></td>
+              <td><input type="number" class="form-control" name="<?php echo "p2" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>" onchange="validate(this.value, this.name)"> </td>
+              <td><?php echo ($teil->dreifach) ?  1 :  '<input type="number" class="from-control" name="s' . $teil->nummer . '" value="1" onchange="validate(this.value, this.name)">' ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -216,8 +216,8 @@ foreach ($p as $teil) {
               <td><?php echo ($teil->dreifach) ? ceil($teil->anzahl / 3) : $teil->anzahl; ?></td>
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
-              <td><input type="number" class="form-control" name="<?php echo "p3" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>"> </td>
-              <td><?php echo ($teil->dreifach) ?  1 :  '<input type="number" class="from-control" name="s' . $teil->nummer . '" value="1">' ?></td>
+              <td><input type="number" class="form-control" name="<?php echo "p3" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>" onchange="validate(this.value, this.name)"> </td>
+              <td><?php echo ($teil->dreifach) ?  1 :  '<input type="number" class="from-control" name="s' . $teil->nummer . '" value="1" onchange="validate(this.value, this.name)">' ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -229,6 +229,24 @@ foreach ($p as $teil) {
 
   <input type="submit">
 </form>
+<script>
+  function validate(value, name) {
+    if (document.getElementsByName(name)[0].value.length !== 0) {
+      (value <= 0) ? alert('Der Wert darf nicht negativ sein!'): false
+      document.getElementsByName(name)[0].value = 1
+      let strValue = String(value)
+      let split = strValue.split('.')
+      if (split.length > 1) {
+        alert('Der Wert darf keine Nachkommastelle haben!')
+        document.getElementsByName(name)[0].value = 1
+      } else {
+        return
+      }
+    } else {
+      document.getElementsByName(name)[0].value = 1
+    }
+  }
+</script>
 <?php
 require_once($documentRoot . '/ibsys2_backend/footer.php');
 ?>

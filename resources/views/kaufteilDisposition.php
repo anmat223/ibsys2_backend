@@ -83,7 +83,7 @@ $bestellungen = $kaufteileService->berechnungBestellung($kaufteile, $bestelleing
                 echo $teil->p1 * $produktionsprogrammP4[0] + $teil->p2 * $produktionsprogrammP4[1] + $teil->p3 * $produktionsprogrammP4[2]; ?>
             </td>
             <td>
-              <input type="text" name="<?php echo $teil->nummer ?>" value="<?php echo $bestellungen[$index][0]; ?>" />
+              <input type="number" name="<?php echo $teil->nummer ?>" value="<?php echo $bestellungen[$index][0]; ?>" onchange="validate(this.value, this.name)" />
             </td>
             <td>
               <select name="<?php echo $teil->nummer ?>_art">
@@ -98,6 +98,24 @@ $bestellungen = $kaufteileService->berechnungBestellung($kaufteile, $bestelleing
     <input type="submit" />
   </form>
 </div>
+<script>
+  function validate(value, name) {
+    if (document.getElementsByName(name)[0].value.length !== 0) {
+      (value <= 0) ? alert('Der Wert darf nicht negativ sein!'): false
+      document.getElementsByName(name)[0].value = 0
+      let strValue = String(value)
+      let split = strValue.split('.')
+      if (split.length > 1) {
+        alert('Der Wert darf keine Nachkommastelle haben!')
+        document.getElementsByName(name)[0].value = 0
+      } else {
+        return
+      }
+    } else {
+      document.getElementsByName(name)[0].value = 0
+    }
+  }
+</script>
 <?php
 require_once($documentRoot . '/ibsys2_backend/footer.php');
 ?>

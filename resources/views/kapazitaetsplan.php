@@ -146,45 +146,80 @@ $schichten = $schichtenUeberstunden[1];
         </tr>
         <tr>
           <th scope="row">Schichten</th>
-          <td> <input type="text" name="S1" value="<?php echo $schichten[0]; ?>" /> </td>
-          <td> <input type="text" name="S2" value="<?php echo $schichten[1]; ?>" /> </td>
-          <td> <input type="text" name="S3" value="<?php echo $schichten[2]; ?>" /> </td>
-          <td> <input type="text" name="S4" value="<?php echo $schichten[3]; ?>" /> </td>
+          <td> <input type="number" name="S1" value="<?php echo $schichten[0]; ?>" onchange="validateSchichten(this.value, this.name)" /> </td>
+          <td> <input type="number" name="S2" value="<?php echo $schichten[1]; ?>" onchange="validateSchichten(this.value, this.name)" /> </td>
+          <td> <input type="number" name="S3" value="<?php echo $schichten[2]; ?>" onchange="validateSchichten(this.value, this.name)" /> </td>
+          <td> <input type="number" name="S4" value="<?php echo $schichten[3]; ?>" onchange="validateSchichten(this.value, this.name)" /> </td>
           <td> <?php echo $schichten[4]; ?> </td>
-          <td> <input type="text" name="S6" value="<?php echo $schichten[5]; ?>" /> </td>
-          <td> <input type="text" name="S7" value="<?php echo $schichten[6]; ?>" /> </td>
-          <td> <input type="text" name="S8" value="<?php echo $schichten[7]; ?>" /> </td>
-          <td> <input type="text" name="S9" value="<?php echo $schichten[8]; ?>" /> </td>
-          <td> <input type="text" name="S10" value="<?php echo $schichten[9]; ?>" /> </td>
-          <td> <input type="text" name="S11" value="<?php echo $schichten[10]; ?>" /> </td>
-          <td> <input type="text" name="S12" value="<?php echo $schichten[11]; ?>" /> </td>
-          <td> <input type="text" name="S13" value="<?php echo $schichten[12]; ?>" /> </td>
-          <td> <input type="text" name="S14" value="<?php echo $schichten[13]; ?>" /> </td>
-          <td> <input type="text" name="S15" value="<?php echo $schichten[14]; ?>" /> </td>
+          <td> <input type="number" name="S6" value="<?php echo $schichten[5]; ?>" onchange="validateSchichten(this.value, this.name)" /> </td>
+          <td> <input type="number" name="S7" value="<?php echo $schichten[6]; ?>" onchange="validateSchichten(this.value, this.name)" /> </td>
+          <td> <input type="number" name="S8" value="<?php echo $schichten[7]; ?>" onchange="validateSchichten(this.value, this.name)" /> </td>
+          <td> <input type="number" name="S9" value="<?php echo $schichten[8]; ?>" onchange="validateSchichten(this.value, this.name)" /> </td>
+          <td> <input type="number" name="S10" value="<?php echo $schichten[9]; ?>" onchange="validateSchichten(this.value, this.name)" /> </td>
+          <td> <input type="number" name="S11" value="<?php echo $schichten[10]; ?>" onchange="validateSchichten(this.value, this.name)" /> </td>
+          <td> <input type="number" name="S12" value="<?php echo $schichten[11]; ?>" onchange="validateSchichten(this.value, this.name)" /> </td>
+          <td> <input type="number" name="S13" value="<?php echo $schichten[12]; ?>" onchange="validateSchichten(this.value, this.name)" /> </td>
+          <td> <input type="number" name="S14" value="<?php echo $schichten[13]; ?>" onchange="validateSchichten(this.value, this.name)" /> </td>
+          <td> <input type="number" name="S15" value="<?php echo $schichten[14]; ?>" onchange="validateSchichten(this.value, this.name)" /> </td>
         </tr>
         <tr>
           <th scope="row">Überstunden</th>
-          <td> <input type="text" name="UE1" value="<?php echo $ueberstunden[0]; ?>" /> </td>
-          <td> <input type="text" name="UE2" value="<?php echo $ueberstunden[1]; ?>" /> </td>
-          <td> <input type="text" name="UE3" value="<?php echo $ueberstunden[2]; ?>" /> </td>
-          <td> <input type="text" name="UE4" value="<?php echo $ueberstunden[3]; ?>" /> </td>
+          <td> <input type="number" name="UE1" value="<?php echo $ueberstunden[0]; ?>" onchange="validateUeberstunden(this.value, this.name)" /> </td>
+          <td> <input type="number" name="UE2" value="<?php echo $ueberstunden[1]; ?>" onchange="validateUeberstunden(this.value, this.name)" /> </td>
+          <td> <input type="number" name="UE3" value="<?php echo $ueberstunden[2]; ?>" onchange="validateUeberstunden(this.value, this.name)" /> </td>
+          <td> <input type="number" name="UE4" value="<?php echo $ueberstunden[3]; ?>" onchange="validateUeberstunden(this.value, this.name)" /> </td>
           <td> <?php echo $ueberstunden[4]; ?> </td>
-          <td> <input type="text" name="UE6" value="<?php echo $ueberstunden[5]; ?>" /> </td>
-          <td> <input type="text" name="UE7" value="<?php echo $ueberstunden[6]; ?>" /> </td>
-          <td> <input type="text" name="UE8" value="<?php echo $ueberstunden[7]; ?>" /> </td>
-          <td> <input type="text" name="UE9" value="<?php echo $ueberstunden[8]; ?>" /> </td>
-          <td> <input type="text" name="UE10" value="<?php echo $ueberstunden[9]; ?>" /> </td>
-          <td> <input type="text" name="UE11" value="<?php echo $ueberstunden[10]; ?>" /> </td>
-          <td> <input type="text" name="UE12" value="<?php echo $ueberstunden[11]; ?>" /> </td>
-          <td> <input type="text" name="UE13" value="<?php echo $ueberstunden[12]; ?>" /> </td>
-          <td> <input type="text" name="UE14" value="<?php echo $ueberstunden[13]; ?>" /> </td>
-          <td> <input type="text" name="UE15" value="<?php echo $ueberstunden[14]; ?>" /> </td>
+          <td> <input type="number" name="UE6" value="<?php echo $ueberstunden[5]; ?>" onchange="validateUeberstunden(this.value, this.name)" /> </td>
+          <td> <input type="number" name="UE7" value="<?php echo $ueberstunden[6]; ?>" onchange="validateUeberstunden(this.value, this.name)" /> </td>
+          <td> <input type="number" name="UE8" value="<?php echo $ueberstunden[7]; ?>" onchange="validateUeberstunden(this.value, this.name)" /> </td>
+          <td> <input type="number" name="UE9" value="<?php echo $ueberstunden[8]; ?>" onchange="validateUeberstunden(this.value, this.name)" /> </td>
+          <td> <input type="number" name="UE10" value="<?php echo $ueberstunden[9]; ?>" onchange="validateUeberstunden(this.value, this.name)" /> </td>
+          <td> <input type="number" name="UE11" value="<?php echo $ueberstunden[10]; ?>" onchange="validateUeberstunden(this.value, this.name)" /> </td>
+          <td> <input type="number" name="UE12" value="<?php echo $ueberstunden[11]; ?>" onchange="validateUeberstunden(this.value, this.name)" /> </td>
+          <td> <input type="number" name="UE13" value="<?php echo $ueberstunden[12]; ?>" onchange="validateUeberstunden(this.value, this.name)" /> </td>
+          <td> <input type="number" name="UE14" value="<?php echo $ueberstunden[13]; ?>" onchange="validateUeberstunden(this.value, this.name)" /> </td>
+          <td> <input type="number" name="UE15" value="<?php echo $ueberstunden[14]; ?>" onchange="validateUeberstunden(this.value, this.name)" /> </td>
         </tr>
       </tbody>
     </table>
     <input type="submit">
   </form>
 </div>
+<script>
+  function validateSchichten(value, name) {
+    if (document.getElementsByName(name)[0].value.length !== 0) {
+      (value < 1 || value > 3) ? alert('Der Wert muss zwischen 1 und 3 liegen!'): false
+      document.getElementsByName(name)[0].value = 1
+      let strValue = String(value)
+      let split = strValue.split('.')
+      if (split.length > 1) {
+        alert('Der Wert darf keine Nachkommastelle haben!')
+        document.getElementsByName(name)[0].value = 1
+      } else {
+        return
+      }
+    } else {
+      document.getElementsByName(name)[0].value = 1
+    }
+  }
+
+  function validateUeberstunden(value, name) {
+    if (document.getElementsByName(name)[0].value.length !== 0) {
+      (value <= 0 || value > 1200) ? alert('Der Wert muss zwischen 0 und 1200 liegen!'): false
+      document.getElementsByName(name)[0].value = 0
+      let strValue = String(value)
+      let split = strValue.split('.')
+      if (split.length > 1) {
+        alert('Der Wert darf keine Nachkommastelle haben!')
+        document.getElementsByName(name)[0].value = 0
+      } else {
+        return
+      }
+    } else {
+      document.getElementsByName(name)[0].value = 0
+    }
+  }
+</script>
 <?php
 require_once($documentRoot . '/ibsys2_backend/footer.php');
 ?>

@@ -57,46 +57,46 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
       <tr>
         <th scope="row">P1</th>
         <td>
-          <input type="number" class="form-control" name="input1" value="0">
+          <input type="number" class="form-control" name="input1" value="0" onchange="validate(this.value, this.name)">
         </td>
         <td>
-          <input type="number" class="form-control" name="input1_p2" value="0">
+          <input type="number" class="form-control" name="input1_p2" value="0" onchange="validate(this.value, this.name)">
         </td>
         <td>
-          <input type="number" class="form-control" name="input1_p3" value="0">
+          <input type="number" class="form-control" name="input1_p3" value="0" onchange="validate(this.value, this.name)">
         </td>
         <td>
-          <input type="number" class="form-control" name="input1_p4" value="0">
+          <input type="number" class="form-control" name="input1_p4" value="0" onchange="validate(this.value, this.name)">
         </td>
       </tr>
       <tr>
         <th scope="row">P2</th>
         <td>
-          <input type="number" class="form-control" name="input2" value="0">
+          <input type="number" class="form-control" name="input2" value="0" onchange="validate(this.value, this.name)">
         </td>
         <td>
-          <input type="number" class="form-control" name="input2_p2" value="0">
+          <input type="number" class="form-control" name="input2_p2" value="0" onchange="validate(this.value, this.name)">
         </td>
         <td>
-          <input type="number" class="form-control" name="input2_p3" value="0">
+          <input type="number" class="form-control" name="input2_p3" value="0" onchange="validate(this.value, this.name)">
         </td>
         <td>
-          <input type="number" class="form-control" name="input2_p4" value="0">
+          <input type="number" class="form-control" name="input2_p4" value="0" onchange="validate(this.value, this.name)">
         </td>
       </tr>
       <tr>
         <th scope="row">P3</th>
         <td>
-          <input type="number" class="form-control" name="input3" value="0">
+          <input type="number" class="form-control" name="input3" value="0" onchange="validate(this.value, this.name)">
         </td>
         <td>
-          <input type="number" class="form-control" name="input3_p2" value="0">
+          <input type="number" class="form-control" name="input3_p2" value="0" onchange="validate(this.value, this.name)">
         </td>
         <td>
-          <input type="number" class="form-control" name="input3_p3" value="0">
+          <input type="number" class="form-control" name="input3_p3" value="0" onchange="validate(this.value, this.name)">
         </td>
         <td>
-          <input type="number" class="form-control" name="input3_p4" value="0">
+          <input type="number" class="form-control" name="input3_p4" value="0" onchange="validate(this.value, this.name)">
         </td>
       </tr>
     </tbody>
@@ -118,17 +118,17 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
       <tr>
         <th scope="row">P1</th>
         <td>
-          <input type="number" class="form-control" name="input_dv_1" value="0">
+          <input type="number" class="form-control" name="input_dv_1" value="0" onchange="validate(this.value, this.name)">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_1_price" value="0.0">
+          <input type="number" class="form-control" name="input_dv_1_price" value="0.0" onchange="validateFloat(this.value, this.name)">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_1_penalty" value="0.0">
+          <input type="number" class="form-control" name="input_dv_1_penalty" value="0.0" onchange="validateFloat(this.value, this.name)">
         </td>
         <td>
           <div class="form-group">
-            <select class="form-control" id="p1" name="auslieferungsPeriode_1" value="0">
+            <select class="form-control" id="p1" name="auslieferungsPeriode_1" value="0" onchange="validateFloat(this.value, this.name)">
               <option value="diese">diese</option>
               <option value="naechste">nächste</option>
               <option value="uebernaechste">übernächste</option>
@@ -139,17 +139,17 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
       <tr>
         <th scope="row">P2</th>
         <td>
-          <input type="number" class="form-control" name="input_dv_2" value="0">
+          <input type="number" class="form-control" name="input_dv_2" value="0" onchange="validate(this.value, this.name)">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_2_price" value="0.0">
+          <input type="number" class="form-control" name="input_dv_2_price" value="0.0" onchange="validateFloat(this.value, this.name)">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_2_penalty" value="0.0">
+          <input type="number" class="form-control" name="input_dv_2_penalty" value="0.0" onchange="validateFloat(this.value, this.name)">
         </td>
         <td>
           <div class="form-group">
-            <select class="form-control" id="p2" name="auslieferungsPeriode_2" value="0">
+            <select class="form-control" id="p2" name="auslieferungsPeriode_2" value="0" onchange="validateFloat(this.value, this.name)">
               <option>diese </option>
               <option>nächste</option>
               <option>übernächste</option>
@@ -160,13 +160,13 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
       <tr>
         <th scope="row">P3</th>
         <td>
-          <input type="number" class="form-control" name="input_dv_3" value="0">
+          <input type="number" class="form-control" name="input_dv_3" value="0" onchange="validate(this.value, this.name)">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_3_price" value="0.0">
+          <input type="number" class="form-control" name="input_dv_3_price" value="0.0" onchange="validateFloat(this.value, this.name)">
         </td>
         <td>
-          <input type="number" class="form-control" name="input_dv_3_penalty" value="0.0">
+          <input type="number" class="form-control" name="input_dv_3_penalty" value="0.0" onchange="validateFloat(this.value, this.name)">
         </td>
         <td>
           <div class="form-group">
@@ -182,6 +182,41 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
   </table>
   <input type="submit">
 </form>
+<script>
+  function validate(value, name) {
+    if (document.getElementsByName(name)[0].value.length !== 0) {
+      (value <= 0) ? alert('Der Wert darf nicht negativ sein!'): false
+      document.getElementsByName(name)[0].value = 0
+      let strValue = String(value)
+      let split = strValue.split('.')
+      if (split.length > 1) {
+        alert('Der Wert darf keine Nachkommastelle haben!')
+        document.getElementsByName(name)[0].value = 0
+      } else {
+        return
+      }
+    } else {
+      document.getElementsByName(name)[0].value = 0
+    }
+  }
+
+  function validateFloat(value, name) {
+    if (document.getElementsByName(name)[0].value.length !== 0) {
+      (value <= 0) ? alert('Der Wert darf nicht negativ sein!'): false
+      let strValue = String(value)
+      let split = strValue.split('.')
+      if (split.length < 2) {
+        alert('Der Wert muss mindestens eine Nachkommastelle haben!')
+        document.getElementsByName(name)[0].value = 0
+      } else {
+        return
+      }
+      document.getElementsByName(name)[0].value = 0
+    } else {
+      document.getElementsByName(name)[0].value = 0
+    }
+  }
+</script>
 <?php
 require_once($documentRoot . '/ibsys2_backend/footer.php');
 ?>
