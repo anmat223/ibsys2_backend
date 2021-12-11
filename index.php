@@ -15,6 +15,7 @@ $database = new DatabaseService();
 $database->createDatabase();
 $database->createTables();
 $database->insertPredifinedData();
+$_SESSION['language'] = "DE";
 ?>
 
 <body>

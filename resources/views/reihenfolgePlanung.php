@@ -53,8 +53,10 @@ $_SESSION['alleAuftraege'] = $alleAuftraege;
 <script>
   function validate(value, name) {
     if (document.getElementsByName(name)[0].value.length !== 0) {
-      (value <= 0) ? alert('Der Wert darf nicht negativ sein!'): false
-      document.getElementsByName(name)[0].value = 5
+      if (value <= 0) {
+        alert('Der Wert darf nicht negativ sein!')
+        document.getElementsByName(name)[0].value = 5
+      }
       let strValue = String(value)
       let split = strValue.split('.')
       if (split.length > 1) {

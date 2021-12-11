@@ -9,6 +9,7 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
 require_once($documentRoot . '/ibsys2_backend/classes/services/XML_Writer_Service.php');
 
 $xmlWriter = new XML_Writer_Service();
+print_r($_SESSION['kaufteile']);
 ?>
 <h2><?php if ($_SESSION['language'] == "DE") {
       echo "Ergebnistabelle";
@@ -110,6 +111,11 @@ if (array_key_exists('download', $_POST)) {
   $prodprogODV = $_SESSION['prodprogODV'];
   $direktVerkaeufe = $_SESSION['direktVerkaeufe'];
   $bestellungen = $_SESSION['kaufteile'];
+  foreach ($bestellungen as $key => $b) {
+    if ($b->bestellMenge == 0) {
+      unset($bestellungen[$key]);
+    }
+  }
   $produktionsauftraege = $_SESSION['alleAuftraege'];
   $schichtenUeberstunden = $_SESSION['schichtenUeberstunden'];
   $xmlWriter->write_output_to_xml($prodprogODV, $direktVerkaeufe, $bestellungen, $produktionsauftraege, $schichtenUeberstunden);
