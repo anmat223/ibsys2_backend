@@ -9,7 +9,6 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
 require_once($documentRoot . '/ibsys2_backend/classes/services/XML_Writer_Service.php');
 
 $xmlWriter = new XML_Writer_Service();
-print_r($_SESSION['kaufteile']);
 ?>
 <h2><?php if ($_SESSION['language'] == "DE") {
       echo "Ergebnistabelle";
