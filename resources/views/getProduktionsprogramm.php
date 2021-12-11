@@ -173,7 +173,7 @@ $_SESSION['direktVerkaeufe'] = $direktVerkaeufe;
   </tbody>
 </table>
 <form action="produktionsteilDisposition.php" method="post">
-  <input type="submit">
+  <input type="submit" class="btn btn-dark">
 </form>
 <?php
 require_once($documentRoot . '/ibsys2_backend/footer.php');

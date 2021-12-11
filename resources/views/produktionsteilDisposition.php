@@ -225,9 +225,7 @@ foreach ($p as $teil) {
     </div>
   </div>
   </div>
-
-
-  <input type="submit">
+  <input type="submit" class="btn btn-dark">
 </form>
 <script>
   function validate(value, name) {
