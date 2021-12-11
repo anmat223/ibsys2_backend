@@ -100,7 +100,7 @@ $xmlWriter = new XML_Writer_Service();
   </div>
 
   <div class="d-grid gap-3 d-md-block">
-    <form method="post" style="display: inline-block;">
+    <form method="post" style="display: inline-block;" action="ergebnisTabelle.php#form-anchor" id="form-anchor">
       <input type="submit" name="download" class="btn btn-dark" value="Ergebnisse abschicken">
     </form>
     <form method="post" style="display: inline-block;" action="ende.php">
