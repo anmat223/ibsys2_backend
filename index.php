@@ -17,39 +17,10 @@ $database->createTables();
 $database->insertPredifinedData();
 ?>
 
-<h1><?php if ($_SESSION['language'] == "DE") {
-      echo "Willkommen im IBSYS 2 Rechner!";
-    } else {
-      echo "Welcome to the IBSYS 2 Calculator!";
-    }
-    ?></h1>
-<input type="button" value="<?php echo $_SESSION['language'] ?>" id="languageswitcher" />
-<input type="button" value="Start" onclick="parent.location='/ibsys2_backend/resources/views/uploadXML.php'" />
-<script>
-  $('#languageswitcher').click(function() {
-    // fire off the request to /redirect.php
-    request = $.ajax({
-      url: "/ibsys2_backend/resources/views/changeLanguage.php",
-      type: "post",
-      data: 'language'
-    });
+<body>
 
-    // callback handler that will be called on success
-    request.done(function(response, textStatus, jqXHR) {
-      // log a message to the console
-      location.reload();
-      console.log("Hooray, it worked!");
-    });
+  <h1>Willkommen im IBSYS 2 Rechner!</h1>
+  <input type="button" value="Start" onclick="parent.location='/ibsys2_backend/resources/views/uploadXML.php'" />
+</body>
 
-    // callback handler that will be called on failure
-    request.fail(function(jqXHR, textStatus, errorThrown) {
-      // log the error to the console
-      console.error(
-        "The following error occured: " +
-        textStatus, errorThrown
-      );
-    });
-  });
-</script>
-<?php
-include './footer.php';
+</html>
