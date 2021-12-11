@@ -18,9 +18,13 @@ $database->insertPredifinedData();
 ?>
 
 <body>
-
   <h1>Willkommen im IBSYS 2 Rechner!</h1>
-  <input type="button" value="Start" onclick="parent.location='/ibsys2_backend/resources/views/uploadXML.php'" />
+  <br>
+  <h3>Dieses Tool wurde von Alicia Grüneberg, Anne Matrusch, Niklas Uhr und Vincent Mielke
+    für die Vorlesung Integrierte betriebliche Systeme 2 im Wintersemester 2020/2021 entwickelt.
+  </h3>
+  <br>
+  <input type="button" class="btn btn-dark" value="Start" onclick="parent.location='/ibsys2_backend/resources/views/uploadXML.php'" />
 </body>
 
 </html>
