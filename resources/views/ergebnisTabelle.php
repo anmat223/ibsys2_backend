@@ -30,7 +30,7 @@ $xmlWriter = new XML_Writer_Service();
         <?php
         for ($i = 0; $i < count($_SESSION['direktVerkaeufe']); $i++) : ?>
           <tr>
-            <td scope="col"><?php echo "P" . $i + 1 ?></td>
+            <th scope="row"><?php echo "P" . $i + 1 ?></td>
             <td scope="col"><?php echo $_SESSION['direktVerkaeufe'][$i]['amount']; ?></td>
           </tr>
         <?php endfor; ?>
@@ -47,7 +47,7 @@ $xmlWriter = new XML_Writer_Service();
       <?php
       foreach ($_SESSION['kaufteile'] as $kaufteil) : ?>
         <tr>
-          <td scope="col"><?php echo $kaufteil->nummer; ?></td>
+          <th scope="row"><?php echo $kaufteil->nummer; ?></td>
           <td scope="col"><?php echo $kaufteil->bestellMenge ?></td>
           <td scope="col"><?php echo ($kaufteil->eilBestellung) ? "E" : "N"; ?></td>
         </tr>
@@ -64,7 +64,7 @@ $xmlWriter = new XML_Writer_Service();
       <?php
       foreach ($_SESSION['alleAuftraege'] as $auftrag) : ?>
         <tr>
-          <td scope="col"><?php echo $auftrag[0]; ?></td>
+          <th scope="row"><?php echo $auftrag[0]; ?></td>
           <td scope="col"><?php echo $auftrag[1]; ?></td>
           <td scope="col"><?php echo $auftrag[2]; ?></td>
         </tr>
@@ -85,7 +85,7 @@ $xmlWriter = new XML_Writer_Service();
       $ueberstunden = $_SESSION['schichtenUeberstunden'][0];
       for ($i = 0; $i < count($schichten); $i++) : ?>
         <tr>
-          <td scope="col"><?php echo $i + 1; ?></td>
+          <th scope="row"><?php echo $i + 1; ?></td>
           <td scope="col"><?php echo $schichten[$i]; ?></td>
           <td scope="col"><?php echo $ueberstunden[$i]; ?></td>
         </tr>
