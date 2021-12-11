@@ -36,6 +36,7 @@ $xmlWriter = new XML_Writer_Service();
         <?php endfor; ?>
       </tbody>
     </table>
+    <br>
 
     <table class="table table-bordered">
       <h3>Einkaufsaufträge</h3>
@@ -53,6 +54,7 @@ $xmlWriter = new XML_Writer_Service();
         </tr>
       <?php endforeach; ?>
     </table>
+    <br>
 
     <table class="table table-bordered">
       <h3>Produktionsaufträge</h3>
@@ -70,6 +72,7 @@ $xmlWriter = new XML_Writer_Service();
         </tr>
       <?php endforeach; ?>
     </table>
+    <br>
 
     <table class="table table-bordered">
       <tr>
@@ -91,7 +94,10 @@ $xmlWriter = new XML_Writer_Service();
         </tr>
       <?php endfor; ?>
     </table>
+    <br>
+
   </div>
+
   <div class="d-grid gap-3 d-md-block">
     <form method="post" style="display: inline-block;">
       <input type="submit" name="download" class="btn btn-dark" value="Ergebnisse abschicken">
