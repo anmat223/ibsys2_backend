@@ -95,7 +95,7 @@ $bestellungen = $kaufteileService->berechnungBestellung($kaufteile, $bestelleing
         <?php endforeach; ?>
       </tbody>
     </table>
-    <input type="submit" />
+    <input type="submit" class="btn btn-dark">
   </form>
 </div>
 <script>

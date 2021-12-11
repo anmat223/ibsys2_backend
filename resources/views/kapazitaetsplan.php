@@ -182,7 +182,7 @@ $schichten = $schichtenUeberstunden[1];
         </tr>
       </tbody>
     </table>
-    <input type="submit">
+    <input type="submit" class="btn btn-dark">
   </form>
 </div>
 <script>

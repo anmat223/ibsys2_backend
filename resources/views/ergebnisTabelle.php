@@ -92,15 +92,17 @@ $xmlWriter = new XML_Writer_Service();
       <?php endfor; ?>
     </table>
   </div>
-  <form method="post">
-    <input type="submit" name="download" class="btn btn-primary" value="Ergebnisse abschicken">
-  </form>
-  <form method="post" action="ende.php">
-    <input type="submit" name="download" class="btn btn-primary" value="Download">
-  </form>
-  <form method="post" action="../../index.php">
-    <input type="submit" name="download" class="btn btn-primary" value="Zurück zur Startseite">
-  </form>
+  <div class="d-grid gap-3 d-md-block">
+    <form method="post" style="display: inline-block;">
+      <input type="submit" name="download" class="btn btn-dark" value="Ergebnisse abschicken">
+    </form>
+    <form method="post" style="display: inline-block;" action="ende.php">
+      <input type="submit" name="download" class="btn btn-dark" value="Download">
+    </form>
+    <form method="post" style="display: inline-block;" action="../../index.php">
+      <input type="submit" name="download" class="btn btn-dark" value="Zurück zur Startseite">
+    </form>
+  </div>
 </div>
 
 <?php

@@ -180,7 +180,7 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
       </tr>
     </tbody>
   </table>
-  <input type="submit">
+  <input type="submit" class="btn btn-dark">
 </form>
 <script>
   function validate(value, name) {
@@ -218,5 +218,4 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
   }
 </script>
 <?php
-require_once($documentRoot . '/ibsys2_backend/footer.php');
-?>
+include $documentRoot . '/ibsys2_backend/footer.php';

@@ -36,7 +36,7 @@ if (file_exists($output)) {
       <div class="form-group">
         <label for="fileToUpload">Select File to Upload</label>
         <input type="file" name="fileToUpload" id="fileToUpload">
-        <input type="submit" value="Upload File" name="submit">
+        <input type="submit" class="btn btn-dark" value="Upload File" name="submit">
       </div>
     </form>
   </div>
@@ -68,6 +68,6 @@ if (file_exists($output)) {
     });
   });
 </script>
-<?php
-require_once($documentRoot . '/ibsys2_backend/footer.php');
-?>
+</body>
+
+</html>
