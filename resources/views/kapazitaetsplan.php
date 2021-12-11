@@ -21,21 +21,22 @@ $_SESSION['schichtenUeberstunden'] = $schichtenUeberstunden;
 $ueberstunden = $schichtenUeberstunden[0];
 $schichten = $schichtenUeberstunden[1];
 ?>
+<h2><?php
+    if ($_SESSION['language'] == "DE") {
+      echo "Kapazitätsplan";
+    } else {
+      echo "Capacity plan";
+    }
+    ?></h2>
 <div>
   <?php
   // print_r( $ruestzeitNeu); Zur Ansicht des arrays
   ?>
   <form action="<?php echo 'sendKapazitaetsplan.php' ?>" method="post">
-    <table class="table table-bordered">
+    <table class="table table-bordered table-responsive">
       <thead>
         <tr>
-          <th scope="col" data-editable="true"><?php
-                                                if ($_SESSION['language'] == "DE") {
-                                                  echo "Kapazitätsplan";
-                                                } else {
-                                                  echo "Capacity plan";
-                                                }
-                                                ?></th>
+          <th scope="col" data-editable="true">Arbeitsplatz</th>
           <th scope="col">1</th>
           <th scope="col">2</th>
           <th scope="col">3</th>
@@ -224,6 +225,12 @@ $schichten = $schichtenUeberstunden[1];
     }
   }
 </script>
-<?php
-require_once($documentRoot . '/ibsys2_backend/footer.php');
-?>
+
+<footer class="bg-dark text-center text-white fixed-bottom" style="margin-top: 25px;">
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2021 Alicia Grüneberg, Anne Matrusch, Niklas Uhr, Vincent Mielke
+  </div>
+</footer>
+</body>
+
+</html>

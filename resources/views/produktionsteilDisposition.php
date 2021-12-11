@@ -118,6 +118,7 @@ foreach ($p as $teil) {
       echo "Production Parts Scheduling";
     }
     ?></h2>
+<br>
 <form action="sendProduktionsteile.php" method="post">
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -128,6 +129,7 @@ foreach ($p as $teil) {
   </nav>
   <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="p1" role="tabpanel" aria-labelledby="nav-home-tab">
+      <br>
       <h3>Disposition Eigenfertigung P1</h3>
       <table class="table table-bordered">
         <thead>
@@ -160,6 +162,7 @@ foreach ($p as $teil) {
       </table>
     </div>
     <div id="p2" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
+      <br>
       <h3>Disposition Eigenfertigung P2</h3>
       <table class="table table-bordered">
         <thead>
@@ -192,6 +195,7 @@ foreach ($p as $teil) {
       </table>
     </div>
     <div id="p3" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-contact-tab">
+      <br>
       <h3>Disposition Eigenfertigung P3</h3>
       <table class="table table-bordered">
         <thead>

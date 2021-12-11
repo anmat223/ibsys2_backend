@@ -29,9 +29,6 @@ $_SESSION['alleAuftraege'] = $alleAuftraege;
     ?></h2>
 <form action="sendReihenfolge.php" method="post">
   <table class="table table-bordered">
-    <thead>
-      <h3>Reihenfolgeplanung</h3>
-    </thead>
     <tbody>
       <tr>
         <th scope="row">Teile Nr.</th>

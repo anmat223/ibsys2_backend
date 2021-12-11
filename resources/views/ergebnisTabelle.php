@@ -11,11 +11,12 @@ require_once($documentRoot . '/ibsys2_backend/classes/services/XML_Writer_Servic
 $xmlWriter = new XML_Writer_Service();
 ?>
 <h2><?php if ($_SESSION['language'] == "DE") {
-      echo "Ergebnistabelle";
+      echo "Ergebnistabellen";
     } else {
-      echo "Result Table";
+      echo "Result Tables";
     }
     ?></h2>
+<br>
 <div>
   <div>
     <table class="table table-bordered">
