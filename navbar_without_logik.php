@@ -36,7 +36,7 @@ if (!array_key_exists('language', $_SESSION)) {
     </div>
   </nav>
   <input type="button" class="btn btn-dark" value="<?php echo $_SESSION['language'] ?>" id="languageswitcher" />
-  <button class="btn btn-dark"><a style="color: white" target="_blank" href="https://docs.google.com/document/d/1D71PmB9vqSbD4kPu2gR-wBoK43DURUrmdph5P6lcZIA/edit#heading=h.23kz4gke8km5%22%3EHandbuch">Handbuch</a></button>
+  <button class="btn btn-dark"><a style="color: white" target="_blank" href="https://drive.google.com/file/d/1S-Tahy58UwIkctyBixSG8UxVJHrLa45y/view?usp=sharing">Handbuch</a></button>
 
   <script>
     $('#languageswitcher').click(function() {
