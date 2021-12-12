@@ -41,7 +41,8 @@
     </div>
   </nav>
   <?php session_start(); ?>
-  <input type="button" value="<?php echo $_SESSION['language'] ?>" id="languageswitcher" />
+  <input type="button"  class="btn btn-dark" value="<?php echo $_SESSION['language'] ?>" id="languageswitcher" />
+  <button class="btn btn-dark"><a style="color: white" target ="_blank" href="https://docs.google.com/document/d/1D71PmB9vqSbD4kPu2gR-wBoK43DURUrmdph5P6lcZIA/edit#heading=h.23kz4gke8km5%22%3EHandbuch">Handbuch</a></button>
   <?php
 
   $documentRoot = $_SERVER['DOCUMENT_ROOT'];
