@@ -71,7 +71,7 @@ $bestellungen = $kaufteileService->berechnungBestellung($kaufteile, $bestelleing
                 }
               ?>
             ">
-            <th scope="row"><?php echo $teil->nummer; ?></th>
+            <th scope="row"><a style="color: black" target ="_blank" href="/ibsys2_backend/resources/views/detailViewKaufteil.php?id=<?php echo $teil->nummer;?>"><?php echo $teil->nummer; ?></a></th>
             <td><?php echo $teil->lieferzeit . " - " . $teil->lieferzeit + $teil->abweichung; ?></td>
             <td><?php echo $teil->p1; ?></td>
             <td><?php echo $teil->p2; ?></td>
