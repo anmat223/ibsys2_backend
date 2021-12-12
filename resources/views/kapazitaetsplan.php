@@ -164,7 +164,7 @@ $schichten = $schichtenUeberstunden[1];
           <td> <input type="number" name="S15" value="<?php echo $schichten[14]; ?>" onchange="validateSchichten(this.value, this.name)" /> </td>
         </tr>
         <tr>
-          <th scope="row">Überstunden</th>
+          <th scope="row">Überstunden pro Tag</th>
           <td> <input type="number" name="UE1" value="<?php echo $ueberstunden[0]; ?>" onchange="validateUeberstunden(this.value, this.name)" /> </td>
           <td> <input type="number" name="UE2" value="<?php echo $ueberstunden[1]; ?>" onchange="validateUeberstunden(this.value, this.name)" /> </td>
           <td> <input type="number" name="UE3" value="<?php echo $ueberstunden[2]; ?>" onchange="validateUeberstunden(this.value, this.name)" /> </td>

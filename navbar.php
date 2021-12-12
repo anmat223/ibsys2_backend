@@ -4,11 +4,13 @@ session_start();
 
 $pointer = 0;
 foreach (new DirectoryIterator($documentRoot . '/ibsys2_backend/uploads/') as $file) {
-    if ($file->isDot()) continue;
-    $pointer = 1;
-  }
+  if ($file->isDot()) continue;
+  $pointer = 1;
+}
 $keyProduktionsprogramm = array_key_exists('produktionsprogramm', $_SESSION) ? 1 : 0;
 $keyProduktionsauftraege = array_key_exists('checkProduktionsauftraege', $_SESSION) ? 1 : 0;
+$keyProdprogODV = array_key_exists('prodprogODV', $_SESSION) ? 1 : 0;
+$keySchichtenUeberstunden = array_key_exists('schichtenUeberstunden', $_SESSION) ? 1 : 0;
 ?>
 
 <!DOCTYPE html>
@@ -34,40 +36,40 @@ $keyProduktionsauftraege = array_key_exists('checkProduktionsauftraege', $_SESSI
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link <?php if($pointer == 1) echo "btn disabled" ?>" href="/ibsys2_backend/index.php">Start<span class="sr-only"></span></a>
+          <a class="nav-link <?php if ($pointer == 1) echo "btn disabled" ?>" href="/ibsys2_backend/index.php">Start<span class="sr-only"></span></a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link <?php if($pointer == 1) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/uploadXML.php">Upload XML</a>
+          <a class="nav-link <?php if ($pointer == 1) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/uploadXML.php">Upload XML</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/ibsys2_backend/resources/views/produktionsProgramm.php">Produktionsprogramm</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php if($keyProduktionsprogramm == 0) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/produktionsteilDisposition.php">Produktionsteildisposition</a>
+          <a class="nav-link <?php if ($keyProduktionsprogramm == 0) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/produktionsteilDisposition.php">Produktionsteildisposition</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php if($keyProduktionsprogramm == 0 || $keyProduktionsauftraege == 0) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/reihenfolgePlanung.php">Reihenfolgeplanung</a>
+          <a class="nav-link <?php if ($keyProduktionsprogramm == 0 || $keyProduktionsauftraege == 0) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/reihenfolgePlanung.php">Reihenfolgeplanung</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php if($keyProduktionsprogramm == 0 || $keyProduktionsauftraege == 0) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/kapazitaetsplan.php">Kapazitätsplan</a>
+          <a class="nav-link <?php if ($keyProduktionsprogramm == 0 || $keyProduktionsauftraege == 0) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/kapazitaetsplan.php">Kapazitätsplan</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php if($keyProduktionsprogramm == 0 || $keyProduktionsauftraege == 0) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/kaufteilDisposition.php">Kaufteil Disposition</a>
+          <a class="nav-link <?php if ($keyProduktionsprogramm == 0 || $keyProduktionsauftraege == 0) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/kaufteilDisposition.php">Kaufteil Disposition</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php if($keyProduktionsprogramm == 0 || $keyProduktionsauftraege == 0) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/ergebnisTabelle.php">Ergebnistabelle</a>
+          <a class="nav-link <?php if ($keyProduktionsprogramm == 0 || $keyProduktionsauftraege == 0 || $keyProdprogODV == 0 || $keySchichtenUeberstunden == 0) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/ergebnisTabelle.php">Ergebnistabelle</a>
         </li>
       </ul>
     </div>
   </nav>
-  <?php 
+  <?php
   if (!array_key_exists('language', $_SESSION)) {
     $_SESSION["language"] = "DE";
-  } 
+  }
   ?>
-  <input type="button"  class="btn btn-dark" value="<?php echo $_SESSION['language'] ?>" id="languageswitcher" />
-  <button class="btn btn-dark"><a style="color: white" target ="_blank" href="https://docs.google.com/document/d/1D71PmB9vqSbD4kPu2gR-wBoK43DURUrmdph5P6lcZIA/edit#heading=h.23kz4gke8km5%22%3EHandbuch">Handbuch</a></button>
+  <input type="button" class="btn btn-dark" value="<?php echo $_SESSION['language'] ?>" id="languageswitcher" />
+  <button class="btn btn-dark"><a style="color: white" target="_blank" href="https://docs.google.com/document/d/1D71PmB9vqSbD4kPu2gR-wBoK43DURUrmdph5P6lcZIA/edit#heading=h.23kz4gke8km5%22%3EHandbuch">Handbuch</a></button>
   <?php
 
   $documentRoot = $_SERVER['DOCUMENT_ROOT'];

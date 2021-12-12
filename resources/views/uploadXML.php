@@ -26,8 +26,8 @@ if (file_exists($output)) {
     <form action="../../classes/services/Upload_File_Service.php" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label for="fileToUpload">Select File to Upload</label>
-        <input type="file" name="fileToUpload" id="fileToUpload">
-        <input type="submit" class="btn btn-dark" value="Upload File" name="submit">
+        <input type="file" name="fileToUpload" id="fileToUpload" onclick="changeUpload()">
+        <input type="submit" class="btn btn-dark" value="Upload File" name="submit" disabled>
       </div>
     </form>
   </div>
@@ -38,5 +38,11 @@ if (file_exists($output)) {
   </div>
 </footer>
 </body>
+<script>
+  function changeUpload() {
+    btn = document.getElementsByName('submit')[0]
+    btn.disabled = false
+  }
+</script>
 
 </html>
