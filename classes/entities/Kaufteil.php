@@ -1,5 +1,5 @@
 <?php
-require_once($documentRoot . '/ibsys2_backend/classes/entities/Teil.php');
+require_once($documentRoot . '/classes/entities/Teil.php');
 class Kaufteil extends Teil
 {
   public int $eingehendeBestellungen;

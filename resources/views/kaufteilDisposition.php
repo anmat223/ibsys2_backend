@@ -1,9 +1,9 @@
 <?php
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-require_once($documentRoot . '/ibsys2_backend/classes/services/Database_Service.php');
+require_once($documentRoot . '/classes/services/Database_Service.php');
 
 $database = new DatabaseService();
-require_once($documentRoot . '/ibsys2_backend/navbar.php');
+require_once($documentRoot . '/navbar.php');
 
 $kaufteileService = new DispositionKaufteileService();
 for ($i = 0; $i < count($kaufteileDB); $i++) {
@@ -63,15 +63,15 @@ $bestellungen = $kaufteileService->berechnungBestellung($kaufteile, $bestelleing
         $produktionsprogrammP4 = $_SESSION['produktionsprogrammMitPrognosen'][3];
         foreach ($kaufteile as $index => $teil) : ?>
           <tr class="item_row; 
-            <?php 
-                if($teil->anzahl == 0) {
-                  echo "table-danger";
-                } else if($bestellungen[$index][0] > 0) {
-                  echo "table-warning";
-                }
-              ?>
+            <?php
+            if ($teil->anzahl == 0) {
+              echo "table-danger";
+            } else if ($bestellungen[$index][0] > 0) {
+              echo "table-warning";
+            }
+            ?>
             ">
-            <th scope="row"><a style="color: black" target ="_blank" href="/ibsys2_backend/resources/views/detailViewKaufteil.php?id=<?php echo $teil->nummer;?>"><?php echo $teil->nummer; ?></a></th>
+            <th scope="row"><a style="color: black" target="_blank" href="/resources/views/detailViewKaufteil.php?id=<?php echo $teil->nummer; ?>"><?php echo $teil->nummer; ?></a></th>
             <td><?php echo $teil->lieferzeit . " - " . $teil->lieferzeit + $teil->abweichung; ?></td>
             <td><?php echo $teil->p1; ?></td>
             <td><?php echo $teil->p2; ?></td>
@@ -127,5 +127,5 @@ $bestellungen = $kaufteileService->berechnungBestellung($kaufteile, $bestelleing
   }
 </script>
 <?php
-require_once($documentRoot . '/ibsys2_backend/footer.php');
+require_once($documentRoot . '/footer.php');
 ?>

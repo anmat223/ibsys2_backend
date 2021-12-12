@@ -1,10 +1,10 @@
 <?php
 class DatabaseService
 {
-  private $servername = "localhost";
-  private $username = "root";
-  private $password = "";
-  private $databaseName = "ibsys2";
+  private $servername = "db5005991693.hosting-data.io";
+  private $username = "dbu1651509";
+  private $password = "iYc9FjJMnxSx";
+  private $databaseName = "dbs5019310";
   private $connectionString = "mysql:host=";
 
   public function __get($property)

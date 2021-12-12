@@ -1,13 +1,13 @@
 <?php
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-require_once($documentRoot . '/ibsys2_backend/navbar_without_logik.php');
+require_once($documentRoot . '/navbar_without_logik.php');
 
-foreach (new DirectoryIterator($documentRoot . '/ibsys2_backend/uploads/') as $file) {
+foreach (new DirectoryIterator($documentRoot . '/uploads/') as $file) {
   if ($file->isDot()) continue;
-  unlink($documentRoot . '/ibsys2_backend/uploads/' . $file->getFilename());
+  unlink($documentRoot . '/uploads/' . $file->getFilename());
 }
 
-$output = $documentRoot . "/ibsys2_backend/resources/views/output.xml";
+$output = $documentRoot . "/resources/views/output.xml";
 
 if (file_exists($output)) {
   unlink($output);

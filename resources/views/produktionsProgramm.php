@@ -1,9 +1,9 @@
 <?php
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-require_once($documentRoot . '/ibsys2_backend/classes/services/Database_Service.php');
+require_once($documentRoot . '/classes/services/Database_Service.php');
 
 $database = new DatabaseService();
-require_once($documentRoot . '/ibsys2_backend/navbar.php');
+require_once($documentRoot . '/navbar.php');
 ?>
 <h2><?php
     if ($_SESSION['language'] == "DE") {
@@ -223,4 +223,4 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
   }
 </script>
 <?php
-include $documentRoot . '/ibsys2_backend/footer.php';
+include $documentRoot . '/footer.php';

@@ -1,7 +1,7 @@
 <?php
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-require_once($documentRoot . '/ibsys2_backend/classes/entities/Bestellung.php');
-require_once($documentRoot . '/ibsys2_backend/classes/entities/Periode.php');
+require_once($documentRoot . '/classes/entities/Bestellung.php');
+require_once($documentRoot . '/classes/entities/Periode.php');
 class DispositionKaufteileService
 {
 

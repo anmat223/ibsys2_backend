@@ -1,9 +1,9 @@
 <?php
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-require_once($documentRoot . '/ibsys2_backend/classes/services/Database_Service.php');
+require_once($documentRoot . '/classes/services/Database_Service.php');
 
 $database = new DatabaseService();
-require_once($documentRoot . '/ibsys2_backend/navbar.php');
+require_once($documentRoot . '/navbar.php');
 
 $eigenproduktionsService = new DispositionEigenproduktionService();
 $produktionsauftraege = $eigenproduktionsService->alleProduktionsauftraegeBerechnen($p, $warteliste);
@@ -252,5 +252,5 @@ foreach ($p as $teil) {
   }
 </script>
 <?php
-require_once($documentRoot . '/ibsys2_backend/footer.php');
+require_once($documentRoot . '/footer.php');
 ?>

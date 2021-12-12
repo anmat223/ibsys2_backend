@@ -21,28 +21,28 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost/ibsys2_backend/index.php">Start<span class="sr-only"></span></a>
+          <a class="nav-link" href="/index.php">Start<span class="sr-only"></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost/ibsys2_backend/resources/views/uploadXML.php">Upload XML</a>
+          <a class="nav-link" href="/resources/views/uploadXML.php">Upload XML</a>
         </li>
       </ul>
     </div>
   </nav>
-  <?php 
-  session_start(); 
+  <?php
+  session_start();
   if (!array_key_exists('language', $_SESSION)) {
     $_SESSION["language"] = "DE";
-  } 
+  }
   ?>
-  <input type="button"  class="btn btn-dark" value="<?php echo $_SESSION['language'] ?>" id="languageswitcher" />
-  <button class="btn btn-dark"><a style="color: white" target ="_blank" href="https://docs.google.com/document/d/1D71PmB9vqSbD4kPu2gR-wBoK43DURUrmdph5P6lcZIA/edit#heading=h.23kz4gke8km5%22%3EHandbuch">Handbuch</a></button>
+  <input type="button" class="btn btn-dark" value="<?php echo $_SESSION['language'] ?>" id="languageswitcher" />
+  <button class="btn btn-dark"><a style="color: white" target="_blank" href="https://docs.google.com/document/d/1D71PmB9vqSbD4kPu2gR-wBoK43DURUrmdph5P6lcZIA/edit#heading=h.23kz4gke8km5%22%3EHandbuch">Handbuch</a></button>
 
   <script>
     $('#languageswitcher').click(function() {
       // fire off the request to /redirect.php
       request = $.ajax({
-        url: "/ibsys2_backend/resources/views/changeLanguage.php",
+        url: "/resources/views/changeLanguage.php",
         type: "post",
         data: 'language'
       });

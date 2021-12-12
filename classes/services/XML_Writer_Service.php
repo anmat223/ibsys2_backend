@@ -1,6 +1,6 @@
 <?php
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-require_once($documentRoot . '/ibsys2_backend/classes/entities/Kaufteil.php');
+require_once($documentRoot . '/classes/entities/Kaufteil.php');
 
 class XML_Writer_Service
 {

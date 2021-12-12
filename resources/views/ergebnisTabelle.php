@@ -1,12 +1,12 @@
 <?php
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-require_once($documentRoot . '/ibsys2_backend/classes/services/Database_Service.php');
+require_once($documentRoot . '/classes/services/Database_Service.php');
 
 $database = new DatabaseService();
-require_once($documentRoot . '/ibsys2_backend/classes/entities/Kaufteil.php');
+require_once($documentRoot . '/classes/entities/Kaufteil.php');
 
-require_once($documentRoot . '/ibsys2_backend/navbar.php');
-require_once($documentRoot . '/ibsys2_backend/classes/services/XML_Writer_Service.php');
+require_once($documentRoot . '/navbar.php');
+require_once($documentRoot . '/classes/services/XML_Writer_Service.php');
 
 $xmlWriter = new XML_Writer_Service();
 ?>
@@ -141,5 +141,5 @@ if (array_key_exists('ergebnisseAbschicken', $_POST)) {
   }
 }
 
-require_once($documentRoot . '/ibsys2_backend/footer.php');
+require_once($documentRoot . '/footer.php');
 ?>

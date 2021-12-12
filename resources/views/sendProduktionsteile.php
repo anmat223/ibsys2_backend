@@ -1,9 +1,9 @@
 <?php
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-require_once($documentRoot . '/ibsys2_backend/classes/services/Database_Service.php');
+require_once($documentRoot . '/classes/services/Database_Service.php');
 
 $database = new DatabaseService();
-require_once($documentRoot . '/ibsys2_backend/navbar.php');
+require_once($documentRoot . '/navbar.php');
 
 $nummernp1 = [1, 51, 50, 4, 10, 49, 7, 13, 18];
 $nummernp2 = [2, 56, 55, 5, 11, 54, 8, 14, 19];

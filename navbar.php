@@ -1,9 +1,8 @@
 <?php
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-session_start();
 
 $pointer = 0;
-foreach (new DirectoryIterator($documentRoot . '/ibsys2_backend/uploads/') as $file) {
+foreach (new DirectoryIterator($documentRoot . '/uploads/') as $file) {
   if ($file->isDot()) continue;
   $pointer = 1;
 }
@@ -36,29 +35,29 @@ $keySchichtenUeberstunden = array_key_exists('schichtenUeberstunden', $_SESSION)
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link <?php if ($pointer == 1) echo "btn disabled" ?>" href="/ibsys2_backend/index.php">Start<span class="sr-only"></span></a>
+          <a class="nav-link <?php if ($pointer == 1) echo "btn disabled" ?>" href="/index.php">Start<span class="sr-only"></span></a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link <?php if ($pointer == 1) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/uploadXML.php">Upload XML</a>
+          <a class="nav-link <?php if ($pointer == 1) echo "btn disabled" ?>" href="/resources/views/uploadXML.php">Upload XML</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/ibsys2_backend/resources/views/produktionsProgramm.php">Produktionsprogramm</a>
+          <a class="nav-link" href="/resources/views/produktionsProgramm.php">Produktionsprogramm</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php if ($keyProduktionsprogramm == 0) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/produktionsteilDisposition.php">Produktionsteildisposition</a>
+          <a class="nav-link <?php if ($keyProduktionsprogramm == 0) echo "btn disabled" ?>" href="/resources/views/produktionsteilDisposition.php">Produktionsteildisposition</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php if ($keyProduktionsprogramm == 0 || $keyProduktionsauftraege == 0) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/reihenfolgePlanung.php">Reihenfolgeplanung</a>
+          <a class="nav-link <?php if ($keyProduktionsprogramm == 0 || $keyProduktionsauftraege == 0) echo "btn disabled" ?>" href="/resources/views/reihenfolgePlanung.php">Reihenfolgeplanung</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php if ($keyProduktionsprogramm == 0 || $keyProduktionsauftraege == 0) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/kapazitaetsplan.php">Kapazitätsplan</a>
+          <a class="nav-link <?php if ($keyProduktionsprogramm == 0 || $keyProduktionsauftraege == 0) echo "btn disabled" ?>" href="/resources/views/kapazitaetsplan.php">Kapazitätsplan</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php if ($keyProduktionsprogramm == 0 || $keyProduktionsauftraege == 0) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/kaufteilDisposition.php">Kaufteil Disposition</a>
+          <a class="nav-link <?php if ($keyProduktionsprogramm == 0 || $keyProduktionsauftraege == 0) echo "btn disabled" ?>" href="/resources/views/kaufteilDisposition.php">Kaufteil Disposition</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?php if ($keyProduktionsprogramm == 0 || $keyProduktionsauftraege == 0 || $keyProdprogODV == 0 || $keySchichtenUeberstunden == 0) echo "btn disabled" ?>" href="/ibsys2_backend/resources/views/ergebnisTabelle.php">Ergebnistabelle</a>
+          <a class="nav-link <?php if ($keyProduktionsprogramm == 0 || $keyProduktionsauftraege == 0 || $keyProdprogODV == 0 || $keySchichtenUeberstunden == 0) echo "btn disabled" ?>" href="/resources/views/ergebnisTabelle.php">Ergebnistabelle</a>
         </li>
       </ul>
     </div>
@@ -73,14 +72,14 @@ $keySchichtenUeberstunden = array_key_exists('schichtenUeberstunden', $_SESSION)
   <?php
 
   $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-  require_once($documentRoot . '/ibsys2_backend/classes/entities/Produktionsteil.php');
-  require_once($documentRoot . '/ibsys2_backend/classes/services/XML_Reader_Service.php');
-  require_once($documentRoot . '/ibsys2_backend/classes/services/Disposition_Eigenproduktion-Service.php');
-  require_once($documentRoot . '/ibsys2_backend/classes/services/Kapazitätsplan_Kapazitätsbedarf-Service.php');
-  require_once($documentRoot . '/ibsys2_backend/classes/services/Disposition_Kaufteile-Service.php');
+  require_once($documentRoot . '/classes/entities/Produktionsteil.php');
+  require_once($documentRoot . '/classes/services/XML_Reader_Service.php');
+  require_once($documentRoot . '/classes/services/Disposition_Eigenproduktion-Service.php');
+  require_once($documentRoot . '/classes/services/Kapazitätsplan_Kapazitätsbedarf-Service.php');
+  require_once($documentRoot . '/classes/services/Disposition_Kaufteile-Service.php');
 
   $filename = null;
-  foreach (new DirectoryIterator($documentRoot . '/ibsys2_backend/uploads/') as $file) {
+  foreach (new DirectoryIterator($documentRoot . '/uploads/') as $file) {
     if ($file->isDot()) continue;
     $filename = $file->getFilename();
   }
@@ -119,7 +118,7 @@ $keySchichtenUeberstunden = array_key_exists('schichtenUeberstunden', $_SESSION)
     $('#languageswitcher').click(function() {
       // fire off the request to /redirect.php
       request = $.ajax({
-        url: "/ibsys2_backend/resources/views/changeLanguage.php",
+        url: "/resources/views/changeLanguage.php",
         type: "post",
         data: 'language'
       });
