@@ -57,8 +57,20 @@ $bestellungen = $kaufteileService->berechnungBestellung($kaufteile, $bestelleing
       </thead>
       <tbody>
         <?php
+        $produktionsprogrammP1 = $_SESSION['produktionsprogrammMitPrognosen'][0];
+        $produktionsprogrammP2 = $_SESSION['produktionsprogrammMitPrognosen'][1];
+        $produktionsprogrammP3 = $_SESSION['produktionsprogrammMitPrognosen'][2];
+        $produktionsprogrammP4 = $_SESSION['produktionsprogrammMitPrognosen'][3];
         foreach ($kaufteile as $index => $teil) : ?>
-          <tr class="item_row">
+          <tr class="item_row; 
+            <?php 
+                if($teil->anzahl == 0) {
+                  echo "table-danger";
+                } else if($bestellungen[$index][0] > 0) {
+                  echo "table-warning";
+                }
+              ?>
+            ">
             <th scope="row"><?php echo $teil->nummer; ?></th>
             <td><?php echo $teil->lieferzeit . " - " . $teil->lieferzeit + $teil->abweichung; ?></td>
             <td><?php echo $teil->p1; ?></td>
@@ -67,19 +79,15 @@ $bestellungen = $kaufteileService->berechnungBestellung($kaufteile, $bestelleing
             <td><?php echo $teil->diskontmenge; ?></td>
             <td><?php echo $teil->anzahl; ?></td>
             <td><?php
-                $produktionsprogrammP1 = $_SESSION['produktionsprogrammMitPrognosen'][0];
                 echo $teil->p1 * $produktionsprogrammP1[0] + $teil->p2 * $produktionsprogrammP1[1] + $teil->p3 * $produktionsprogrammP1[2]; ?>
             </td>
             <td><?php
-                $produktionsprogrammP2 = $_SESSION['produktionsprogrammMitPrognosen'][1];
                 echo $teil->p1 * $produktionsprogrammP2[0] + $teil->p2 * $produktionsprogrammP2[1] + $teil->p3 * $produktionsprogrammP2[2]; ?>
             </td>
             <td><?php
-                $produktionsprogrammP3 = $_SESSION['produktionsprogrammMitPrognosen'][2];
                 echo $teil->p1 * $produktionsprogrammP3[0] + $teil->p2 * $produktionsprogrammP3[1] + $teil->p3 * $produktionsprogrammP3[2]; ?>
             </td>
             <td><?php
-                $produktionsprogrammP4 = $_SESSION['produktionsprogrammMitPrognosen'][3];
                 echo $teil->p1 * $produktionsprogrammP4[0] + $teil->p2 * $produktionsprogrammP4[1] + $teil->p3 * $produktionsprogrammP4[2]; ?>
             </td>
             <td>
