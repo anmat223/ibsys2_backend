@@ -13,7 +13,7 @@ if (file_exists($output)) {
   unlink($output);
 }
 ?>
-  <div class="container">
+<div class="container">
   <div class="row">
     <h1><?php if ($_SESSION['language'] == "DE") {
           echo "XML Datei hochladen";
@@ -32,5 +32,11 @@ if (file_exists($output)) {
     </form>
   </div>
 </div>
+<footer class="bg-dark text-center text-white fixed-bottom" style="margin-top: 25px;">
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2021 Alicia Grüneberg, Anne Matrusch, Niklas Uhr, Vincent Mielke
+  </div>
+</footer>
 </body>
+
 </html>

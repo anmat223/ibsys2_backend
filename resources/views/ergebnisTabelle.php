@@ -29,7 +29,9 @@ $xmlWriter = new XML_Writer_Service();
           <th scope="row">Anzahl</th>
         </tr>
         <?php
-        if(!array_key_exists('direktVerkaeufe', $_SESSION)) {$_SESSION['direktVerkaeufe'] = [];}
+        if (!array_key_exists('direktVerkaeufe', $_SESSION)) {
+          $_SESSION['direktVerkaeufe'] = [];
+        }
         for ($i = 0; $i < count($_SESSION['direktVerkaeufe']); $i++) : ?>
           <tr>
             <th scope="row"><?php echo "P" . $i + 1 ?></td>
@@ -48,7 +50,9 @@ $xmlWriter = new XML_Writer_Service();
         <th scope="row">N / E</th>
       </tr>
       <?php
-      if(!array_key_exists('kaufteile', $_SESSION)) {$_SESSION['kaufteile'] = [];}
+      if (!array_key_exists('kaufteile', $_SESSION)) {
+        $_SESSION['kaufteile'] = [];
+      }
       foreach ($_SESSION['kaufteile'] as $kaufteil) : ?>
         <tr>
           <th scope="row"><?php echo $kaufteil->nummer; ?></td>
@@ -67,7 +71,9 @@ $xmlWriter = new XML_Writer_Service();
         <th scope="row">Priorität</th>
       </tr>
       <?php
-      if(!array_key_exists('alleAuftraege', $_SESSION)) {$_SESSION['alleAuftraege'] = [];}
+      if (!array_key_exists('alleAuftraege', $_SESSION)) {
+        $_SESSION['alleAuftraege'] = [];
+      }
       foreach ($_SESSION['alleAuftraege'] as $auftrag) : ?>
         <tr>
           <th scope="row"><?php echo $auftrag[0]; ?></td>
@@ -88,7 +94,9 @@ $xmlWriter = new XML_Writer_Service();
         <th scope="row">Überstunden (min/Tag)</th>
       </tr>
       <?php
-      if(!array_key_exists('schichtenUeberstunden', $_SESSION)) {$_SESSION['schichtenUeberstunden'] = [array(),array()];}
+      if (!array_key_exists('schichtenUeberstunden', $_SESSION)) {
+        $_SESSION['schichtenUeberstunden'] = [array(), array()];
+      }
       $schichten = $_SESSION['schichtenUeberstunden'][1];
       $ueberstunden = $_SESSION['schichtenUeberstunden'][0];
       for ($i = 0; $i < count($schichten); $i++) : ?>
@@ -105,30 +113,32 @@ $xmlWriter = new XML_Writer_Service();
 
   <div class="d-grid gap-3 d-md-block">
     <form method="post" style="display: inline-block;" action="ergebnisTabelle.php#form-anchor" id="form-anchor">
-      <input type="submit" name="download" class="btn btn-dark" value="Ergebnisse abschicken">
+      <input type="submit" name="ergebnisseAbschicken" class="btn btn-dark" value="Ergebnisse abschicken">
     </form>
     <form method="post" style="display: inline-block;" action="ende.php">
-      <input type="submit" name="download" class="btn btn-dark" value="Download">
+      <input type="submit" name="download" class="btn btn-dark <?php if (!array_key_exists('ergebnisseAbschicken', $_POST)) echo "btn disabled" ?>" value="Download">
     </form>
     <form method="post" style="display: inline-block;" action="../../index.php">
-      <input type="submit" name="download" class="btn btn-dark" value="Zurück zur Startseite">
+      <input type="submit" name="startseite" class="btn btn-dark" value="Zurück zur Startseite">
     </form>
   </div>
 </div>
 
 <?php
-if (array_key_exists('download', $_POST)) {
-  $prodprogODV = $_SESSION['prodprogODV'];
-  $direktVerkaeufe = $_SESSION['direktVerkaeufe'];
-  $bestellungen = $_SESSION['kaufteile'];
-  foreach ($bestellungen as $key => $b) {
-    if ($b->bestellMenge == 0) {
-      unset($bestellungen[$key]);
+if (array_key_exists('ergebnisseAbschicken', $_POST)) {
+  if (array_key_exists('prodprogODV', $_SESSION)) {
+    $prodprogODV = $_SESSION['prodprogODV'];
+    $direktVerkaeufe = $_SESSION['direktVerkaeufe'];
+    $bestellungen = $_SESSION['kaufteile'];
+    foreach ($bestellungen as $key => $b) {
+      if ($b->bestellMenge == 0) {
+        unset($bestellungen[$key]);
+      }
     }
+    $produktionsauftraege = $_SESSION['alleAuftraege'];
+    $schichtenUeberstunden = $_SESSION['schichtenUeberstunden'];
+    $xmlWriter->write_output_to_xml($prodprogODV, $direktVerkaeufe, $bestellungen, $produktionsauftraege, $schichtenUeberstunden);
   }
-  $produktionsauftraege = $_SESSION['alleAuftraege'];
-  $schichtenUeberstunden = $_SESSION['schichtenUeberstunden'];
-  $xmlWriter->write_output_to_xml($prodprogODV, $direktVerkaeufe, $bestellungen, $produktionsauftraege, $schichtenUeberstunden);
 }
 
 require_once($documentRoot . '/ibsys2_backend/footer.php');
