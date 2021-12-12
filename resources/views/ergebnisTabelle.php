@@ -29,6 +29,7 @@ $xmlWriter = new XML_Writer_Service();
           <th scope="row">Anzahl</th>
         </tr>
         <?php
+        if(!array_key_exists('direktVerkaeufe', $_SESSION)) {$_SESSION['direktVerkaeufe'] = [];}
         for ($i = 0; $i < count($_SESSION['direktVerkaeufe']); $i++) : ?>
           <tr>
             <th scope="row"><?php echo "P" . $i + 1 ?></td>
@@ -47,6 +48,7 @@ $xmlWriter = new XML_Writer_Service();
         <th scope="row">N / E</th>
       </tr>
       <?php
+      if(!array_key_exists('kaufteile', $_SESSION)) {$_SESSION['kaufteile'] = [];}
       foreach ($_SESSION['kaufteile'] as $kaufteil) : ?>
         <tr>
           <th scope="row"><?php echo $kaufteil->nummer; ?></td>
@@ -65,6 +67,7 @@ $xmlWriter = new XML_Writer_Service();
         <th scope="row">Priorität</th>
       </tr>
       <?php
+      if(!array_key_exists('alleAuftraege', $_SESSION)) {$_SESSION['alleAuftraege'] = [];}
       foreach ($_SESSION['alleAuftraege'] as $auftrag) : ?>
         <tr>
           <th scope="row"><?php echo $auftrag[0]; ?></td>
@@ -85,6 +88,7 @@ $xmlWriter = new XML_Writer_Service();
         <th scope="row">Überstunden (min/Tag)</th>
       </tr>
       <?php
+      if(!array_key_exists('schichtenUeberstunden', $_SESSION)) {$_SESSION['schichtenUeberstunden'] = [array(),array()];}
       $schichten = $_SESSION['schichtenUeberstunden'][1];
       $ueberstunden = $_SESSION['schichtenUeberstunden'][0];
       for ($i = 0; $i < count($schichten); $i++) : ?>

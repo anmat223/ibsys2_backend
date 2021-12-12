@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['language'] == null) {
+if (!array_key_exists('language', $_SESSION)) {
   $_SESSION["language"] = "DE";
 } else {
   switch ($_SESSION['language']) {

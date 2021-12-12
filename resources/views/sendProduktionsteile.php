@@ -82,4 +82,6 @@ print_r($new_prod);
 
 $_SESSION['produktionsauftraege'] = $newprod;
 
+$_SESSION['checkProduktionsauftraege'] = 0;
+
 header('Location: reihenfolgePlanung.php');
