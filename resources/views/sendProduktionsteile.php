@@ -1,9 +1,9 @@
 <?php
+session_start();
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
 require_once($documentRoot . '/classes/services/Database_Service.php');
 
 $database = new DatabaseService();
-require_once($documentRoot . '/navbar.php');
 
 $nummernp1 = [1, 51, 50, 4, 10, 49, 7, 13, 18];
 $nummernp2 = [2, 56, 55, 5, 11, 54, 8, 14, 19];
@@ -78,10 +78,7 @@ foreach ($produktionsauftraege as $key => $teil) {
   }
 }
 
-print_r($new_prod);
-
 $_SESSION['produktionsauftraege'] = $newprod;
 
 $_SESSION['checkProduktionsauftraege'] = 0;
-
-header('Location: reihenfolgePlanung.php');
+header('Location: ./reihenfolgePlanung.php');

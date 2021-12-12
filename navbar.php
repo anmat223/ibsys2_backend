@@ -1,4 +1,5 @@
 <?php
+session_start();
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
 
 $pointer = 0;
