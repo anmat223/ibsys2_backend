@@ -204,7 +204,7 @@ class KapazitätsbedarfNeuService
 
     //berechnung Kapazitätsbedarf(neu) Arbeitsplatz 15
     $kapazitätsbedarfA15 = 3 * $auftragsmenge[17][0];
-    $kapazitätsbedarfA15 = 3 * $auftragsmenge[26][0];
+    $kapazitätsbedarfA15 += 3 * $auftragsmenge[26][0];
     array_push($kapabedarfArbeitsplatz, $kapazitätsbedarfA15);
 
     return $kapabedarfArbeitsplatz;
@@ -244,7 +244,7 @@ class KapazitätsbedarfNeuService
               $überstunden[$i] = $differenz / 5;
               $schichten[$i] = 3;
             } else {
-              $überstunden[$i] = 8400 / 5;
+              $überstunden[$i] = 1200 / 5;
               $schichten[$i] = 3;
             }
           }
