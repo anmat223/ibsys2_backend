@@ -28,6 +28,7 @@ foreach ($produktionsauftraege as $key => $teil) {
       }
     }
     $newprod[$key][2] = $splits;
+    continue;
   }
 
   if (in_array($key, $nummernp1)) {
