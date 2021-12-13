@@ -6,7 +6,6 @@ $database = new DatabaseService();
 require_once($documentRoot . '/ibsys2_backend/navbar.php');
 
 $produktionsauftraege = $_SESSION['produktionsauftraege'];
-ksort($produktionsauftraege);
 $alleAuftraege = [];
 
 foreach ($produktionsauftraege as $nr => $teil) {

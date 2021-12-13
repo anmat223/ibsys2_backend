@@ -79,9 +79,13 @@ foreach ($produktionsauftraege as $key => $teil) {
   }
 }
 
-print_r($new_prod);
+$reihenfolge = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 49, 54, 29, 50, 55, 30, 51, 56, 31, 1, 2, 3];
+$prod = [];
+foreach ($reihenfolge as $i) {
+  $prod[$i] = $newprod[$i];
+}
 
-$_SESSION['produktionsauftraege'] = $newprod;
+$_SESSION['produktionsauftraege'] = $prod;
 
 $_SESSION['checkProduktionsauftraege'] = 0;
 
