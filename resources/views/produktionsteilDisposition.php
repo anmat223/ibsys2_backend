@@ -110,7 +110,6 @@ foreach ($p as $teil) {
     array_push($teilep3, $teil);
   }
 }
-
 ?>
 <h2><?php if ($_SESSION['language'] == "DE") {
       echo "Produktionsteildisposition";
