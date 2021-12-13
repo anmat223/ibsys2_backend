@@ -6,7 +6,6 @@ $database = new DatabaseService();
 require_once($documentRoot . '/navbar.php');
 
 $produktionsauftraege = $_SESSION['produktionsauftraege'];
-ksort($produktionsauftraege);
 $alleAuftraege = [];
 
 foreach ($produktionsauftraege as $nr => $teil) {

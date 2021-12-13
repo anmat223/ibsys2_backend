@@ -188,7 +188,7 @@ foreach ($p as $teil) {
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
               <td><input type="number" class="form-control" name="<?php echo "p2" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>" onchange="validate(this.value, this.name)"> </td>
-              <td><?php echo ($teil->dreifach) ?  1 :  '<input type="number" class="from-control" name="s' . $teil->nummer . '" value="1" onchange="validate(this.value, this.name)">' ?></td>
+              <td><?php echo ($teil->dreifach) ?  "" :  '<input type="number" class="from-control" name="s' . $teil->nummer . '" value="1" onchange="validate(this.value, this.name)">' ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -221,7 +221,7 @@ foreach ($p as $teil) {
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
               <td><input type="number" class="form-control" name="<?php echo "p3" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? ceil($teil->produktionsAuftrag / 3) : $teil->produktionsAuftrag; ?>" onchange="validate(this.value, this.name)"> </td>
-              <td><?php echo ($teil->dreifach) ?  1 :  '<input type="number" class="from-control" name="s' . $teil->nummer . '" value="1" onchange="validate(this.value, this.name)">' ?></td>
+              <td><?php echo ($teil->dreifach) ?  "" :  '<input type="number" class="from-control" name="s' . $teil->nummer . '" value="1" onchange="validate(this.value, this.name)">' ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
