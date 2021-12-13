@@ -208,8 +208,8 @@ $schichten = $schichtenUeberstunden[1];
 
   function validateUeberstunden(value, name) {
     if (document.getElementsByName(name)[0].value.length !== 0) {
-      if (value < 0 || value > 1200) {
-        alert('Der Wert muss zwischen 0 und 1200 liegen!')
+      if (value < 0 || value > 240) {
+        alert('Der Wert muss zwischen 0 und 240 liegen!')
         document.getElementsByName(name)[0].value = 5
       }
       let strValue = String(value)
