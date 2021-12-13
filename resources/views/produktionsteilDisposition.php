@@ -234,20 +234,20 @@ foreach ($p as $teil) {
 <script>
   function validate(value, name) {
     if (document.getElementsByName(name)[0].value.length !== 0) {
-      if (value <= 0) {
+      if (value < 0) {
         alert('Der Wert darf nicht negativ sein!')
-        document.getElementsByName(name)[0].value = 1
+        document.getElementsByName(name)[0].value = 0
       }
       let strValue = String(value)
       let split = strValue.split('.')
       if (split.length > 1) {
         alert('Der Wert darf keine Nachkommastelle haben!')
-        document.getElementsByName(name)[0].value = 1
+        document.getElementsByName(name)[0].value = 0
       } else {
         return
       }
     } else {
-      document.getElementsByName(name)[0].value = 1
+      document.getElementsByName(name)[0].value = 0
     }
   }
 </script>
