@@ -9,6 +9,14 @@ require_once($documentRoot . '/ibsys2_backend/navbar.php');
 require_once($documentRoot . '/ibsys2_backend/classes/services/XML_Writer_Service.php');
 
 $xmlWriter = new XML_Writer_Service();
+
+$produktionsauftraege = $_SESSION['alleAuftraege'];
+foreach ($produktionsauftraege as $key => $p) {
+  if ($p[1] <= 0) {
+    unset($produktionsauftraege[$key]);
+  }
+}
+$_SESSION['alleAuftraege'] = $produktionsauftraege;
 ?>
 <h2><?php if ($_SESSION['language'] == "DE") {
       echo "Ergebnistabellen";
