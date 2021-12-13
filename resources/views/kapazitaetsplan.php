@@ -191,7 +191,7 @@ $schichten = $schichtenUeberstunden[1];
     if (document.getElementsByName(name)[0].value.length !== 0) {
       if (value < 1 || value > 3) {
         alert('Der Wert muss zwischen 1 und 3 liegen!')
-        document.getElementsByName(name)[0].value = 5
+        document.getElementsByName(name)[0].value = 1
       }
       let strValue = String(value)
       let split = strValue.split('.')
@@ -210,7 +210,7 @@ $schichten = $schichtenUeberstunden[1];
     if (document.getElementsByName(name)[0].value.length !== 0) {
       if (value < 0 || value > 240) {
         alert('Der Wert muss zwischen 0 und 240 liegen!')
-        document.getElementsByName(name)[0].value = 5
+        document.getElementsByName(name)[0].value = 0
       }
       let strValue = String(value)
       let split = strValue.split('.')
