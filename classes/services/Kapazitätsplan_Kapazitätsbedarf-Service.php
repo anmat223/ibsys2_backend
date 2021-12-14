@@ -315,7 +315,7 @@ class KapazitätsbedarfNeuService
     }
 
     //print_r($ruestzeitendetail);
-    print_r($RZfinal[3]);
+    // print_r($RZfinal[3]);
     return $ruestzeiten;
   }
 }
