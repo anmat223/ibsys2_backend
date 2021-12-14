@@ -284,18 +284,38 @@ class KapazitätsbedarfNeuService
   {
     $arbeitsarray = $this->arbeitsarray;
     $ruestzeiten = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
+    $ruestzeitendetail =[];
+    $RZfinal =[];
     foreach ($produktionsteile as $key => $teil) {
       foreach ($arbeitsarray as $arbeitsplatznr => $arbeitsplatz) {
         foreach ($arbeitsplatz as $teilenummer => $ruestzeit) {
           if ($key == $teilenummer) {
             //print_r($ruestzeit . "<br>");
             $ruestzeiten[$arbeitsplatznr - 1] += $ruestzeit * $teil[1];
+            array_push($ruestzeitendetail, array($arbeitsplatznr,$key,$ruestzeit,$teil[1])); // [0]-> Arbeitsplatznummer, [1]-> Teilenummer, [2]-> ruestzeit [3]-> SPlitting
           }
         }
       }
     }
+    // Zuordnung der Übersicht
 
+    for($i =0;$i < 15;$i++){
+      $zp = [];
+      $RZdetails =[];
+      foreach($ruestzeitendetail as $rzd){
+        if($rzd[0] == $i+1 ){
+          array_push($zp, array($rzd[1], $rzd[2], $rzd[3]));
+        }
+      }
+      foreach($zp as $z){
+        $string = $z[0] . ": " . $z[1] . " x " . $z[2];
+        array_push($RZdetails, $string);
+      }
+      $RZfinal[$i] = $RZdetails;
+    }
+
+    //print_r($ruestzeitendetail);
+    print_r($RZfinal[3]);
     return $ruestzeiten;
   }
 }
