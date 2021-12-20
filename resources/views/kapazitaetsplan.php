@@ -14,7 +14,8 @@ for ($i = 0; $i < count($ruekstand); $i++) {
 }
 $ruestzeitAlt = $kapazitaetsbedarfService->berechnenRuestzeitAlt($ruekstand);
 $kapazitaetsbedarfNeu = $kapazitaetsbedarfService->berechnungKapazitätsbedarfNeu($_SESSION['produktionsauftraege']);
-$ruestzeitNeu = $kapazitaetsbedarfService->berechnungRuestZeitNeu($_SESSION['produktionsauftraege']);
+$ruestzeitNeu = $kapazitaetsbedarfService->berechnungRuestZeitNeu($_SESSION['produktionsauftraege'])[0];
+$infoRuestZeitNeu = $kapazitaetsbedarfService->berechnungRuestZeitNeu($_SESSION['produktionsauftraege'])[1];
 $kapazitaetsbedarfGesamt = $kapazitaetsbedarfService->berechnungKapazitätsbedarfGesamt($kapazitaetsbedarfNeu, $ruestzeitNeu, $kapazitaetsbedarfAlt, $ruestzeitAlt);
 $schichtenUeberstunden = $kapazitaetsbedarfService->berechnungSchichtenÜberstunden($kapazitaetsbedarfGesamt);
 $_SESSION['schichtenUeberstunden'] = $schichtenUeberstunden;
@@ -74,22 +75,89 @@ $schichten = $schichtenUeberstunden[1];
           <td> <?php echo $kapazitaetsbedarfNeu[14] ?> </td>
         </tr>
         <tr>
+          <style>
+            span {
+              display: none;
+            }
+            i:hover ~ span {
+              display: block;
+            }
+          </style>          
           <th scope="row">Rüstzeit(neu)</th>
-          <td> <?php echo $ruestzeitNeu[0] ?> </td>
-          <td> <?php echo $ruestzeitNeu[1] ?> </td>
-          <td> <?php echo $ruestzeitNeu[2] ?> </td>
-          <td> <?php echo $ruestzeitNeu[3] ?> </td>
-          <td> <?php echo $ruestzeitNeu[4] ?> </td>
-          <td> <?php echo $ruestzeitNeu[5] ?> </td>
-          <td> <?php echo $ruestzeitNeu[6] ?> </td>
-          <td> <?php echo $ruestzeitNeu[7] ?> </td>
-          <td> <?php echo $ruestzeitNeu[8] ?> </td>
-          <td> <?php echo $ruestzeitNeu[9] ?> </td>
-          <td> <?php echo $ruestzeitNeu[10] ?> </td>
-          <td> <?php echo $ruestzeitNeu[11] ?> </td>
-          <td> <?php echo $ruestzeitNeu[12] ?> </td>
-          <td> <?php echo $ruestzeitNeu[13] ?> </td>
-          <td> <?php echo $ruestzeitNeu[14] ?> </td>
+          <td> <?php echo $ruestzeitNeu[0] ?> <i class="bi bi-info-circle-fill"></i>       
+            <?php foreach ($infoRuestZeitNeu[0] as $infoTeil) : ?>
+              <span class=""><?php echo $infoTeil; ?></span>          
+          <?php endforeach;?>                
+        </td>
+          <td> <?php echo $ruestzeitNeu[1] ?>  <i class="bi bi-info-circle-fill"></i>               
+            <?php foreach ($infoRuestZeitNeu[1] as $infoTeil) : ?>
+              <span class=""><?php echo $infoTeil; ?></span>          
+          <?php endforeach;?>
+        </td>
+          <td> <?php echo $ruestzeitNeu[2] ?>  <i class="bi bi-info-circle-fill"></i>               
+            <?php foreach ($infoRuestZeitNeu[2] as $infoTeil) : ?>
+              <span class=""><?php echo $infoTeil; ?></span>          
+          <?php endforeach;?>
+        </td>
+          <td> <?php echo $ruestzeitNeu[3] ?>  <i class="bi bi-info-circle-fill"></i>              
+            <?php foreach ($infoRuestZeitNeu[3] as $infoTeil) : ?>
+              <span class=""><?php echo $infoTeil; ?></span>          
+          <?php endforeach;?>
+        </td>
+          <td> <?php echo $ruestzeitNeu[4] ?>  <i class="bi bi-info-circle-fill"></i>              
+            <?php foreach ($infoRuestZeitNeu[4] as $infoTeil) : ?>
+              <span class=""><?php echo $infoTeil; ?></span>          
+          <?php endforeach;?>
+        </td>
+          <td> <?php echo $ruestzeitNeu[5] ?>  <i class="bi bi-info-circle-fill"></i>               
+            <?php foreach ($infoRuestZeitNeu[5] as $infoTeil) : ?>
+              <span class=""><?php echo $infoTeil; ?></span>          
+          <?php endforeach;?>
+        </td>
+          <td> <?php echo $ruestzeitNeu[6] ?>  <i class="bi bi-info-circle-fill"></i>              
+            <?php foreach ($infoRuestZeitNeu[6] as $infoTeil) : ?>
+              <span class=""><?php echo $infoTeil; ?></span>          
+          <?php endforeach;?>
+        </td>
+          <td> <?php echo $ruestzeitNeu[7] ?>  <i class="bi bi-info-circle-fill"></i>
+          <?php foreach ($infoRuestZeitNeu[7] as $infoTeil) : ?>
+              <span class=""><?php echo $infoTeil; ?></span>          
+          <?php endforeach;?>
+        </td>
+          <td> <?php echo $ruestzeitNeu[8] ?>  <i class="bi bi-info-circle-fill"></i>
+          <?php foreach ($infoRuestZeitNeu[8] as $infoTeil) : ?>
+              <span class=""><?php echo $infoTeil; ?></span>          
+          <?php endforeach;?>
+        </td>
+          <td> <?php echo $ruestzeitNeu[9] ?>  <i class="bi bi-info-circle-fill"></i>
+          <?php foreach ($infoRuestZeitNeu[9] as $infoTeil) : ?>
+              <span class=""><?php echo $infoTeil; ?></span>          
+          <?php endforeach;?>
+        </td>
+          <td> <?php echo $ruestzeitNeu[10] ?>  <i class="bi bi-info-circle-fill"></i>
+          <?php foreach ($infoRuestZeitNeu[10] as $infoTeil) : ?>
+              <span class=""><?php echo $infoTeil; ?></span>          
+          <?php endforeach;?>
+        </td>
+          <td> <?php echo $ruestzeitNeu[11] ?>  <i class="bi bi-info-circle-fill"></i>
+          <?php foreach ($infoRuestZeitNeu[11] as $infoTeil) : ?>
+              <span class=""><?php echo $infoTeil; ?></span>          
+          <?php endforeach;?></td>
+          <td> <?php echo $ruestzeitNeu[12] ?>  <i class="bi bi-info-circle-fill"></i>
+          <?php foreach ($infoRuestZeitNeu[12] as $infoTeil) : ?>
+              <span class=""><?php echo $infoTeil; ?></span>          
+          <?php endforeach;?>
+        </td>
+          <td> <?php echo $ruestzeitNeu[13] ?>  <i class="bi bi-info-circle-fill"></i>
+          <?php foreach ($infoRuestZeitNeu[13] as $infoTeil) : ?>
+              <span class=""><?php echo $infoTeil; ?></span>          
+          <?php endforeach;?>
+        </td>
+          <td> <?php echo $ruestzeitNeu[14] ?>  <i class="bi bi-info-circle-fill"></i>
+          <?php foreach ($infoRuestZeitNeu[14] as $infoTeil) : ?>
+              <span class=""><?php echo $infoTeil; ?></span>          
+          <?php endforeach;?>
+        </td>
         </tr>
         <tr>
           <th scope="row">Kap.bed.(Rückstand Vorperiode)</th>
@@ -224,6 +292,16 @@ $schichten = $schichtenUeberstunden[1];
       document.getElementsByName(name)[0].value = 0
     }
   }
+
+  $("i").hover(
+    function() {
+      let span = document.createElement("span");
+      span.innerHTML("hello" . $infoRuestZeitNeu[0][1]);
+      $(this).append(span);
+    }, function(){
+      $(this).find("span").last().remove();
+    }
+  )
 </script>
 
 <footer class="bg-dark text-center text-white fixed-bottom" style="margin-top: 25px;">

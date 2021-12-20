@@ -308,14 +308,14 @@ class KapazitätsbedarfNeuService
         }
       }
       foreach($zp as $z){
-        $string = $z[0] . ": " . $z[1] . " x " . $z[2];
+        $string = "Teil ". $z[0] . ": " . $z[1] . " min x " . $z[2];
         array_push($RZdetails, $string);
       }
       $RZfinal[$i] = $RZdetails;
     }
 
-    //print_r($ruestzeitendetail);
+    //print_r($RZfinal);
     // print_r($RZfinal[3]);
-    return $ruestzeiten;
+    return array($ruestzeiten, $RZfinal);
   }
 }
