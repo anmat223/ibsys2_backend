@@ -18,7 +18,8 @@ $nummernp1 = [1, 26, 51, 16, 17, 50, 4, 10, 49, 7, 13, 18];
 $nummernp2 = [2, 26, 56, 16, 17, 55, 5, 11, 54, 8, 14, 19];
 $nummernp3 = [3, 26, 31, 16, 17, 30, 6, 12, 29, 9, 15, 20];
 
-if (!array_key_exists('produktionsteile', $_SESSION)) {
+if (!array_key_exists('produktionsteile', $_SESSION) || $_SESSION["sb"] = 1) {
+  $_SESSION["sb"] = 0;
   foreach ($p as $teil) {
     $teil->inWarteschlange = 0;
     $teil->inBearbeitung = 0;
@@ -135,7 +136,6 @@ if (!array_key_exists('produktionsteile', $_SESSION)) {
     ?></h2>
 <br>
 <form action="writeDatabase.php" method="post">
-<form action="sendProduktionsteile.php" method="post">
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
       <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#p1" type="button" role="tab" aria-controls="nav-home" aria-selected="true">P1</button>
@@ -164,11 +164,11 @@ if (!array_key_exists('produktionsteile', $_SESSION)) {
           foreach ($teilep1 as $teil) : ?>
             <tr>
               <th scope="row"><?php echo $teil->nummer; ?></th>
-              <td><input type="number" class="form-control" name="<?php echo $teil->nummer ?>" value="<?php echo $teil->sicherheitsbestand;?>" onchange="validate(this.value, this.name)"></td>
+              <td><input type="number" class="form-control" name="<?php echo "sb" . $teil->nummer ?>" value="<?php echo $teil->sicherheitsbestand;?>" onchange="validate(this.value, this.name)"></td>
               <td><?php echo $teil->anzahl; ?></td>
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
-              <td><input type="number" class="form-control" name="<?php echo "p1" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? $teil->produktionsAuftragp1 : $teil->produktionsAuftrag; ?>" onchange="validate(this.value, this.name)"></td>
+              <td><?php echo ($teil->dreifach) ? $teil->produktionsAuftragp1 : $teil->produktionsAuftrag; ?></td>
               <td><input type="number" class=" from-control" name="<?php echo "s" . $teil->nummer ?>" value="<?php echo ($teil->splitting)?: 1; ?>" onchange="validateSplitting(this.value, this.name)"></td>
             </tr>
           <?php endforeach; ?>
@@ -195,11 +195,11 @@ if (!array_key_exists('produktionsteile', $_SESSION)) {
           foreach ($teilep2 as $teil) : ?>
             <tr>
               <th scope="row"><?php echo $teil->nummer; ?></th>
-              <td><?php echo $teil->sicherheitsbestand; ?></td>
+              <td><input type="number" class="form-control" name="<?php echo "sb" . $teil->nummer ?>" value="<?php echo $teil->sicherheitsbestand;?>" onchange="validate(this.value, this.name)"></td>
               <td><?php echo $teil->anzahl; ?></td>
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
-              <td><input type="number" class="form-control" name="<?php echo "p2" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? $teil->produktionsAuftragp2 : $teil->produktionsAuftrag; ?>" onchange="validate(this.value, this.name)"> </td>
+              <td><?php echo "p2" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? $teil->produktionsAuftragp2 : $teil->produktionsAuftrag; ?></td>
               <td><input type="number" class=" from-control" name="<?php echo "s" . $teil->nummer ?>" value="<?php echo ($teil->splitting)?: 1; ?>" onchange="validateSplitting(this.value, this.name)"></td>
             </tr>
           <?php endforeach; ?>
@@ -226,11 +226,11 @@ if (!array_key_exists('produktionsteile', $_SESSION)) {
           foreach ($teilep3 as $teil) : ?>
             <tr>
               <th scope="row"><?php echo $teil->nummer; ?></th>
-              <td><?php echo $teil->sicherheitsbestand; ?></td>
+              <td><input type="number" class="form-control" name="<?php echo "sb" . $teil->nummer ?>" value="<?php echo $teil->sicherheitsbestand;?>" onchange="validate(this.value, this.name)"></td>
               <td><?php echo $teil->anzahl; ?></td>
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
-              <td><input type="number" class="form-control" name="<?php echo "p3" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? $teil->produktionsAuftragp3 : $teil->produktionsAuftrag; ?>" onchange="validate(this.value, this.name)"> </td>
+              <td><?php echo "p3" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? $teil->produktionsAuftragp3 : $teil->produktionsAuftrag; ?> </td>
               <td><input type="number" class=" from-control" name="<?php echo "s" . $teil->nummer ?>" value="<?php echo ($teil->splitting)?: 1; ?>" onchange="validateSplitting(this.value, this.name)"></td>
             </tr>
           <?php endforeach; ?>
@@ -241,6 +241,7 @@ if (!array_key_exists('produktionsteile', $_SESSION)) {
   </div>
   <input type="submit" class="btn btn-dark" value="validate">
 </form>
+<form action="sendProduktionsteile.php">
   <input type="submit" class="btn btn-dark">
 </form>
 <script>
