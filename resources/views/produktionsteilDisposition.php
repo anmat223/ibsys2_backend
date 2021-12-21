@@ -201,7 +201,23 @@ $splits = $_SESSION['splits'];
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
               <td><?php echo ($teil->dreifach) ? $teil->produktionsAuftragp2 : $teil->produktionsAuftrag; ?></td>
-              <td><input type="number" class=" from-control" name="<?php echo "s" . $teil->nummer ?>" value="<?php echo ($splits[$teil->nummer])?: 1; ?>" onchange="validateSplitting(this.value, this.name)"></td>
+              <td>
+                <?php
+                if ($teil->dreifach) {
+                  if ($splits[$teil->nummer]) {
+                    echo $splits[$teil->nummer];
+                  } else {
+                    echo "";
+                  }
+                } else {
+                  if ($splits[$teil->nummer]) {
+                    echo '<input type="number" class=" from-control" name="s' . $teil->nummer . '" value="' . $splits[$teil->nummer] . '" onchange="validateSplitting(this.value, this.name)">';
+                  } else {
+                    echo 1;
+                  }
+                }
+                ?>
+              </td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -232,7 +248,23 @@ $splits = $_SESSION['splits'];
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
               <td><?php echo ($teil->dreifach) ? $teil->produktionsAuftragp3 : $teil->produktionsAuftrag; ?></td>
-              <td><input type="number" class=" from-control" name="<?php echo "s" . $teil->nummer ?>" value="<?php echo ($splits[$teil->nummer])?: 1; ?>" onchange="validateSplitting(this.value, this.name)"></td>
+              <td>
+                <?php
+                if ($teil->dreifach) {
+                  if ($splits[$teil->nummer]) {
+                    echo $splits[$teil->nummer];
+                  } else {
+                    echo "";
+                  }
+                } else {
+                  if ($splits[$teil->nummer]) {
+                    echo '<input type="number" class=" from-control" name="s' . $teil->nummer . '" value="' . $splits[$teil->nummer] . '" onchange="validateSplitting(this.value, this.name)">';
+                  } else {
+                    echo 1;
+                  }
+                }
+                ?>
+              </td>
             </tr>
           <?php endforeach; ?>
         </tbody>
