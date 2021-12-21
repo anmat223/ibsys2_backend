@@ -11,12 +11,14 @@ $splits = [];
 //Für jedes Teil 
 $produktionsauftraege = $_SESSION['produktionsauftraege'];
 foreach($produktionsauftraege as $key => $pa){
-$splits[$key] = $_POST["s". $key];
+    $splits[$key] = $_POST["s". $key];
 
-$value = $_POST["sb". $key];
-$database->update("Produktionsteil","sicherheitsbestand", $value, $key);
+    $value = $_POST["sb". $key];
+    $database->update("Produktionsteil","sicherheitsbestand", $value, $key);
 }
 $_SESSION["sb"] = 1;
+$_SESSION['submit'] = true;
+$_SESSION['splits'] = $splits;
 
 
 header('Location: produktionsteilDisposition.php');

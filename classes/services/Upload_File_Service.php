@@ -3,7 +3,6 @@ $target_dir = "../../uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 //print_r($_FILES);
 $_SESSION['filename'] = $_FILES["fileToUpload"]["name"];
-print_r($_SESSION['filename']);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 

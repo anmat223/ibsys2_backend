@@ -1,4 +1,3 @@
-<pre>
 <?php
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
 require_once($documentRoot . '/ibsys2_backend/classes/services/Database_Service.php');
@@ -78,7 +77,7 @@ if (!array_key_exists('bestellungen', $_SESSION)) {
                 }
               ?>
             ">
-            <th scope="row"><a style="color: black" target ="_blank" href="/ibsys2_backend/resources/views/detailViewKaufteil.php?id=<?php echo $teil->nummer;?>"><?php echo $teil->nummer; ?></a></th>
+            <th scope="row"><?php echo $teil->nummer . " "; ?><a style="color: black" target ="_blank" href="/ibsys2_backend/resources/views/detailViewKaufteil.php?id=<?php echo $teil->nummer;?>"><i class="bi bi-info-circle-fill"></i></a></th>
             <td><?php echo $teil->lieferzeit . " - " . $teil->lieferzeit + $teil->abweichung; ?></td>
             <td><?php echo $teil->p1; ?></td>
             <td><?php echo $teil->p2; ?></td>

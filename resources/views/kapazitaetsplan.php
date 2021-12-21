@@ -17,14 +17,12 @@ $kapazitaetsbedarfNeu = $kapazitaetsbedarfService->berechnungKapazitätsbedarfNe
 $ruestzeitNeu = $kapazitaetsbedarfService->berechnungRuestZeitNeu($_SESSION['produktionsauftraege'])[0];
 $infoRuestZeitNeu = $kapazitaetsbedarfService->berechnungRuestZeitNeu($_SESSION['produktionsauftraege'])[1];
 $kapazitaetsbedarfGesamt = $kapazitaetsbedarfService->berechnungKapazitätsbedarfGesamt($kapazitaetsbedarfNeu, $ruestzeitNeu, $kapazitaetsbedarfAlt, $ruestzeitAlt);
-if (!array_key_exists('schichtenUeberstunden', $_SESSION)) {
+if (!array_key_exists('schichtenUeberstunden', $_SESSION) || $_SESSION['checkProduktionsauftraege'] == 1) {
   $schichtenUeberstunden = $kapazitaetsbedarfService->berechnungSchichtenÜberstunden($kapazitaetsbedarfGesamt);
   $_SESSION['schichtenUeberstunden'] = $schichtenUeberstunden;
-} elseif ($_SESSION['checkProduktionsauftraege'] == 1) {
-  $schichtenUeberstunden = $kapazitaetsbedarfService->berechnungSchichtenÜberstunden($kapazitaetsbedarfGesamt);
-  $_SESSION['schichtenUeberstunden'] = $schichtenUeberstunden;
+  $_SESSION['checkProduktionsauftraege'] = 0;
 } else {
-    $schichtenUeberstunden = $_SESSION['schichtenUeberstunden'];
+  $schichtenUeberstunden = $_SESSION['schichtenUeberstunden'];
 }
 $ueberstunden = $schichtenUeberstunden[0];
 $schichten = $schichtenUeberstunden[1];
@@ -266,7 +264,7 @@ $schichten = $schichtenUeberstunden[1];
     if (document.getElementsByName(name)[0].value.length !== 0) {
       if (value < 1 || value > 3) {
         alert('Der Wert muss zwischen 1 und 3 liegen!')
-        document.getElementsByName(name)[0].value = 5
+        document.getElementsByName(name)[0].value = 1
       }
       let strValue = String(value)
       let split = strValue.split('.')
@@ -285,7 +283,7 @@ $schichten = $schichtenUeberstunden[1];
     if (document.getElementsByName(name)[0].value.length !== 0) {
       if (value < 0 || value > 240) {
         alert('Der Wert muss zwischen 0 und 240 liegen!')
-        document.getElementsByName(name)[0].value = 5
+        document.getElementsByName(name)[0].value = 0
       }
       let strValue = String(value)
       let split = strValue.split('.')

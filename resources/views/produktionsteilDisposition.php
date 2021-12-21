@@ -123,10 +123,11 @@ if (!array_key_exists('produktionsteile', $_SESSION) || $_SESSION["sb"] = 1) {
   }
   $_SESSION['produktionsteile'] = array($teilep1, $teilep2, $teilep3);
 } else {
-    $teilep1 = $_SESSION['produktionsteile'][0];
-    $teilep2 = $_SESSION['produktionsteile'][1];
-    $teilep3 = $_SESSION['produktionsteile'][2];
+  $teilep1 = $_SESSION['produktionsteile'][0];
+  $teilep2 = $_SESSION['produktionsteile'][1];
+  $teilep3 = $_SESSION['produktionsteile'][2];
 }
+$splits = $_SESSION['splits'];
 ?>
 <h2><?php if ($_SESSION['language'] == "DE") {
       echo "Produktionsteildisposition";
@@ -169,7 +170,7 @@ if (!array_key_exists('produktionsteile', $_SESSION) || $_SESSION["sb"] = 1) {
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
               <td><?php echo ($teil->dreifach) ? $teil->produktionsAuftragp1 : $teil->produktionsAuftrag; ?></td>
-              <td><input type="number" class=" from-control" name="<?php echo "s" . $teil->nummer ?>" value="<?php echo ($teil->splitting)?: 1; ?>" onchange="validateSplitting(this.value, this.name)"></td>
+              <td><input type="number" class=" from-control" name="<?php echo "s" . $teil->nummer ?>" value="<?php echo ($splits[$teil->nummer])?: 1; ?>" onchange="validateSplitting(this.value, this.name)"></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -199,8 +200,8 @@ if (!array_key_exists('produktionsteile', $_SESSION) || $_SESSION["sb"] = 1) {
               <td><?php echo $teil->anzahl; ?></td>
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
-              <td><?php echo "p2" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? $teil->produktionsAuftragp2 : $teil->produktionsAuftrag; ?></td>
-              <td><input type="number" class=" from-control" name="<?php echo "s" . $teil->nummer ?>" value="<?php echo ($teil->splitting)?: 1; ?>" onchange="validateSplitting(this.value, this.name)"></td>
+              <td><?php echo ($teil->dreifach) ? $teil->produktionsAuftragp2 : $teil->produktionsAuftrag; ?></td>
+              <td><input type="number" class=" from-control" name="<?php echo "s" . $teil->nummer ?>" value="<?php echo ($splits[$teil->nummer])?: 1; ?>" onchange="validateSplitting(this.value, this.name)"></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -230,8 +231,8 @@ if (!array_key_exists('produktionsteile', $_SESSION) || $_SESSION["sb"] = 1) {
               <td><?php echo $teil->anzahl; ?></td>
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
-              <td><?php echo "p3" . $teil->nummer ?>" value="<?php echo ($teil->dreifach) ? $teil->produktionsAuftragp3 : $teil->produktionsAuftrag; ?> </td>
-              <td><input type="number" class=" from-control" name="<?php echo "s" . $teil->nummer ?>" value="<?php echo ($teil->splitting)?: 1; ?>" onchange="validateSplitting(this.value, this.name)"></td>
+              <td><?php echo ($teil->dreifach) ? $teil->produktionsAuftragp3 : $teil->produktionsAuftrag; ?></td>
+              <td><input type="number" class=" from-control" name="<?php echo "s" . $teil->nummer ?>" value="<?php echo ($splits[$teil->nummer])?: 1; ?>" onchange="validateSplitting(this.value, this.name)"></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -239,10 +240,10 @@ if (!array_key_exists('produktionsteile', $_SESSION) || $_SESSION["sb"] = 1) {
     </div>
   </div>
   </div>
-  <input type="submit" class="btn btn-dark" value="validate">
+  <input type="submit" class="btn btn-dark" name="berechnen" value="Berechnen">
 </form>
 <form action="sendProduktionsteile.php">
-  <input type="submit" class="btn btn-dark">
+  <input type="submit" class="btn btn-dark <?php if (!$_SESSION['submit']) echo "btn disabled" ?>" style="margin-top: 20px;">
 </form>
 <script>
   function validate(value, name) {
