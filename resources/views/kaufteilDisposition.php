@@ -1,6 +1,8 @@
+<pre>
 <?php
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
 require_once($documentRoot . '/ibsys2_backend/classes/services/Database_Service.php');
+require_once($documentRoot . '/ibsys2_backend/classes/entities/Kaufteil.php');
 
 $database = new DatabaseService();
 require_once($documentRoot . '/ibsys2_backend/navbar.php');
@@ -23,7 +25,13 @@ $eingehendeBestellungen = $readerService->get_futureinwardstockmovement();
 $aktuellePeriode = $readerService->get_currentPeriod();
 $bestelleingaenge = $kaufteileService->berechnungBestelleingaenge($eingehendeBestellungen, $kaufteile, $aktuellePeriode);
 
-$bestellungen = $kaufteileService->berechnungBestellung($kaufteile, $bestelleingaenge);
+if (!array_key_exists('bestellungen', $_SESSION)) {
+  $bestellungen = $kaufteileService->berechnungBestellung($kaufteile, $bestelleingaenge);
+  $_SESSION['bestellungen'] = $bestellungen;
+} else {
+  $bestellungen = $_SESSION['bestellungen'];
+}
+print_r($bestellungen);
 ?>
 <h2><?php if ($_SESSION['language'] == "DE") {
       echo "Kaufteildisposition";

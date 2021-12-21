@@ -10,5 +10,6 @@ for ($i = 0; $i < count($kaufteile); $i++) {
   $kaufteile[$i]->eilBestellung = ($_POST[$kaufteile[$i]->nummer . "_art"] == "E") ? true : false;
 }
 $_SESSION['kaufteile'] = $kaufteile;
-header('Location: ergebnisTabelle.php');
+print_r($_SESSION['bestellungen']);
+//header('Location: ergebnisTabelle.php');
 die();
