@@ -163,7 +163,7 @@ if (!array_key_exists('produktionsteile', $_SESSION)) {
           foreach ($teilep1 as $teil) : ?>
             <tr>
               <th scope="row"><?php echo $teil->nummer; ?></th>
-              <td><?php echo $teil->sicherheitsbestand; ?></td>
+              <td><input type="number" class="form-control" name="<?php echo $teil->nummer ?>" value="<?php echo $teil->sicherheitsbestand;?>" onchange="twofunctions(this.value, this.name)"></td>
               <td><?php echo $teil->anzahl; ?></td>
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
@@ -241,6 +241,11 @@ if (!array_key_exists('produktionsteile', $_SESSION)) {
   <input type="submit" class="btn btn-dark">
 </form>
 <script>
+  function twofunctions(value,name){
+    validate(value,name)
+    // Überprüfung ob validierung erfolgreich
+    handleChange()
+  }
   function validate(value, name) {
     if (document.getElementsByName(name)[0].value.length !== 0) {
       if (value < 0) {

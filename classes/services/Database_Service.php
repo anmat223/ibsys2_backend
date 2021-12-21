@@ -79,6 +79,19 @@ class DatabaseService
       $conn = null;
     }
   }
+  function update($table, $column, $value, $teil){
+    try {
+      $conn = new PDO("$this->connectionString$this->servername;dbname=$this->databaseName", $this->username, $this->password);
+
+      $sql = "UPDATE $table  SET $column = $value WHERE teil = $teil";
+
+      $conn->exec($sql);
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    } finally {
+      $conn = null;
+    }
+  }
 
   function read($table, $columns, $join = "", $arguments = "", $order = "")
   {
