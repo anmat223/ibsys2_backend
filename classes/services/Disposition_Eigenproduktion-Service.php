@@ -32,9 +32,13 @@ class DispositionEigenproduktionService
     }
 
     if ($nummer == 26) {
-      $verbindlicheAuftraege = $this->produktionsauftraege[1][0] + $this->produktionsauftraege[1][1] + $this->produktionsauftraege[2][0] + $this->produktionsauftraege[2][1] + $this->produktionsauftraege[3][0] + $this->produktionsauftraege[3][1];
+      $verbindlicheAuftraegep1 = $this->produktionsauftraege[1][0] + $this->produktionsauftraege[1][1];
+      $verbindlicheAuftraegep2 = $this->produktionsauftraege[2][0] + $this->produktionsauftraege[2][1];
+      $verbindlicheAuftraegep3 = $this->produktionsauftraege[3][0] + $this->produktionsauftraege[3][1];
     } elseif ($nummer == 16 || $nummer == 17) {
-      $verbindlicheAuftraege = $this->produktionsauftraege[51][0] + $this->produktionsauftraege[51][1] + $this->produktionsauftraege[56][0] + $this->produktionsauftraege[56][1] + $this->produktionsauftraege[31][0] + $this->produktionsauftraege[31][1];
+      $verbindlicheAuftraegep1 = $this->produktionsauftraege[51][0] + $this->produktionsauftraege[51][1];
+      $verbindlicheAuftraegep2 = $this->produktionsauftraege[56][0] + $this->produktionsauftraege[56][1];
+      $verbindlicheAuftraegep3 = $this->produktionsauftraege[31][0] + $this->produktionsauftraege[31][1];
     } elseif ($nummer == 50) {
       $verbindlicheAuftraege = $this->produktionsauftraege[51][0] + $this->produktionsauftraege[51][1];
     } elseif ($nummer == 51) {
@@ -61,31 +65,54 @@ class DispositionEigenproduktionService
       $verbindlicheAuftraege = $this->produktionsauftraege[29][0] + $this->produktionsauftraege[29][1];
     }
 
-    $sicherheitsbestand = $produktionsteil->sicherheitsbestand;
-    $lagerbestandEndeVorperiode = $produktionsteil->anzahl;
-
     $auftraegeBearbeitung = null;
     $auftraegeWarteschlange = null;
 
     foreach ($wartendeArtikel as $artikel) {
-      if ($artikel->produktionsteil->nummer == $produktionsteil->nummer) {
-        if ($artikel->inBearbeitung) {
-          $auftraegeBearbeitung = $artikel->anzahl;
-        } else {
-          $auftraegeWarteschlange = $artikel->anzahl;
+        if ($artikel->produktionsteil->nummer == $produktionsteil->nummer) {
+            if ($artikel->inBearbeitung) {
+                $auftraegeBearbeitung = $artikel->anzahl;
+            } else {
+                $auftraegeWarteschlange = $artikel->anzahl;
+            }
         }
-      }
     }
 
-    $auftragsmenge = $verbindlicheAuftraege + $sicherheitsbestand;
-    $auftragsmenge -= $lagerbestandEndeVorperiode;
-    $auftragsmenge -= $auftraegeWarteschlange;
-    $auftragsmenge -= $auftraegeBearbeitung;
+    if ($nummer == 26 || $nummer == 16 || $nummer == 17) {
+        $sicherheitsbestand = $produktionsteil->sicherheitsbestand / 3;
+        $lagerbestandEndeVorperiode = $produktionsteil->anzahl / 3;
+        $auftraegeWarteschlange = $auftraegeWarteschlange / 3;
+        $auftraegeBearbeitung = $auftraegeBearbeitung / 3;
 
-    $this->produktionsauftraege[$produktionsteil->nummer][0] = $auftragsmenge;
-    $this->produktionsauftraege[$produktionsteil->nummer][1] = $auftraegeWarteschlange;
-    $this->produktionsauftraege[$produktionsteil->nummer][2] = $auftraegeBearbeitung;
+        $auftragsmengep1 = $verbindlicheAuftraegep1 + $sicherheitsbestand - ($lagerbestandEndeVorperiode + $auftraegeWarteschlange + $auftraegeBearbeitung);
+        $auftragsmengep2 = $verbindlicheAuftraegep2 + $sicherheitsbestand - ($lagerbestandEndeVorperiode + $auftraegeWarteschlange + $auftraegeBearbeitung);
+        $auftragsmengep3 = $verbindlicheAuftraegep3 + $sicherheitsbestand - ($lagerbestandEndeVorperiode + $auftraegeWarteschlange + $auftraegeBearbeitung);
 
-    return $auftragsmenge;
+        $auftragsmengep1 = ceil($auftragsmengep1);
+        $auftragsmengep2 = ceil($auftragsmengep2);
+        $auftragsmengep3 = ceil($auftragsmengep3);
+
+        $auftragsmengeGesamt = $auftragsmengep1 + $auftragsmengep2 + $auftragsmengep3;
+
+        $this->produktionsauftraege[$produktionsteil->nummer][0] = array($auftragsmengeGesamt, $auftragsmengep1, $auftragsmengep2, $auftragsmengep3);
+        $this->produktionsauftraege[$produktionsteil->nummer][1] = $auftraegeWarteschlange;
+        $this->produktionsauftraege[$produktionsteil->nummer][2] = $auftraegeBearbeitung;
+
+        return array($auftragsmengeGesamt, $auftragsmengep1, $auftragsmengep2, $auftragsmengep3);
+    } else {
+        $sicherheitsbestand = $produktionsteil->sicherheitsbestand;
+        $lagerbestandEndeVorperiode = $produktionsteil->anzahl;
+
+        $auftragsmenge = $verbindlicheAuftraege + $sicherheitsbestand;
+        $auftragsmenge -= $lagerbestandEndeVorperiode;
+        $auftragsmenge -= $auftraegeWarteschlange;
+        $auftragsmenge -= $auftraegeBearbeitung;
+
+        $this->produktionsauftraege[$produktionsteil->nummer][0] = $auftragsmenge;
+        $this->produktionsauftraege[$produktionsteil->nummer][1] = $auftraegeWarteschlange;
+        $this->produktionsauftraege[$produktionsteil->nummer][2] = $auftraegeBearbeitung;
+
+        return $auftragsmenge;
+    }
   }
 }

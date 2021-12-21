@@ -204,7 +204,7 @@ class KapazitätsbedarfNeuService
 
     //berechnung Kapazitätsbedarf(neu) Arbeitsplatz 15
     $kapazitätsbedarfA15 = 3 * $auftragsmenge[17][0];
-    $kapazitätsbedarfA15 = 3 * $auftragsmenge[26][0];
+    $kapazitätsbedarfA15 += 3 * $auftragsmenge[26][0];
     array_push($kapabedarfArbeitsplatz, $kapazitätsbedarfA15);
 
     return $kapabedarfArbeitsplatz;
@@ -244,7 +244,7 @@ class KapazitätsbedarfNeuService
               $überstunden[$i] = $differenz / 5;
               $schichten[$i] = 3;
             } else {
-              $überstunden[$i] = 8400 / 5;
+              $überstunden[$i] = 1200 / 5;
               $schichten[$i] = 3;
             }
           }
@@ -284,18 +284,38 @@ class KapazitätsbedarfNeuService
   {
     $arbeitsarray = $this->arbeitsarray;
     $ruestzeiten = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
+    $ruestzeitendetail =[];
+    $RZfinal =[];
     foreach ($produktionsteile as $key => $teil) {
       foreach ($arbeitsarray as $arbeitsplatznr => $arbeitsplatz) {
         foreach ($arbeitsplatz as $teilenummer => $ruestzeit) {
           if ($key == $teilenummer) {
             //print_r($ruestzeit . "<br>");
             $ruestzeiten[$arbeitsplatznr - 1] += $ruestzeit * $teil[1];
+            array_push($ruestzeitendetail, array($arbeitsplatznr,$key,$ruestzeit,$teil[1])); // [0]-> Arbeitsplatznummer, [1]-> Teilenummer, [2]-> ruestzeit [3]-> SPlitting
           }
         }
       }
     }
+    // Zuordnung der Übersicht
 
-    return $ruestzeiten;
+    for($i =0;$i < 15;$i++){
+      $zp = [];
+      $RZdetails =[];
+      foreach($ruestzeitendetail as $rzd){
+        if($rzd[0] == $i+1 ){
+          array_push($zp, array($rzd[1], $rzd[2], $rzd[3]));
+        }
+      }
+      foreach($zp as $z){
+        $string = "Teil ". $z[0] . ": " . $z[1] . " min x " . $z[2];
+        array_push($RZdetails, $string);
+      }
+      $RZfinal[$i] = $RZdetails;
+    }
+
+    //print_r($RZfinal);
+    // print_r($RZfinal[3]);
+    return array($ruestzeiten, $RZfinal);
   }
 }

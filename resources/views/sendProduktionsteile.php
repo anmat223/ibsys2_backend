@@ -2,20 +2,22 @@
 session_start();
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
 require_once($documentRoot . '/classes/services/Database_Service.php');
+require_once($documentRoot . '/classes/entities/Produktionsteil.php');
 
 $database = new DatabaseService();
 
 $nummernp1 = [1, 51, 50, 4, 10, 49, 7, 13, 18];
 $nummernp2 = [2, 56, 55, 5, 11, 54, 8, 14, 19];
-$nummernp3 = [3, 31, 30, 6, 12, 29, 8, 15, 20];
+$nummernp3 = [3, 31, 30, 6, 12, 29, 9, 15, 20];
 
 $produktionsauftraege = $_SESSION['produktionsauftraege'];
+$splitting = $_SESSION['splits'];
 $newprod = [];
 
 foreach ($produktionsauftraege as $key => $teil) {
   if ($key == 26 || $key == 16 || $key == 17) {
-    $newprod[$key][0] = $_POST['p1' . $key] + $_POST['p2' . $key] + $_POST['p3' . $key];
-    $newprod[$key][1] = $_POST['s' . $key];
+    $newprod[$key][0] = $produktionsauftraege[$key][0];
+    $newprod[$key][1] = $splitting[$key];
     $split = floor($newprod[$key][0] / $newprod[$key][1]);
     $splits = [];
     $summe = 0;
@@ -32,8 +34,8 @@ foreach ($produktionsauftraege as $key => $teil) {
   }
 
   if (in_array($key, $nummernp1)) {
-    $newprod[$key][0] = $_POST['p1' . $key];
-    $newprod[$key][1] = $_POST['s' . $key];
+    $newprod[$key][0] = $produktionsauftraege[$key];
+    $newprod[$key][1] = $splitting[$key];
     $split = floor($newprod[$key][0] / $newprod[$key][1]);
     $splits = [];
     $summe = 0;
@@ -47,8 +49,8 @@ foreach ($produktionsauftraege as $key => $teil) {
     }
     $newprod[$key][2] = $splits;
   } elseif (in_array($key, $nummernp2)) {
-    $newprod[$key][0] = $_POST['p2' . $key];
-    $newprod[$key][1] = $_POST['s' . $key];
+    $newprod[$key][0] = $produktionsauftraege[$key];
+    $newprod[$key][1] = $splitting[$key];
     $split = floor($newprod[$key][0] / $newprod[$key][1]);
     $splits = [];
     $summe = 0;
@@ -62,8 +64,8 @@ foreach ($produktionsauftraege as $key => $teil) {
     }
     $newprod[$key][2] = $splits;
   } else {
-    $newprod[$key][0] = $_POST['p3' . $key];
-    $newprod[$key][1] = $_POST['s' . $key];
+    $newprod[$key][0] = $produktionsauftraege[$key];
+    $newprod[$key][1] = $splitting[$key];
     $split = floor($newprod[$key][0] / $newprod[$key][1]);
     $splits = [];
     $summe = 0;
@@ -87,5 +89,45 @@ foreach ($reihenfolge as $i) {
 
 $_SESSION['produktionsauftraege'] = $prod;
 
-$_SESSION['checkProduktionsauftraege'] = 0;
-header('Location: ./reihenfolgePlanung.php');
+if (array_key_exists('checkProduktionsauftraege', $_SESSION)) {
+  $_SESSION['checkProduktionsauftraege'] = 1;
+} else {
+  $_SESSION['checkProduktionsauftraege'] = 0;
+}
+
+$teilep1 = $_SESSION['produktionsteile'][0];
+$teilep2 = $_SESSION['produktionsteile'][1];
+$teilep3 = $_SESSION['produktionsteile'][2];
+
+foreach ($teilep1 as $teil) {
+  if ($teil->dreifach) {
+    $teil->produktionsAuftragp1 = $produktionsauftraege[$teil->nummer][1];
+  } else {
+    $teil->produktionsAuftrag = $produktionsauftraege[$teil->nummer];
+  }
+  $teil->splitting = $splitting[$teil->nummer];
+}
+
+foreach ($teilep2 as $teil) {
+  if ($teil->dreifach) {
+    $teil->produktionsAuftragp2 = $produktionsauftraege[$teil->nummer][2];
+  } else {
+    $teil->produktionsAuftrag = $produktionsauftraege[$teil->nummer];
+  }
+  $teil->splitting = $splitting[$teil->nummer];
+}
+
+foreach ($teilep3 as $teil) {
+  if ($teil->dreifach) {
+    $teil->produktionsAuftragp3 = $produktionsauftraege[$teil->nummer][3];
+  } else {
+    $teil->produktionsAuftrag = $produktionsauftraege[$teil->nummer];
+  }
+  $teil->splitting = $splitting[$teil->nummer];
+}
+
+$_SESSION['produktionsteile'][0] = $teilep1;
+$_SESSION['produktionsteile'][1] = $teilep2;
+$_SESSION['produktionsteile'][2] = $teilep3;
+
+header('Location: reihenfolgePlanung.php');

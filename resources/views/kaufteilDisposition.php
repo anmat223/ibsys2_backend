@@ -1,6 +1,7 @@
 <?php
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
 require_once($documentRoot . '/classes/services/Database_Service.php');
+require_once($documentRoot . '/classes/entities/Kaufteil.php');
 
 $database = new DatabaseService();
 require_once($documentRoot . '/navbar.php');
@@ -23,7 +24,12 @@ $eingehendeBestellungen = $readerService->get_futureinwardstockmovement();
 $aktuellePeriode = $readerService->get_currentPeriod();
 $bestelleingaenge = $kaufteileService->berechnungBestelleingaenge($eingehendeBestellungen, $kaufteile, $aktuellePeriode);
 
-$bestellungen = $kaufteileService->berechnungBestellung($kaufteile, $bestelleingaenge);
+if (!array_key_exists('bestellungen', $_SESSION)) {
+  $bestellungen = $kaufteileService->berechnungBestellung($kaufteile, $bestelleingaenge);
+  $_SESSION['bestellungen'] = $bestellungen;
+} else {
+  $bestellungen = $_SESSION['bestellungen'];
+}
 ?>
 <h2><?php if ($_SESSION['language'] == "DE") {
       echo "Kaufteildisposition";
@@ -71,7 +77,7 @@ $bestellungen = $kaufteileService->berechnungBestellung($kaufteile, $bestelleing
             }
             ?>
             ">
-            <th scope="row"><a style="color: black" target="_blank" href="/resources/views/detailViewKaufteil.php?id=<?php echo $teil->nummer; ?>"><?php echo $teil->nummer; ?></a></th>
+            <th scope="row"><?php echo $teil->nummer . " "; ?><a style="color: black" target ="_blank" href="/resources/views/detailViewKaufteil.php?id=<?php echo $teil->nummer;?>"><i class="bi bi-info-circle-fill"></i></a></th>
             <td><?php echo $teil->lieferzeit . " - " . $teil->lieferzeit + $teil->abweichung; ?></td>
             <td><?php echo $teil->p1; ?></td>
             <td><?php echo $teil->p2; ?></td>
