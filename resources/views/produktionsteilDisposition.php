@@ -126,6 +126,7 @@ foreach ($p as $teil) {
     }
     ?></h2>
 <br>
+<form action="writeDatabase.php" method="post">
 <form action="sendProduktionsteile.php" method="post">
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -155,7 +156,7 @@ foreach ($p as $teil) {
           foreach ($teilep1 as $teil) : ?>
             <tr>
               <th scope="row"><?php echo $teil->nummer; ?></th>
-              <td><input type="number" class="form-control" name="<?php echo $teil->nummer ?>" value="<?php echo $teil->sicherheitsbestand;?>" onchange="twofunctions(this.value, this.name)"></td>
+              <td><input type="number" class="form-control" name="<?php echo $teil->nummer ?>" value="<?php echo $teil->sicherheitsbestand;?>" onchange="validate(this.value, this.name)"></td>
               <td><?php echo $teil->anzahl; ?></td>
               <td><?php echo $teil->inWarteschlange; ?></td>
               <td><?php echo $teil->inBearbeitung; ?></td>
@@ -230,14 +231,11 @@ foreach ($p as $teil) {
     </div>
   </div>
   </div>
+  <input type="submit" class="btn btn-dark" value="validate">
+</form>
   <input type="submit" class="btn btn-dark">
 </form>
 <script>
-  function twofunctions(value,name){
-    validate(value,name)
-    // Überprüfung ob validierung erfolgreich
-    handleChange()
-  }
   function validate(value, name) {
     if (document.getElementsByName(name)[0].value.length !== 0) {
       if (value < 0) {
@@ -255,26 +253,6 @@ foreach ($p as $teil) {
     } else {
       document.getElementsByName(name)[0].value = 0
     }
-  }
-
-  function handleChange(value, name){
-     var phpupdate = <?php $database->update("Produktionsteil", "sicherheitsbestand", $value, $name)?>
-     jQuery.ajax({
-    type: "POST",
-    url: 'Database_Service.php.php',
-    dataType: 'json',
-    data: {functionname: 'update', arguments: ["Produktionsteil", "sicherheitsbestand", value, name]},
-
-    success: function (obj, textstatus) {
-                  if( !('error' in obj) ) {
-                      yourVariable = obj.result;
-                  }
-                  else {
-                      console.log(obj.error);
-                  }
-            }
-});
-    // Funktionsaufrufe starten
   }
 </script>
 <?php

@@ -83,7 +83,7 @@ class DatabaseService
     try {
       $conn = new PDO("$this->connectionString$this->servername;dbname=$this->databaseName", $this->username, $this->password);
 
-      $sql = "UPDATE $table  SET $column = $value WHERE teil = $teil";
+      $sql = "UPDATE $table  SET $column = $value WHERE teil = $teil;";
 
       $conn->exec($sql);
     } catch (PDOException $e) {
