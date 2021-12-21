@@ -31,7 +31,6 @@ if (!array_key_exists('bestellungen', $_SESSION)) {
 } else {
   $bestellungen = $_SESSION['bestellungen'];
 }
-print_r($bestellungen);
 ?>
 <h2><?php if ($_SESSION['language'] == "DE") {
       echo "Kaufteildisposition";
