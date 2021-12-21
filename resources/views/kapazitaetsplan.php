@@ -17,8 +17,15 @@ $kapazitaetsbedarfNeu = $kapazitaetsbedarfService->berechnungKapazitätsbedarfNe
 $ruestzeitNeu = $kapazitaetsbedarfService->berechnungRuestZeitNeu($_SESSION['produktionsauftraege'])[0];
 $infoRuestZeitNeu = $kapazitaetsbedarfService->berechnungRuestZeitNeu($_SESSION['produktionsauftraege'])[1];
 $kapazitaetsbedarfGesamt = $kapazitaetsbedarfService->berechnungKapazitätsbedarfGesamt($kapazitaetsbedarfNeu, $ruestzeitNeu, $kapazitaetsbedarfAlt, $ruestzeitAlt);
-$schichtenUeberstunden = $kapazitaetsbedarfService->berechnungSchichtenÜberstunden($kapazitaetsbedarfGesamt);
-$_SESSION['schichtenUeberstunden'] = $schichtenUeberstunden;
+if (!array_key_exists('schichtenUeberstunden', $_SESSION)) {
+  $schichtenUeberstunden = $kapazitaetsbedarfService->berechnungSchichtenÜberstunden($kapazitaetsbedarfGesamt);
+  $_SESSION['schichtenUeberstunden'] = $schichtenUeberstunden;
+} elseif ($_SESSION['checkProduktionsauftraege'] == 1) {
+  $schichtenUeberstunden = $kapazitaetsbedarfService->berechnungSchichtenÜberstunden($kapazitaetsbedarfGesamt);
+  $_SESSION['schichtenUeberstunden'] = $schichtenUeberstunden;
+} else {
+    $schichtenUeberstunden = $_SESSION['schichtenUeberstunden'];
+}
 $ueberstunden = $schichtenUeberstunden[0];
 $schichten = $schichtenUeberstunden[1];
 ?>

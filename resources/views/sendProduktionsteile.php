@@ -1,6 +1,7 @@
 <?php
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
 require_once($documentRoot . '/ibsys2_backend/classes/services/Database_Service.php');
+require_once($documentRoot . '/ibsys2_backend/classes/entities/Produktionsteil.php');
 
 $database = new DatabaseService();
 require_once($documentRoot . '/ibsys2_backend/navbar.php');
@@ -87,6 +88,45 @@ foreach ($reihenfolge as $i) {
 
 $_SESSION['produktionsauftraege'] = $prod;
 
-$_SESSION['checkProduktionsauftraege'] = 0;
+if (array_key_exists('checkProduktionsauftraege', $_SESSION)) {
+  $_SESSION['checkProduktionsauftraege'] = 1;
+} else {
+  $_SESSION['checkProduktionsauftraege'] = 0;
+}
+
+$teilep1 = $_SESSION['produktionsteile'][0];
+$teilep2 = $_SESSION['produktionsteile'][1];
+$teilep3 = $_SESSION['produktionsteile'][2];
+
+foreach ($teilep1 as $teil) {
+  if ($teil->dreifach) {
+    $teil->produktionsAuftragp1 = $_POST['p1' . $teil->nummer];
+  } else {
+    $teil->produktionsAuftrag = $_POST['p1' . $teil->nummer];
+  }
+  $teil->splitting = $_POST['s' . $teil->nummer];
+}
+
+foreach ($teilep2 as $teil) {
+  if ($teil->dreifach) {
+    $teil->produktionsAuftragp2 = $_POST['p2' . $teil->nummer];
+  } else {
+    $teil->produktionsAuftrag = $_POST['p2' . $teil->nummer];
+  }
+  $teil->splitting = $_POST['s' . $teil->nummer];
+}
+
+foreach ($teilep3 as $teil) {
+  if ($teil->dreifach) {
+    $teil->produktionsAuftragp3 = $_POST['p3' . $teil->nummer];
+  } else {
+    $teil->produktionsAuftrag = $_POST['p3' . $teil->nummer];
+  }
+  $teil->splitting = $_POST['s' . $teil->nummer];
+}
+
+$_SESSION['produktionsteile'][0] = $teilep1;
+$_SESSION['produktionsteile'][1] = $teilep2;
+$_SESSION['produktionsteile'][2] = $teilep3;
 
 header('Location: reihenfolgePlanung.php');
