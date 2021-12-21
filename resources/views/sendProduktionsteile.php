@@ -1,8 +1,8 @@
 <?php
-session_start();
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-require_once($documentRoot . '/classes/services/Database_Service.php');
 require_once($documentRoot . '/classes/entities/Produktionsteil.php');
+session_start();
+require_once($documentRoot . '/classes/services/Database_Service.php');
 
 $database = new DatabaseService();
 

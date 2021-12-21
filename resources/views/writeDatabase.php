@@ -1,10 +1,10 @@
 <?php
+session_start();
 $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-require_once($documentRoot . '/ibsys2_backend/classes/services/Database_Service.php');
-require_once($documentRoot . '/ibsys2_backend/classes/entities/Produktionsteil.php');
+require_once($documentRoot . '/classes/services/Database_Service.php');
+require_once($documentRoot . '/classes/entities/Produktionsteil.php');
 
 $database = new DatabaseService();
-require_once($documentRoot . '/ibsys2_backend/navbar.php');
 
 // $post splitting in Session speichern
 $splits = [];
