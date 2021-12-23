@@ -204,17 +204,17 @@ $splits = $_SESSION['splits'];
               <td>
                 <?php
                 if ($teil->dreifach) {
-                  if ($splits[$teil->nummer]) {
+                  if ($splits[$teil->nummer] != null) {
                     echo $splits[$teil->nummer];
                   } else {
                     echo "";
                   }
                 } else {
-                  if ($splits[$teil->nummer]) {
-                    echo '<input type="number" class=" from-control" name="s' . $teil->nummer . '" value="' . $splits[$teil->nummer] . '" onchange="validateSplitting(this.value, this.name)">';
-                  } else {
-                    echo 1;
+                  $s = 1;
+                  if ($splits[$teil->nummer] != null) {
+                    $s = $splits[$teil->nummer];
                   }
+                  echo '<input type="number" class="form-control" name="s' . $teil->nummer . '" value="' . $s . '" onchange="validateSplitting(this.value, this.name)">';
                 }
                 ?>
               </td>
@@ -251,17 +251,17 @@ $splits = $_SESSION['splits'];
               <td>
                 <?php
                 if ($teil->dreifach) {
-                  if ($splits[$teil->nummer]) {
+                  if ($splits[$teil->nummer] != null) {
                     echo $splits[$teil->nummer];
                   } else {
                     echo "";
                   }
                 } else {
-                  if ($splits[$teil->nummer]) {
-                    echo '<input type="number" class=" from-control" name="s' . $teil->nummer . '" value="' . $splits[$teil->nummer] . '" onchange="validateSplitting(this.value, this.name)">';
-                  } else {
-                    echo 1;
+                  $s = 1;
+                  if ($splits[$teil->nummer] != null) {
+                    $s = $splits[$teil->nummer];
                   }
+                  echo '<input type="number" class="form-control" name="s' . $teil->nummer . '" value="' . $s . '" onchange="validateSplitting(this.value, this.name)">';
                 }
                 ?>
               </td>
